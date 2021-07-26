@@ -17,7 +17,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     private ActivityChangePassWordBinding layoutBinding;
     private ToolbarBinding toolbarBinding;
     ChangePasswordPresenter changePasswordPresenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
