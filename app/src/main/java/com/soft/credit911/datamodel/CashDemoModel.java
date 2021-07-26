@@ -1,4 +1,4 @@
-package com.soft.credit911.CaseMangement.Model;
+package com.soft.credit911.datamodel;
 
 public class CashDemoModel {
     private String bankName, mark, status, date, userStatus, agentName, userMessage;

@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:id="@+id/tvMesssage"
-                    android:padding="@dimen/_12ssp"
+                    android:padding="@dimen/_12sdp"
                     android:text="Please wait while we process your request!"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sdp" />

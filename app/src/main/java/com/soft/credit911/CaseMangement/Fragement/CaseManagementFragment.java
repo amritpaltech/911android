@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.soft.credit911.CaseMangement.Adapter.CaseManagementDetailsAdapter;
-import com.soft.credit911.CaseMangement.Model.CashDemoModel;
+import com.soft.credit911.adaptor.CaseManagementDetailsAdapter;
+import com.soft.credit911.datamodel.CashDemoModel;
 import com.soft.credit911.R;
 import com.soft.credit911.databinding.FragmentCaseManagementBinding;
 import com.soft.credit911.databinding.ToolbarBinding;

@@ -106,5 +106,15 @@
     <string name="submit">Submit</string>
     <string name="text_callback">Your authentication is failed, we will call you back.</string>
 
+    <string name="txt_logout_message">Are you sure, you want to logout?</string>
+    <string name="txt_yes">&#160;Yes</string>
+    <string name="txt_no">&#160;No</string>
+    <string name="txt_logout">Logout</string>
+    <string name="txt_logout2"><u>Logout</u></string>
+    <string name="txt_select_choice">Select choice</string>
+    <string name="txt_select_camera">Camera</string>
+    <string name="txt_select_browse">Browse</string>
+    <string name="txt_dismiss">Ok</string>
+    <string name="txt_image">Use an existing or take a new picture</string>
 
 </resources>
