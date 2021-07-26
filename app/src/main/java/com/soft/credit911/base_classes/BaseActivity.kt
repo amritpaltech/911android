@@ -56,7 +56,7 @@ abstract class BaseActivity : AppConfigActivity() {
         if (mProgressDialog == null) {
             mProgressDialog = Dialog(this, android.R.style.Theme_Translucent)
             mProgressDialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
-            mProgressDialog?.setContentView(R.layout.dialog_custom)
+            mProgressDialog?.setContentView(R.layout.dialog_progress_overlay)
             mProgressDialog?.setCancelable(true)
 
         }

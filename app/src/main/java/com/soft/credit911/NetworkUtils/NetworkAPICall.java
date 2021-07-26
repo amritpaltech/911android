@@ -2,34 +2,24 @@ package com.soft.credit911.NetworkUtils;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.soft.credit911.Login.Model.LoginResponse;
-import com.soft.credit911.SecurityQuestions.Activity.CongratulationsActivity;
 import com.soft.credit911.SecurityQuestions.Activity.ErrorActivity;
-import com.soft.credit911.SecurityQuestions.Model.SecurityQuestionModel;
 import com.soft.credit911.SecurityQuestions.Model.SecurityResponse;
 import com.soft.credit911.Utils.AppPreference;
-import com.soft.credit911.Utils.CommonUtils;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;

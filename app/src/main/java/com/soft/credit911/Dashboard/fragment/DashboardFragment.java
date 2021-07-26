@@ -45,8 +45,6 @@ public class DashboardFragment extends Fragment implements DashboardView {
         toolbarBinding.toolbarTitle.setText("Dashboard");
         toolbarBinding.navigationIcon.setVisibility(View.GONE);
         dashboardPresenter = new DashboardPresenter(getContext(), this);
-
-
         fragmentBinding.tvCreditRepairStatus.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), SecurityQuestionsActivity.class);
             getContext().startActivity(intent);

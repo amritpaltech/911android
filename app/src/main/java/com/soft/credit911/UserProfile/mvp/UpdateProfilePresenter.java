@@ -3,12 +3,9 @@ package com.soft.credit911.UserProfile.mvp;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.android.volley.VolleyError;
 import com.google.gson.reflect.TypeToken;
-import com.soft.credit911.Login.LoginActivity;
-import com.soft.credit911.Login.Model.LoginResponse;
 import com.soft.credit911.NetworkUtils.APIConstants;
 import com.soft.credit911.NetworkUtils.NetworkAPICall;
 import com.soft.credit911.NetworkUtils.NetworkAPICallModel;

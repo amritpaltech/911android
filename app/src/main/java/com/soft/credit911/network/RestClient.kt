@@ -7,6 +7,7 @@ import com.ing.quiz.shared_prefrences.Prefs
 import com.ing.quiz.shared_prefrences.SharedPreferencesName
 import com.ing.quiz.ui.base_classes.BaseActivity
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.soft.credit911.NetworkUtils.APIConstants
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -39,7 +40,7 @@ class RestClient {
                         .create()
                 )
                 .client(clientBuilder.build())
-                .baseUrl("BuildConfig.MOODLE_BASE_URL")
+                .baseUrl(APIConstants.BASE_URL)
                 .build()
             return retrofit2.create(api_services::class.java)
 

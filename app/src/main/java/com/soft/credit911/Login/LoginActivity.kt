@@ -1,116 +1,121 @@
-package com.soft.credit911.Login;
+package com.soft.credit911.Login
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.ing.quiz.ui.base_classes.SubBaseActivity
+import com.soft.credit911.ForgotPassword.ForgetPasswordActivity
+import com.soft.credit911.Landing.LandingActivity
+import com.soft.credit911.OTPVerification.LoginVerificationActivity
+import com.soft.credit911.R
+import com.soft.credit911.Utils.AppConstants
+import com.soft.credit911.Utils.AppPreference
+import com.soft.credit911.Utils.CommonUtils
+import com.soft.credit911.adaptor.ViewPagerAdapter
+import com.soft.credit911.databinding.ActivityMainBinding
+import com.soft.credit911.datamodel.LoginResponse
+import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.String
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import com.soft.credit911.Landing.LandingActivity;
-import com.soft.credit911.ForgotPassword.ForgetPasswordActivity;
-import com.soft.credit911.Login.Adpater.ViewPagerAdapter;
-import com.soft.credit911.Login.Model.LoginResponse;
-import com.soft.credit911.Login.mvp.LoginPresenter;
-import com.soft.credit911.Login.mvp.LoginView;
-import com.soft.credit911.OTPVerification.LoginVerificationActivity;
-import com.soft.credit911.R;
-import com.soft.credit911.Utils.AppConstants;
-import com.soft.credit911.Utils.AppPreference;
-import com.soft.credit911.Utils.CommonUtils;
-import com.soft.credit911.databinding.ActivityMainBinding;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+class LoginActivity : SubBaseActivity() {
+   
+    var mViewModel= LoginViewModel()
+    var appPreference: AppPreference? = null
+    
 
-import static com.soft.credit911.Utils.CommonUtils.isValidEmail;
-
-public class LoginActivity extends AppCompatActivity implements LoginView {
-    private ActivityMainBinding layoutBinding;
-    LoginPresenter loginPresenter;
-    AppPreference appPreference;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        layoutBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view = layoutBinding.getRoot();
-        setContentView(view);
-        loginPresenter = new LoginPresenter(this, this);
-        appPreference = new AppPreference(this);
-        initView();
+    override fun getLayoutID(): Int {
+        return R.layout.activity_main
     }
 
-    private void initView() {
-        layoutBinding.tvLogin.setOnClickListener(v -> {
-            if (validate())
-                loginPresenter.signIn(layoutBinding.etUserEmail.getText().toString().trim(), layoutBinding.etUserPassword.getText().toString().trim());
-        });
-
-        layoutBinding.tvForgetYourPassword.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ForgetPasswordActivity.class);
-            startActivity(intent);
-        });
-
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
-        layoutBinding.viewPager.setAdapter(adapter);
-        layoutBinding.viewPager.setCurrentItem(0);
-        layoutBinding.tutorialSliderTab.setupWithViewPager(layoutBinding.viewPager);
-
-
-        /*layoutBinding.tvLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(this, LandingActivity.class);
-            startActivity(intent);
-        });*/
+    override fun onViewCreated() {
+        appPreference = AppPreference(this)
+        initView()
+        attachObserver()
     }
 
-    private boolean validate() {
-        if (layoutBinding.etUserEmail.getText().toString().trim().equals("")) {
-            layoutBinding.etUserEmail.setError(getResources().getString(R.string.email_error));
-            layoutBinding.etUserEmail.requestFocus();
-            return false;
+    private fun initView() {
+        tv_Login.setOnClickListener { v: View? ->
+            if (validate()) {
+                mViewModel.signIn(
+                    etUserEmail.text.toString().trim { it <= ' ' },
+                    etUserPassword.text.toString().trim { it <= ' ' })
+            }
         }
-
-        if (!isValidEmail(layoutBinding.etUserEmail.getText().toString().trim())) {
-            layoutBinding.etUserEmail.setError(getResources().getString(R.string.invalid_email_error));
-            layoutBinding.etUserEmail.requestFocus();
-            return false;
+        tv_Forget_your_password.setOnClickListener { v: View? ->
+            val intent = Intent(this, ForgetPasswordActivity::class.java)
+            startActivity(intent)
         }
-        if (layoutBinding.etUserPassword.getText().toString().trim().equals("")) {
-            layoutBinding.etUserPassword.setError(getResources().getString(R.string.your_password));
-            layoutBinding.etUserPassword.requestFocus();
-            return false;
-        }
-
-        return true;
+        val adapter = ViewPagerAdapter(this)
+        view_pager.adapter = adapter
+        view_pager.currentItem = 0
+        tutorialSliderTab.setupWithViewPager(view_pager)
     }
 
-    @Override
-    public void LoginResponse(LoginResponse loginResponse) {
-        if (loginResponse.getStatus().equals(AppConstants.API_SUCCESS)) {
-            String dtStart = loginResponse.getData().getToken2faExpiry();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private fun validate(): Boolean {
+        if (etUserEmail.text.toString().trim { it <= ' ' } == "") {
+            etUserEmail.error = resources.getString(R.string.email_error)
+            etUserEmail.requestFocus()
+            return false
+        }
+        if (!CommonUtils.isValidEmail(
+                etUserEmail.text.toString().trim { it <= ' ' })
+        ) {
+            etUserEmail.error = resources.getString(R.string.invalid_email_error)
+            etUserEmail.requestFocus()
+            return false
+        }
+        if (etUserPassword.text.toString().trim { it <= ' ' } == "") {
+            etUserPassword.error = resources.getString(R.string.your_password)
+            etUserPassword.requestFocus()
+            return false
+        }
+        return true
+    }
 
-            Calendar today = Calendar.getInstance();
+    fun attachObserver() {
 
-            Date expireDate = null;
+        mViewModel.isLoading.observe(this,androidx.lifecycle.Observer {
+
+            if(it){
+                showProgress()
+            }else{
+                hideProgress()
+            }
+        })
+        mViewModel.responseAppHomedata.observe(this, androidx.lifecycle.Observer { loginResponse->
+            val dtStart = loginResponse.data!!.token2faExpiry
+            val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            val today = Calendar.getInstance()
+            var expireDate: Date? = null
             try {
-                expireDate = format.parse(dtStart);
-            } catch (ParseException e) {
-                e.printStackTrace();
+                expireDate = format.parse(dtStart)
+            } catch (e: ParseException) {
+                e.printStackTrace()
             }
-            new AppPreference(this).setUserObject(loginResponse);
-            if (expireDate.after(today.getTime()) && appPreference.getUserLoggedIn().contains(String.valueOf(loginResponse.getData().getId()))) {
-                appPreference.setIsLogin(true);
-                Intent intent = new Intent(this, LandingActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+            AppPreference(this).userObject = loginResponse
+            if (expireDate!!.after(today.time) && appPreference!!.userLoggedIn.contains(
+                    String.valueOf(
+                        loginResponse.data.id
+                    )
+                )
+            ) {
+                appPreference!!.isLogin = true
+                val intent = Intent(this, LandingActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
             } else {
-                Intent intent = new Intent(this, LoginVerificationActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                val intent = Intent(this, LoginVerificationActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
             }
-        } else {
-            CommonUtils.showdialog(loginResponse.getMessage(), this, false);
-        }
+
+        })
+        mViewModel.apiError.observe(this, androidx.lifecycle.Observer {
+            CommonUtils.showdialog(it, this, false)
+        })
     }
 }

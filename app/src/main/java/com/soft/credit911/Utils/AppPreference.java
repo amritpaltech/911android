@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
-import com.soft.credit911.Login.Model.LoginResponse;
+import com.soft.credit911.datamodel.LoginResponse;
 
 public class AppPreference {
     private SharedPreferences appSharedPrefs;
