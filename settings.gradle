@@ -1,0 +1,2 @@
+rootProject.name = "911 Credit"
+include ':app'

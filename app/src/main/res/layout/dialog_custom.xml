@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout
+        android:layout_centerInParent="true"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/rectangle_shape">
+
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="@color/lightGrey"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="normal" />
+
+
+        <TextView
+            android:id="@+id/btnCloseDialog"
+            android:text="@string/Okay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/_20sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_rectangle_shape"/>
+
+    </LinearLayout>
+</RelativeLayout>

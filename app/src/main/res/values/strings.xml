@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">911 Credit</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--LoginActivity-->
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="user_Email">Email</string>
+    <string name="Login_ViewPager">Check your Credit score and report without hurting your credit</string>
+    <string name="forget_your_password">Forget your password</string>
+    <string name="email_error">Enter Your Email Id</string>
+    <string name="invalid_email_error">Invalid Email Id</string>
+    <string name="your_password">Enter Your Password</string>
+
+
+    <!--LoginVerificationActivity-->
+    <string name="verification_code">Verification Code</string>
+    <string name="verification_number">Please enter the verification code sent to </string>
+    <string name="didn_t_receive_an_otp">Didn`t receive an OTP?</string>
+    <string name="resend_otp">Resend OTP?</string>
+    <string name="verifiy">Verify</string>
+
+
+    <!--UserProfileFragment-->
+    <string name="user_email">harry@gmail.com</string>
+    <string name="user_number">+91 9914599145</string>
+    <string name="User_name">Harry Singh</string>
+    <string name="my_profile">My Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="chat">Chat</string>
+    <string name="notifications">Notifications</string>
+    <string name="case_management">Case Management</string>
+    <string name="logout">Logout</string>
+
+
+    <!--My Profile-->
+    <string name="First_name">First name</string>
+    <string name="Last_name">Last name</string>
+    <string name="Email">Email</string>
+    <string name="Phone">Phone</string>
+    <string name="City">City</string>
+    <string name="State">State</string>
+    <string name="Zip">Zip</string>
+    <string name="Address1">Address1</string>
+    <string name="Address2">Address2</string>
+
+    <string name="first_name_error">Enter FirstName</string>
+    <string name="last_name_error">Enter LastName</string>
+    <string name="phone_number_error">Enter PhoneNumber</string>
+
+    <!--ChangePassword -->
+    <string name="current_password">CurrentPassword</string>
+    <string name="New_password">New Password</string>
+    <string name="Confirm_password">Confirm Password</string>
+    <string name="currentPassword_error">Enter CurrentPassword</string>
+    <string name="newPassword_error">Enter NewPassword</string>
+    <string name="new_Confirm_Password_error">Enter New Confirm Password</string>
+    <string name="password_not_matching">Password Not matching</string>
+
+
+    <!--splash-->
+
+    <string name="splash">Cutting Edge Tools To Repair Your Credit Score!</string>
+    <string name="get_started_now">Get Started Now!</string>
+
+    <!--Forget Password-->
+    <string name="user_name">User Name</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="forget_password">Forget Password</string>
+
+    <!--Landing Activity-->
+    <string name="Dashboard">Dashboard</string>
+    <string name="Chat">Chat</string>
+    <string name="CaseManagement">CaseManagement</string>
+    <string name="More">More</string>
+
+    <!--LoginVerification-->
+    <string name="otp_error">Enter OTP</string>
+
+    <!--caseManagement-->
+    <string name="user_message">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.</string>
+    <string name="user_mess">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. .</string>
+    <string name="chat_with_agent">Chat With Agent</string>
+    <string name="title_activity_document">DocumentActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="Okay">Ok</string>
+
+    <!--Dashboard-->
+    <string name="dialog_title">Choose File</string>
+    <string name="report_date">REPORT DATE:</string>
+    <string name="jun_24_2021">Jun 24,2021</string>
+    <string name="next_update">NEXT UPDATE:</string>
+    <string name="july_2_2021">July 2,2021</string>
+    <string name="score_history">Score History</string>
+    <string name="credit_report">Credit Report</string>
+    <string name="credit_history">Credit History</string>
+    <string name="credit_repair_status">Credit Repair Status</string>
+    <string name="submit">Submit</string>
+    <string name="text_callback">Your authentication is failed, we will call you back.</string>
+
+
+</resources>

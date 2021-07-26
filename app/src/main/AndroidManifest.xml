@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.soft.credit911">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/appicon"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.911Credit">
+        <activity android:name=".SecurityQuestions.Activity.CongratulationsActivity"></activity>
+        <activity android:name=".SecurityQuestions.Activity.ErrorActivity" />
+        <activity android:name=".SecurityQuestions.Activity.SecurityQuestionsActivity" />
+        <activity android:name=".Document.Activity.DocumentActivity" />
+        <activity android:name=".CaseMangement.Activity.CaseManagementActivity" />
+        <activity android:name=".Notification.Activity.NotificationActivity" />
+        <activity android:name=".ForgotPassword.ForgetPasswordActivity" />
+        <activity android:name=".Splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Chat.Activity.ChatActivity" />
+        <activity android:name=".Changepassword.Activity.ChangePasswordActivity" />
+        <activity android:name=".MyProfile.Activity.MyProfileActivity" />
+        <activity android:name=".Landing.LandingActivity" />
+        <activity android:name=".OTPVerification.LoginVerificationActivity" />
+        <activity android:name=".Login.LoginActivity" />
+    </application>
+
+</manifest>

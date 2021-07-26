@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Dashboard"
+        android:title="DASHBOARD"
+
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/Contact_message"
+        android:title="CHAT"
+        android:icon="@drawable/ic_contact_message"/>
+    <item
+        android:id="@+id/Case_management"
+        android:title="CASE MANAGEMENT"
+        android:icon="@drawable/ic_case_management_icon"/>
+    <item
+        android:id="@+id/More"
+        android:title="More"
+        android:icon="@drawable/more_icon"/>
+</menu>
