@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.anko.doAsync
 import org.json.JSONObject
 import java.io.IOException
+import java.net.SocketTimeoutException
 
 class ChangePasswordViewModel: BaseViewModel() {
     val responsePasswordChange= MutableLiveData<ChangePasswordResponse>()
@@ -36,7 +37,7 @@ class ChangePasswordViewModel: BaseViewModel() {
                             isLoading.postValue(false)
                         }, { error ->
                             isLoading.postValue(false)
-                            if (error is IOException)
+                            if (error is SocketTimeoutException)
                             {
                                 "No Internet Connection try again later"?.let { apiError.postValue(it) }
                             } else if(error is com.jakewharton.retrofit2.adapter.rxjava2.HttpException){

@@ -27,7 +27,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/current_password"
                 android:textColor="@color/MyProfileTextColor"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/_14sdp" />
 
             <EditText
                 android:id="@+id/etCurrentPassword"
@@ -35,10 +35,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:paddingLeft="@dimen/_10sdp"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:singleLine="true"
                 android:background="@drawable/rectangle_shape"
-                android:paddingTop="@dimen/_12sdp"
+                android:paddingTop="@dimen/_6sdp"
                 android:paddingRight="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_6sdp"
                 android:textColor="@color/MyProfileTextColor" />
 
             <TextView
@@ -47,18 +50,21 @@
                 android:text="@string/New_password"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:textColor="@color/MyProfileTextColor"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/_14sdp" />
 
             <EditText
                 android:id="@+id/etNewPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:singleLine="true"
                 android:background="@drawable/rectangle_shape"
-                android:paddingTop="@dimen/_12sdp"
+                android:paddingTop="@dimen/_6sdp"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_6sdp"
                 android:textColor="@color/MyProfileTextColor" />
 
             <TextView
@@ -67,7 +73,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/Confirm_password"
                 android:textColor="@color/MyProfileTextColor"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/_14sdp" />
 
             <EditText
                 android:id="@+id/etConfirmPassword"
@@ -76,9 +82,12 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_8sdp"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:background="@drawable/rectangle_shape"
-                android:paddingTop="@dimen/_12sdp"
-                android:paddingBottom="@dimen/_12sdp"
+                android:paddingTop="@dimen/_6sdp"
+                android:paddingBottom="@dimen/_6sdp"
                 android:textColor="@color/MyProfileTextColor" />
 
             <TextView

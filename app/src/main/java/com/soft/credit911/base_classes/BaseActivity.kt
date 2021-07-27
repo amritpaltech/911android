@@ -79,7 +79,7 @@ abstract class BaseActivity : AppConfigActivity() {
         onViewCreated()
         val imageLoader = com.nostra13.universalimageloader.core.ImageLoader.getInstance();
         imageLoader?.init(ImageLoaderConfiguration.createDefault(this))
-
+        RestClient?.mBaseActivity = this
     }
 
 
