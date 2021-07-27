@@ -21,12 +21,12 @@
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         tools:replace="android:appComponentFactory">
 
-        <activity android:name=".ui.SecurityQuestions.Activity.CongratulationsActivity"></activity>
-        <activity android:name=".ui.SecurityQuestions.Activity.ErrorActivity" />
-        <activity android:name=".ui.SecurityQuestions.Activity.SecurityQuestionsActivity" />
-        <activity android:name=".ui.Document.Activity.DocumentActivity" />
+        <activity android:name=".ui.SecurityQuestions.CongratulationsActivity"></activity>
+        <activity android:name=".ui.SecurityQuestions.ErrorActivity" />
+        <activity android:name=".ui.SecurityQuestions.SecurityQuestionsActivity" />
+        <activity android:name=".ui.documnet.DocumentActivity" />
         <activity android:name=".ui.casemanagement.CaseManagementActivity" />
-        <activity android:name=".ui.Notification.Activity.NotificationActivity" />
+        <activity android:name=".ui.notifications.NotificationActivity" />
         <activity android:name=".ui.ForgotPassword.ForgetPasswordActivity" />
         <activity android:name=".ui.Splash.SplashActivity">
             <intent-filter>

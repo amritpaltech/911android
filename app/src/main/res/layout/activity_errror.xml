@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.SecurityQuestions.Activity.ErrorActivity">
+        tools:context=".ui.SecurityQuestions.ErrorActivity">
 
         <LinearLayout
             android:layout_width="match_parent"

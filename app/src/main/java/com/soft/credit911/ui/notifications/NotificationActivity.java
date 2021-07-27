@@ -1,11 +1,11 @@
-package com.soft.credit911.ui.Notification.Activity;
+package com.soft.credit911.ui.notifications;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 
-import com.soft.credit911.ui.Notification.Adapter.NotificationDetailsAdapter;
+import com.soft.credit911.adaptor.NotificationDetailsAdapter;
 import com.soft.credit911.datamodel.NotificationModel;
 import com.soft.credit911.databinding.ActivityNotificationBinding;
 import com.soft.credit911.databinding.ToolbarBinding;

@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.soft.credit911.ui.Chat.ChatContract;
-import com.soft.credit911.ui.Chat.Fragment.Adapter.MessageDetailsAdapter;
+import com.soft.credit911.adaptor.MessageDetailsAdapter;
 import com.soft.credit911.ui.Chat.Presenter.ChatPresenter;
 import com.soft.credit911.databinding.ActivityChatBinding;
 import com.soft.credit911.databinding.ToolbarBinding;

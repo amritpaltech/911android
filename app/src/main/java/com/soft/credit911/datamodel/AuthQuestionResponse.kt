@@ -1,28 +1,11 @@
-package com.soft.credit911.ui.SecurityQuestions.Model;
+package com.soft.credit911.datamodel
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.SerializedName
 
-public class AuthQuestionResponse{
+class AuthQuestionResponse {
+    @SerializedName("message")
+    var message: String? = null
 
-	@SerializedName("message")
-	private String message;
-
-	@SerializedName("status")
-	private String status;
-
-	public void setMessage(String message){
-		this.message = message;
-	}
-
-	public String getMessage(){
-		return message;
-	}
-
-	public void setStatus(String status){
-		this.status = status;
-	}
-
-	public String getStatus(){
-		return status;
-	}
+    @SerializedName("status")
+    var status: String? = null
 }

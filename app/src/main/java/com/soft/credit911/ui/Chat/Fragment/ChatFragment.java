@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.soft.credit911.ui.Chat.Fragment.Adapter.ChatDetailsAdapter;
-import com.soft.credit911.ui.Chat.Fragment.Model.DemoModel;
+import com.soft.credit911.adaptor.ChatDetailsAdapter;
+import com.soft.credit911.datamodel.DemoModel;
 import com.soft.credit911.R;
 import com.soft.credit911.databinding.FragmentChatBinding;
 import com.soft.credit911.databinding.ToolbarBinding;

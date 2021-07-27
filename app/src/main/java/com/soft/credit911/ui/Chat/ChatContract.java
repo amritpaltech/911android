@@ -1,6 +1,6 @@
 package com.soft.credit911.ui.Chat;
 
-import com.soft.credit911.ui.Chat.Fragment.Model.ChatObject;
+import com.soft.credit911.datamodel.ChatObject;
 
 import java.util.ArrayList;
 

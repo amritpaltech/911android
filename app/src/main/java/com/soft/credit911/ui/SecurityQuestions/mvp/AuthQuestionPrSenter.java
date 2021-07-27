@@ -10,8 +10,8 @@ import com.soft.credit911.NetworkUtils.APIConstants;
 import com.soft.credit911.NetworkUtils.NetworkAPICall;
 import com.soft.credit911.NetworkUtils.NetworkAPICallModel;
 import com.soft.credit911.NetworkUtils.NetworkAPIResponseCallback;
-import com.soft.credit911.ui.SecurityQuestions.Activity.SecurityQuestionsActivity;
-import com.soft.credit911.ui.SecurityQuestions.Model.AuthQuestionResponse;
+import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity;
+import com.soft.credit911.datamodel.AuthQuestionResponse;
 import com.soft.credit911.Utils.AppConstants;
 
 import org.json.JSONObject;

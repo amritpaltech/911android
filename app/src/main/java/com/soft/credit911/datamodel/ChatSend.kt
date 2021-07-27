@@ -1,8 +1,6 @@
-package com.soft.credit911.ui.Chat.Fragment.Model;
+package com.soft.credit911.datamodel
 
-public class ChatSend extends ChatObject {
-    @Override
-    public int getType() {
-        return ChatObject.SEND_MESSAGE;
-    }
+class ChatSend : ChatObject() {
+    override val type: Int
+        get() = SEND_MESSAGE
 }

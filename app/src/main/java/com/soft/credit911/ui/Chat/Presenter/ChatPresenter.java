@@ -1,9 +1,9 @@
 package com.soft.credit911.ui.Chat.Presenter;
 
 import com.soft.credit911.ui.Chat.ChatContract;
-import com.soft.credit911.ui.Chat.Fragment.Model.ChatSend;
-import com.soft.credit911.ui.Chat.Fragment.Model.ChatObject;
-import com.soft.credit911.ui.Chat.Fragment.Model.ChatReceived;
+import com.soft.credit911.datamodel.ChatSend;
+import com.soft.credit911.datamodel.ChatObject;
+import com.soft.credit911.datamodel.ChatReceived;
 import com.soft.credit911.R;
 
 import java.util.ArrayList;

@@ -1,130 +1,40 @@
-package com.soft.credit911.ui.SecurityQuestions.Model;
+package com.soft.credit911.datamodel
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.SerializedName
 
-public class SecurityResponse{
+class SecurityResponse {
+    @SerializedName("code")
+    var code: String? = null
 
-	@SerializedName("code")
-	private String code;
+    @SerializedName("data")
+    var data: Data? = null
 
-	@SerializedName("data")
-	private Data data;
+    @SerializedName("message")
+    var message: String? = null
 
-	@SerializedName("message")
-	private String message;
+    @SerializedName("status")
+    var status: String? = null
 
-	@SerializedName("status")
-	private String status;
+    inner class Data {
+        @SerializedName("updated_at")
+        var updatedAt: String? = null
 
-	public void setCode(String code){
-		this.code = code;
-	}
+        @SerializedName("user_id")
+        var userId: Int? = null
 
-	public String getCode(){
-		return code;
-	}
+        @SerializedName("questions")
+        var questions: String? = null
 
-	public void setData(Data data){
-		this.data = data;
-	}
+        @SerializedName("created_at")
+        var createdAt: String? = null
 
-	public Data getData(){
-		return data;
-	}
+        @SerializedName("id")
+        var id: Int? = null
 
-	public void setMessage(String message){
-		this.message = message;
-	}
+        @SerializedName("auth_token")
+        var authToken: String? = null
 
-	public String getMessage(){
-		return message;
-	}
-
-	public void setStatus(String status){
-		this.status = status;
-	}
-
-	public String getStatus(){
-		return status;
-	}
-
-	public class Data{
-
-		@SerializedName("updated_at")
-		private String updatedAt;
-
-		@SerializedName("user_id")
-		private Integer userId;
-
-		@SerializedName("questions")
-		private String questions;
-
-		@SerializedName("created_at")
-		private String createdAt;
-
-		@SerializedName("id")
-		private Integer id;
-
-		@SerializedName("auth_token")
-		private String authToken;
-
-		@SerializedName("status")
-		private String status;
-
-		public void setUpdatedAt(String updatedAt){
-			this.updatedAt = updatedAt;
-		}
-
-		public String getUpdatedAt(){
-			return updatedAt;
-		}
-
-		public void setUserId(Integer userId){
-			this.userId = userId;
-		}
-
-		public Integer getUserId(){
-			return userId;
-		}
-
-		public void setQuestions(String questions){
-			this.questions = questions;
-		}
-
-		public String getQuestions(){
-			return questions;
-		}
-
-		public void setCreatedAt(String createdAt){
-			this.createdAt = createdAt;
-		}
-
-		public String getCreatedAt(){
-			return createdAt;
-		}
-
-		public void setId(Integer id){
-			this.id = id;
-		}
-
-		public Integer getId(){
-			return id;
-		}
-
-		public void setAuthToken(String authToken){
-			this.authToken = authToken;
-		}
-
-		public String getAuthToken(){
-			return authToken;
-		}
-
-		public void setStatus(String status){
-			this.status = status;
-		}
-
-		public String getStatus(){
-			return status;
-		}
-	}
+        @SerializedName("status")
+        var status: String? = null
+    }
 }

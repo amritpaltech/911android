@@ -1,37 +1,13 @@
-package com.soft.credit911.ui.Chat.Fragment.Model;
+package com.soft.credit911.datamodel
 
+abstract class ChatObject {
+    var text: String? = null
+    var userTime: String? = null
+    var image = 0
+    abstract val type: Int
 
-public abstract class ChatObject {
-    public static final int SEND_MESSAGE = 0;
-    public static final int RECEIVED_MESSAGE = 1;
-
-
-    private String text ,userTime;
-    private int Image;
-
-    public int getImage() {
-        return Image;
+    companion object {
+        const val SEND_MESSAGE = 0
+        const val RECEIVED_MESSAGE = 1
     }
-
-    public void setImage(int image) {
-        Image = image;
-    }
-
-    public String getUserTime() {
-        return userTime;
-    }
-
-    public void setUserTime(String userTime) {
-        this.userTime = userTime;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText( String text) {
-        this.text = text;
-    }
-
-    public abstract int getType();
 }

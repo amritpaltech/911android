@@ -1,8 +1,6 @@
-package com.soft.credit911.ui.Chat.Fragment.Model;
+package com.soft.credit911.datamodel
 
-public class ChatReceived extends ChatObject {
-    @Override
-    public int getType() {
-        return ChatObject.RECEIVED_MESSAGE;
-    }
+class ChatReceived : ChatObject() {
+    override val type: Int
+        get() = RECEIVED_MESSAGE
 }
