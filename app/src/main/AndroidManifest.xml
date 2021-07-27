@@ -21,13 +21,13 @@
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         tools:replace="android:appComponentFactory">
 
-        <activity android:name=".SecurityQuestions.Activity.CongratulationsActivity"></activity>
-        <activity android:name=".SecurityQuestions.Activity.ErrorActivity" />
-        <activity android:name=".SecurityQuestions.Activity.SecurityQuestionsActivity" />
-        <activity android:name=".Document.Activity.DocumentActivity" />
-        <activity android:name=".CaseMangement.Activity.CaseManagementActivity" />
-        <activity android:name=".Notification.Activity.NotificationActivity" />
-        <activity android:name=".ForgotPassword.ForgetPasswordActivity" />
+        <activity android:name=".ui.SecurityQuestions.Activity.CongratulationsActivity"></activity>
+        <activity android:name=".ui.SecurityQuestions.Activity.ErrorActivity" />
+        <activity android:name=".ui.SecurityQuestions.Activity.SecurityQuestionsActivity" />
+        <activity android:name=".ui.Document.Activity.DocumentActivity" />
+        <activity android:name=".ui.casemanagement.CaseManagementActivity" />
+        <activity android:name=".ui.Notification.Activity.NotificationActivity" />
+        <activity android:name=".ui.ForgotPassword.ForgetPasswordActivity" />
         <activity android:name=".ui.Splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,12 +35,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Chat.Activity.ChatActivity" />
-        <activity android:name=".Changepassword.Activity.ChangePasswordActivity" />
-        <activity android:name=".MyProfile.Activity.MyProfileActivity" />
-        <activity android:name=".Landing.LandingActivity" />
-        <activity android:name=".OTPVerification.LoginVerificationActivity" />
-        <activity android:name=".Login.LoginActivity" />
+        <activity android:name=".ui.Chat.Activity.ChatActivity" />
+        <activity android:name=".ui.Changepassword.ChangePasswordActivity" />
+        <activity android:name=".ui.MyProfile.Activity.MyProfileActivity" />
+        <activity android:name=".ui.dashboard.LandingActivity" />
+        <activity android:name=".ui.OTPVerification.LoginVerificationActivity" />
+        <activity android:name="com.soft.credit911.ui.Login.LoginActivity" />
     </application>
 
 </manifest>

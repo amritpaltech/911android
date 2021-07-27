@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.soft.credit911.CaseMangement.Activity.CaseManagementActivity
+import com.soft.credit911.ui.casemanagement.CaseManagementActivity
 import com.soft.credit911.R
 import com.soft.credit911.adaptor.CaseManagementDetailsAdapter.CaseManagementViewHolder
 import com.soft.credit911.databinding.CaseManagementItemListBinding

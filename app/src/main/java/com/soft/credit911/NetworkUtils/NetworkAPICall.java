@@ -14,8 +14,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.soft.credit911.SecurityQuestions.Activity.ErrorActivity;
-import com.soft.credit911.SecurityQuestions.Model.SecurityResponse;
+import com.soft.credit911.ui.SecurityQuestions.Activity.ErrorActivity;
+import com.soft.credit911.ui.SecurityQuestions.Model.SecurityResponse;
 import com.soft.credit911.Utils.AppPreference;
 
 import org.json.JSONObject;

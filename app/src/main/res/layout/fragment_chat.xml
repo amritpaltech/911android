@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".Chat.Fragment.ChatFragment">
+        tools:context=".ui.Chat.Fragment.ChatFragment">
 
         <include
             android:id="@+id/toolbarLayout"

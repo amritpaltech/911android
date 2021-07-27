@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".CaseMangement.Activity.CaseManagementActivity">
+        tools:context=".ui.casemanagement.CaseManagementActivity">
 
         <include
             android:id="@+id/toolbarLayout"
