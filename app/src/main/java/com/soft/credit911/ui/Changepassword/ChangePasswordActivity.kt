@@ -1,78 +1,86 @@
 package com.soft.credit911.ui.Changepassword
 
-import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils
-import com.soft.credit911.databinding.ActivityChangePassWordBinding
-import com.soft.credit911.databinding.ToolbarBinding
 import com.soft.credit911.datamodel.ChangePasswordResponse
-import com.soft.credit911.ui.Changepassword.mvp.ChangePasswordPresenter
-import com.soft.credit911.ui.Changepassword.mvp.ChangePasswordView
+import kotlinx.android.synthetic.main.activity_change_pass_word.*
+import kotlinx.android.synthetic.main.toolbar.*
 
-class ChangePasswordActivity : AppCompatActivity(), ChangePasswordView {
-    private var layoutBinding: ActivityChangePassWordBinding? = null
-    private var toolbarBinding: ToolbarBinding? = null
-    var changePasswordPresenter: ChangePasswordPresenter? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        layoutBinding = ActivityChangePassWordBinding.inflate(
-            layoutInflater
-        )
-        val view = layoutBinding!!.root
-        setContentView(view)
-        changePasswordPresenter = ChangePasswordPresenter(this, this)
-        toolbarBinding = layoutBinding!!.toolbarLayout
-        toolbarBinding!!.toolbarTitle.text = "Change Password"
-        toolbarBinding!!.navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
+class ChangePasswordActivity : SubBaseActivity() {
+
+
+    var mViewModel: ChangePasswordViewModel? = ChangePasswordViewModel()
+
+
+    override fun getLayoutID(): Int {
+        return R.layout.activity_change_pass_word
+    }
+
+    override fun onViewCreated() {
+        toolbarTitle.text = "Change Password"
+        navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
         initView()
+        attachObserver()
     }
 
     private fun initView() {
-        layoutBinding!!.tvSave.setOnClickListener { v: View? ->
+        tv_Save.setOnClickListener { v: View? ->
             if (isValid) {
-                changePasswordPresenter!!.changePassword(
-                    layoutBinding!!.etCurrentPassword.text.toString().trim { it <= ' ' },
-                    layoutBinding!!.etNewPassword.text.toString().trim { it <= ' ' },
-                    layoutBinding!!.etConfirmPassword.text.toString().trim { it <= ' ' })
+                mViewModel?.changePassword(
+                    etCurrentPassword.text.toString().trim { it <= ' ' },
+                    etNewPassword.text.toString().trim { it <= ' ' },
+                    etConfirmPassword.text.toString().trim { it <= ' ' })
             }
         }
     }
 
-    /*    if (!layoutBinding.etNewPassword.equals(layoutBinding.etConfirmPassword)) {
-            layoutBinding.etConfirmPassword.setError(getResources().getString(R.string.password_not_matching));
-            layoutBinding.etConfirmPassword.requestFocus();
-            return false;
-        }*/
+
     private val isValid: Boolean
         private get() {
-            if (layoutBinding!!.etConfirmPassword.text.toString().trim { it <= ' ' } == "") {
-                layoutBinding!!.etConfirmPassword.error =
+            if (etConfirmPassword.text.toString().trim { it <= ' ' } == "") {
+                etConfirmPassword.error =
                     resources.getString(R.string.currentPassword_error)
-                layoutBinding!!.etConfirmPassword.requestFocus()
+                etConfirmPassword.requestFocus()
                 return false
             }
-            if (layoutBinding!!.etNewPassword.text.toString().trim { it <= ' ' } == "") {
-                layoutBinding!!.etNewPassword.error =
+            if (etNewPassword.text.toString().trim { it <= ' ' } == "") {
+                etNewPassword.error =
                     resources.getString(R.string.newPassword_error)
-                layoutBinding!!.etNewPassword.requestFocus()
+                etNewPassword.requestFocus()
                 return false
             }
-            if (layoutBinding!!.etConfirmPassword.text.toString().trim { it <= ' ' } == "") {
-                layoutBinding!!.etConfirmPassword.error =
+            if (etConfirmPassword.text.toString().trim { it <= ' ' } == "") {
+                etConfirmPassword.error =
                     resources.getString(R.string.new_Confirm_Password_error)
-                layoutBinding!!.etConfirmPassword.requestFocus()
+                etConfirmPassword.requestFocus()
                 return false
             }
-            /*    if (!layoutBinding.etNewPassword.equals(layoutBinding.etConfirmPassword)) {
-            layoutBinding.etConfirmPassword.setError(getResources().getString(R.string.password_not_matching));
-            layoutBinding.etConfirmPassword.requestFocus();
-            return false;
-        }*/return true
+            return true
         }
 
-    override fun ChangePasswordResponse(changePasswordResponse: ChangePasswordResponse) {
-        CommonUtils.showdialog(changePasswordResponse.message, this, false)
+
+    fun attachObserver() {
+        mViewModel?.apiError?.observe(this, androidx.lifecycle.Observer {
+            CommonUtils.showdialog(it, this, false)
+        })
+
+
+        mViewModel?.isLoading?.observe(this, androidx.lifecycle.Observer {
+
+            if (it) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
+        })
+
+        mViewModel?.responsePasswordChange?.observe(this, Observer {
+            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+            finish()
+        })
     }
 }
