@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-    </data>
-
-    <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".ui.MyProfile.Activity.MyProfileActivity">
+    >
 
 
         <include
@@ -20,11 +14,11 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_22sdp"
                 android:layout_marginRight="@dimen/_20sdp"
@@ -59,7 +53,7 @@
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
-                    android:id="@+id/et_last_name"
+                    android:id="@+id/etLastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -78,13 +72,13 @@
                     android:textColor="@color/MyProfileTextColor"
                     android:textSize="@dimen/_16sdp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/rectangle_shape"
-                    android:hint="@string/user_email"
+                    android:hint="email"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingLeft="@dimen/_8sdp"
                     android:textColorHint="@color/black"
@@ -100,7 +94,7 @@
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
-                    android:id="@+id/et_phone"
+                    android:id="@+id/etPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -212,8 +206,9 @@
                     android:paddingBottom="@dimen/_12sdp"
                     android:textColor="@color/MyProfileTextColor" />
 
+
                 <TextView
-                    android:id="@+id/tv_Save"
+                    android:id="@+id/tvSave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_25sdp"
@@ -225,8 +220,17 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:textColorHint="@color/black"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:textColor="@color/MyProfileTextColor" />
+
             </LinearLayout>
         </ScrollView>
 
     </LinearLayout>
-</layout>

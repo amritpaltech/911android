@@ -1,82 +1,65 @@
-package com.soft.credit911.ui.MyProfile.mvp;
+package com.soft.credit911.ui.MyProfile.mvp
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
+import android.app.Activity
+import android.content.Context
+import android.util.Log
+import com.android.volley.VolleyError
+import com.google.gson.reflect.TypeToken
+import com.soft.credit911.NetworkUtils.APIConstants
+import com.soft.credit911.NetworkUtils.NetworkAPICall
+import com.soft.credit911.NetworkUtils.NetworkAPICallModel
+import com.soft.credit911.NetworkUtils.NetworkAPIResponseCallback
+import com.soft.credit911.Utils.AppConstants
+import com.soft.credit911.datamodel.MyProfileResponse
+import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
+import org.json.JSONObject
 
-import com.android.volley.VolleyError;
-import com.google.gson.reflect.TypeToken;
-import com.soft.credit911.NetworkUtils.APIConstants;
-import com.soft.credit911.NetworkUtils.NetworkAPICall;
-import com.soft.credit911.NetworkUtils.NetworkAPICallModel;
-import com.soft.credit911.NetworkUtils.NetworkAPIResponseCallback;
-import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity;
-import com.soft.credit911.datamodel.MyProfileResponse;
-import com.soft.credit911.Utils.AppConstants;
-
-import org.json.JSONObject;
-
-import java.lang.reflect.Type;
-
-public class MyProfilePresenter implements NetworkAPIResponseCallback {
-    private Context mContext;
-    private MyProfileView myProfileView;
-    private NetworkAPICall mNetworkAPICall;
-    private static final String TAG = MyProfileActivity.class.getSimpleName();
-
-    public MyProfilePresenter(Context mContext, MyProfileView myProfileView) {
-        this.mContext = mContext;
-        this.myProfileView = myProfileView;
-        this.mNetworkAPICall = new NetworkAPICall();
-    }
-
-    public void myProfile(String firstName, String lastName, String phoneNumber) {
+class MyProfilePresenter(private val mContext: Context, private val myProfileView: MyProfileView) :
+    NetworkAPIResponseCallback {
+    private val mNetworkAPICall: NetworkAPICall
+    fun myProfile(firstName: String?, lastName: String?, phoneNumber: String?) {
         try {
-            JSONObject mJsObjParam = new JSONObject();
-            mJsObjParam.put("first_name", firstName);
-            mJsObjParam.put("last_name", lastName);
-            mJsObjParam.put("phone_number", phoneNumber);
-            Type parserType = new TypeToken<MyProfileResponse>() {
-            }.getType();
-            NetworkAPICallModel networkAPICallModel = new NetworkAPICallModel(APIConstants.UPDATE_PROFILE, AppConstants.POST_REQUEST, mJsObjParam);
-            networkAPICallModel.setParserType(parserType);
-            networkAPICallModel.setShowProgress(true);
-            mNetworkAPICall.callApplicationWS((Activity) mContext, networkAPICallModel, this);
-
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-
+            val mJsObjParam = JSONObject()
+            mJsObjParam.put("first_name", firstName)
+            mJsObjParam.put("last_name", lastName)
+            mJsObjParam.put("phone_number", phoneNumber)
+            val parserType = object : TypeToken<MyProfileResponse?>() {}.type
+            val networkAPICallModel = NetworkAPICallModel(
+                APIConstants.UPDATE_PROFILE,
+                AppConstants.POST_REQUEST,
+                mJsObjParam
+            )
+            networkAPICallModel.parserType = parserType
+            networkAPICallModel.isShowProgress = true
+            mNetworkAPICall.callApplicationWS(mContext as Activity, networkAPICallModel, this)
+        } catch (e: Exception) {
+            Log.e(TAG, e.message!!)
         }
-
     }
 
-    @Override
-    public void onSuccessResponse(JSONObject response, NetworkAPICallModel networkAPICallModel) {
-        switch (networkAPICallModel.getApiURL()) {
-            case APIConstants.UPDATE_PROFILE:
-                try {
-                    MyProfileResponse myProfileResponse = (MyProfileResponse) networkAPICallModel.getResponseObject();
-                    if (myProfileResponse != null) {
-                        myProfileResponseFlow(myProfileResponse);
-                    }
-
-                } catch (Exception e) {
-
-                }
-                break;
-            default:
-                break;
+    override fun onSuccessResponse(response: JSONObject, networkAPICallModel: NetworkAPICallModel) {
+        when (networkAPICallModel.apiURL) {
+            APIConstants.UPDATE_PROFILE -> try {
+                val myProfileResponse = networkAPICallModel.responseObject as MyProfileResponse
+                myProfileResponse?.let { myProfileResponseFlow(it) }
+            } catch (e: Exception) {
+            }
+            else -> {
+            }
         }
-
-
     }
 
-    private void myProfileResponseFlow(MyProfileResponse myProfileResponse) {
-        myProfileView.MyProfileResponse(myProfileResponse);
+    private fun myProfileResponseFlow(myProfileResponse: MyProfileResponse) {
+        myProfileView.MyProfileResponse(myProfileResponse)
     }
 
-    @Override
-    public void onFailure(VolleyError volleyError, NetworkAPICallModel networkAPICallModel) {
+    override fun onFailure(volleyError: VolleyError, networkAPICallModel: NetworkAPICallModel) {}
 
+    companion object {
+        private val TAG = MyProfileActivity::class.java.simpleName
+    }
+
+    init {
+        mNetworkAPICall = NetworkAPICall()
     }
 }

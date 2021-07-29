@@ -3,6 +3,7 @@ package com.ing.quiz.network
 import com.google.gson.JsonObject
 import com.soft.credit911.datamodel.ChangePasswordResponse
 import com.soft.credit911.datamodel.LoginResponse
+import com.soft.credit911.datamodel.MyProfileResponse
 import com.soft.credit911.datamodel.UpdateProfileResponse
 
 import io.reactivex.Observable
@@ -22,6 +23,12 @@ interface api_services {
     fun LoginUser(
         @Body login:JsonObject
     ): Observable<LoginResponse>
+
+    @POST("api/update-profile")
+    fun updateProfile(
+        @Body login:JsonObject
+    ): Observable<MyProfileResponse>
+
 
     @FormUrlEncoded
     @POST("api/change-password")

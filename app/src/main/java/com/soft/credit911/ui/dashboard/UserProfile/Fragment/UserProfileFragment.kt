@@ -18,6 +18,7 @@ import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.Utils.loadImg
 import com.soft.credit911.Utils.loadProfileImage
+import com.soft.credit911.datamodel.LoginResponse
 import com.soft.credit911.ui.Changepassword.ChangePasswordActivity
 import com.soft.credit911.ui.Chat.Activity.ChatActivity
 import com.soft.credit911.ui.Login.LoginActivity
@@ -26,6 +27,9 @@ import com.soft.credit911.ui.casemanagement.CaseManagementActivity
 import com.soft.credit911.ui.documnet.DocumentActivity
 import com.soft.credit911.ui.notifications.NotificationActivity
 import kotlinx.android.synthetic.main.fragment_user_profile.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.io.*
 
 
@@ -39,17 +43,18 @@ class UserProfileFragment : BaseFragment() {
     }
 
     override fun onViewCreated() {
-        setProfileData()
+        setprofileInfo()
         attachObserver()
+        EventBus.getDefault().register(this)
+        setOnClick()
     }
 
-    fun setProfileData(){
-        userName.text= AppPreference(activity).getUserObject().data?.firstName+" "+
-                AppPreference(activity).getUserObject().data?.lastName
-        mobile.text=AppPreference(activity).getUserObject().data?.phoneNumber
-        emailId.text=AppPreference(activity).getUserObject().data?.email
-        iv_user_img.loadImg(AppPreference(activity).getUserObject().data?.userAvatar)
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
 
+    fun setOnClick(){
         tv_My_Profile.setOnClickListener { v: View? ->
             val intent = Intent(activity, MyProfileActivity::class.java)
             activity?.startActivity(intent)
@@ -125,7 +130,7 @@ class UserProfileFragment : BaseFragment() {
         })
         viewmodel?.updateResponse?.observe(viewLifecycleOwner, Observer {
             CommonUtils.showdialog(it.message,activity as BaseActivity,false)
-            var dataObj=AppPreference(activity).getUserObject();
+            var dataObj=AppPreference(activity).getUserObject()
             dataObj.data?.userAvatar=it.data?.userAvatar
             AppPreference(activity).setUserObject(dataObj)
         })
@@ -135,8 +140,22 @@ class UserProfileFragment : BaseFragment() {
         val stream = ByteArrayOutputStream()
         bitmap.compress(CompressFormat.JPEG, 70, stream)
         val byteFormat = stream.toByteArray()
-        // get the base 64 string
         return Base64.encodeToString(byteFormat, Base64.NO_WRAP)
+    }
+
+    fun setprofileInfo(){
+        userName.text= AppPreference(activity).getUserObject().data?.firstName+" "+
+                AppPreference(activity).getUserObject().data?.lastName
+        mobile.text=AppPreference(activity).getUserObject().data?.phoneNumber
+        emailId.text=AppPreference(activity).getUserObject().data?.email
+        iv_user_img.loadImg(AppPreference(activity).getUserObject().data?.userAvatar)
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun refresh(data: LoginResponse)
+    {
+        setprofileInfo()
     }
 
 }

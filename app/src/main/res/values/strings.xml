@@ -45,9 +45,9 @@
     <string name="Address1">Address1</string>
     <string name="Address2">Address2</string>
 
-    <string name="first_name_error">Enter FirstName</string>
-    <string name="last_name_error">Enter LastName</string>
-    <string name="phone_number_error">Enter PhoneNumber</string>
+    <string name="first_name_error">Enter first name</string>
+    <string name="last_name_error">Enter last name</string>
+    <string name="phone_number_error">Enter phone number</string>
 
     <!--ChangePassword -->
     <string name="current_password">CurrentPassword</string>

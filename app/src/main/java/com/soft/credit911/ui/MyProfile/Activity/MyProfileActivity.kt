@@ -3,64 +3,99 @@ package com.soft.credit911.ui.MyProfile.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.google.gson.JsonParser
+import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
+import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.databinding.ActivityMyProfileBinding
 import com.soft.credit911.databinding.ToolbarBinding
+import com.soft.credit911.datamodel.LoginResponse
 import com.soft.credit911.datamodel.MyProfileResponse
 import com.soft.credit911.ui.MyProfile.mvp.MyProfilePresenter
 import com.soft.credit911.ui.MyProfile.mvp.MyProfileView
+import com.soft.credit911.ui.dashboard.UserProfile.Fragment.ProfileViewModel
+import kotlinx.android.synthetic.main.activity_my_profile.*
+import kotlinx.android.synthetic.main.toolbar.*
+import org.greenrobot.eventbus.EventBus
+import org.json.JSONObject
 
-class MyProfileActivity : AppCompatActivity(), MyProfileView {
-    private var layoutBinding: ActivityMyProfileBinding? = null
-    private var toolbarBinding: ToolbarBinding? = null
-    var myProfilePresenter: MyProfilePresenter? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        layoutBinding = ActivityMyProfileBinding.inflate(
-            layoutInflater
-        )
-        val view = layoutBinding!!.root
-        setContentView(view)
-        myProfilePresenter = MyProfilePresenter(this, this as MyProfileView)
-        toolbarBinding = layoutBinding!!.toolbarLayout
-        toolbarBinding!!.toolbarTitle.text = "MyProfile"
-        toolbarBinding!!.navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
+class MyProfileActivity : SubBaseActivity() {
+
+    var mViewModel: ProfileViewModel? = null
+    
+    override fun getLayoutID(): Int {
+        return R.layout.activity_my_profile
+    }
+
+    override fun onViewCreated() {
+        toolbarTitle.text = "My Profile"
+        navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
         initView()
+        setProfileData()
+        mViewModel= ProfileViewModel()
+        attachObserver()
+    }
+
+
+    fun setProfileData(){
+        et_first_name.setText(AppPreference(this).getUserObject().data?.firstName)
+        etLastName.setText(AppPreference(this).getUserObject().data?.lastName)
+        etPhone.setText(AppPreference(this).getUserObject().data?.phoneNumber)
+        et_email.setText(AppPreference(this).getUserObject().data?.email)
     }
 
     private fun initView() {
-        layoutBinding!!.tvSave.setOnClickListener { v: View? ->
+        tvSave.setOnClickListener { v: View? ->
             if (isValid) {
-                myProfilePresenter!!.myProfile(
-                    layoutBinding!!.etFirstName.text.toString().trim { it <= ' ' },
-                    layoutBinding!!.etLastName.text.toString().trim { it <= ' ' },
-                    layoutBinding!!.etPhone.text.toString().trim { it <= ' ' })
+                val mJsObjParam = JSONObject()
+                mJsObjParam.put("first_name", et_first_name.text.toString().trim ())
+                mJsObjParam.put("last_name",  etLastName.text.toString().trim ())
+                mJsObjParam.put("phone_number",  etPhone.text.toString().trim ())
+                val myOb = JsonParser().parse(mJsObjParam.toString()).asJsonObject
+                mViewModel?.updateUserInfo(myOb)
             }
         }
     }
 
     private val isValid: Boolean
         private get() {
-            if (layoutBinding!!.etFirstName.text.toString().trim { it <= ' ' } == "") {
-                layoutBinding!!.etFirstName.error = resources.getString(R.string.first_name_error)
-                layoutBinding!!.etFirstName.requestFocus()
+            if (et_first_name.text.toString().trim { it <= ' ' } == "") {
+                et_first_name.error = resources.getString(R.string.first_name_error)
+                et_first_name.requestFocus()
                 return false
             }
-            if (layoutBinding!!.etLastName.text.toString().trim { it <= ' ' } == "") {
-                layoutBinding!!.etLastName.error = resources.getString(R.string.last_name_error)
-                layoutBinding!!.etLastName.requestFocus()
+            if (etLastName.text.toString().trim { it <= ' ' } == "") {
+                etLastName.error = resources.getString(R.string.last_name_error)
+                etLastName.requestFocus()
                 return false
             }
-            if (layoutBinding!!.etPhone.text.toString().trim { it <= ' ' } == "") {
-                layoutBinding!!.etPhone.error = resources.getString(R.string.phone_number_error)
-                layoutBinding!!.etPhone.requestFocus()
+            if (etPhone.text.toString().trim { it <= ' ' } == "") {
+                etPhone.error = resources.getString(R.string.phone_number_error)
+                etPhone.requestFocus()
                 return false
             }
             return true
         }
 
-    override fun MyProfileResponse(myProfileResponse: MyProfileResponse) {
-        CommonUtils.showdialog(myProfileResponse.message, this, false)
+    fun attachObserver(){
+        mViewModel?.updateProfileResponse?.observe(this, Observer {myProfileResponse->
+            CommonUtils.showdialog(myProfileResponse.message, this, false)
+            var dataObj:LoginResponse=AppPreference(this).getUserObject()
+            dataObj.data?.firstName=et_first_name.text.toString()
+            dataObj.data?.lastName=etLastName.text.toString()
+            dataObj.data?.phoneNumber=etPhone.text.toString()
+            AppPreference(this).setUserObject(dataObj)
+            EventBus.getDefault().post(dataObj)
+        })
+        mViewModel?.isLoading?.observe(this, Observer {
+            if(it){
+               showProgress()
+            }else{
+               hideProgress()
+            }
+        })
     }
+
 }

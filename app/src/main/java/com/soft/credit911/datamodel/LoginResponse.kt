@@ -20,7 +20,7 @@ class LoginResponse {
         val apiToken: String? = null
 
         @SerializedName("last_name")
-        val lastName: String? = null
+        var lastName: String? = null
 
         @SerializedName("created_at")
         val createdAt: String? = null
@@ -38,13 +38,13 @@ class LoginResponse {
         val token2fa: String? = null
 
         @SerializedName("phone_number")
-        val phoneNumber: String? = null
+        var phoneNumber: String? = null
 
         @SerializedName("id")
         val id = 0
 
         @SerializedName("first_name")
-        val firstName: String? = null
+        var firstName: String? = null
 
         @SerializedName("email")
         val email: String? = null
