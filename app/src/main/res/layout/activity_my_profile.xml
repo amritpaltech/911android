@@ -40,6 +40,8 @@
                     android:background="@drawable/rectangle_shape"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingLeft="@dimen/_8sdp"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
                     android:textColor="@color/MyProfileTextColor" />
@@ -60,6 +62,8 @@
                     android:background="@drawable/rectangle_shape"
                     android:paddingTop="@dimen/_12sdp"
                     android:textColorHint="@color/black"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:paddingLeft="@dimen/_8sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:textColor="@color/MyProfileTextColor" />
@@ -100,6 +104,9 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/rectangle_shape"
                     android:paddingTop="@dimen/_12sdp"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:inputType="phone"
                     android:textColorHint="@color/black"
                     android:paddingLeft="@dimen/_8sdp"
                     android:paddingBottom="@dimen/_12sdp"
@@ -122,6 +129,8 @@
                     android:paddingTop="@dimen/_12sdp"
                     android:textColorHint="@color/black"
                     android:paddingLeft="@dimen/_8sdp"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:paddingBottom="@dimen/_12sdp"
                     android:textColor="@color/MyProfileTextColor" />
 
@@ -141,6 +150,8 @@
                     android:background="@drawable/rectangle_shape"
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingLeft="@dimen/_8sdp"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
                     android:textColor="@color/MyProfileTextColor" />
@@ -158,6 +169,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:inputType="number"
                     android:background="@drawable/rectangle_shape"
                     android:paddingTop="@dimen/_12sdp"
                     android:textColorHint="@color/black"

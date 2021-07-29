@@ -9,12 +9,7 @@ import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils
-import com.soft.credit911.databinding.ActivityMyProfileBinding
-import com.soft.credit911.databinding.ToolbarBinding
 import com.soft.credit911.datamodel.LoginResponse
-import com.soft.credit911.datamodel.MyProfileResponse
-import com.soft.credit911.ui.MyProfile.mvp.MyProfilePresenter
-import com.soft.credit911.ui.MyProfile.mvp.MyProfileView
 import com.soft.credit911.ui.dashboard.UserProfile.Fragment.ProfileViewModel
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.toolbar.*
