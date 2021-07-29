@@ -1,111 +1,88 @@
-package com.soft.credit911.ui.dashboard.Dashboard.fragment;
+package com.soft.credit911.ui.dashboard.Dashboard
 
+import android.content.Intent
+import android.view.View
+import androidx.lifecycle.Observer
+import com.ing.quiz.ui.base_classes.BaseFragment
+import com.soft.credit911.R
+import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
+import com.soft.credit911.datamodel.DashboardResponse
+import com.soft.credit911.datamodel.SecurityResponse
+import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
+import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.toolbar.*
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
+class DashboardFragment : BaseFragment() {
 
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-
-import com.soft.credit911.datamodel.DashboardResponse;
-import com.soft.credit911.ui.dashboard.Dashboard.mvp.DashboardPresenter;
-import com.soft.credit911.ui.dashboard.Dashboard.mvp.DashboardView;
-import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity;
-import com.soft.credit911.datamodel.SecurityResponse;
-import com.soft.credit911.Utils.CommonUtils;
-import com.soft.credit911.databinding.FragmentDashboardBinding;
-import com.soft.credit911.databinding.ToolbarBinding;
-
-
-public class DashboardFragment extends Fragment implements DashboardView {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    var viewModel: DashBoardViewModel? = null
+    override fun getLayoutID(): Int {
+        return R.layout.fragment_dashboard
     }
 
-    private FragmentDashboardBinding fragmentBinding;
-    private ToolbarBinding toolbarBinding;
-    DashboardPresenter dashboardPresenter;
+    override fun onViewCreated() {
+        setInformation()
+    }
 
-    @SuppressLint("SetTextI18n")
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        fragmentBinding = FragmentDashboardBinding.inflate(inflater, container, false);
-        toolbarBinding = fragmentBinding.toolbarLayout;
-        toolbarBinding.toolbarTitle.setText("Dashboard");
-        toolbarBinding.navigationIcon.setVisibility(View.GONE);
-        dashboardPresenter = new DashboardPresenter(getContext(), this);
-        fragmentBinding.tvCreditRepairStatus.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), SecurityQuestionsActivity.class);
-            getContext().startActivity(intent);
-        });
-        fragmentBinding.sesameView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fragmentBinding.sesameView.setSesameValues(1000);
+
+    fun setInformation() {
+        toolbarTitle.text = "Dashboard"
+        navigationIcon.visibility = View.GONE
+        viewModel = DashBoardViewModel()
+        attachObserver()
+
+        tv_credit_repair_status.setOnClickListener { v: View? ->
+            val intent = Intent(context, SecurityQuestionsActivity::class.java)
+            context?.startActivity(intent)
+        }
+        sesame_view.setOnClickListener {
+            sesame_view.setSesameValues(
+                1000
+            )
+        }
+        scroolableContent.visibility = View.VISIBLE
+        txtErrorText.visibility = View.GONE
+        if (arguments != null) {
+            if (arguments?.containsKey("isError")==true && arguments?.getInt("isError") == 1) {
+                scroolableContent.visibility = View.GONE
+                txtErrorText.visibility = View.VISIBLE
+            } else {
+                viewModel?.getCreditInfo()
             }
-        });
+        } else {
+            viewModel?.getCreditInfo()
+        }
+    }
 
-        fragmentBinding.scroolableContent.setVisibility(View.VISIBLE);
-        fragmentBinding.txtErrorText.setVisibility(View.GONE);
-        if (getArguments() != null) {
-            if(getArguments().containsKey("isError") && getArguments().getInt("isError")==1){
-                fragmentBinding.scroolableContent.setVisibility(View.GONE);
-                fragmentBinding.txtErrorText.setVisibility(View.VISIBLE);
+    fun attachObserver(){
+
+        viewModel?.isLoading?.observe(viewLifecycleOwner, Observer {
+            if(it){
+                showProgress()
             }else{
-                dashboardPresenter.creditReport();
+                hideProgress()
             }
-        }else{
-            dashboardPresenter.creditReport();
-        }
 
-        return fragmentBinding.getRoot();
+        })
+        viewModel?.responseAppHomedata?.observe(viewLifecycleOwner, Observer {dashboardResponse->
+            if(dashboardResponse.message!=null && dashboardResponse?.message?.length?:0>0){
+                context?.let { showdialog(dashboardResponse.message, it, false) }
+            }
+            val reportDate = dashboardResponse.data!!.creditReport!!.reportDate
+            val nextDate = dashboardResponse.data!!.creditReport!!.nextDate
+            tv_report_date.text = reportDate
+            tv_next_date.text = nextDate
+        })
+
+        viewModel?.responseSecurity?.observe(viewLifecycleOwner, Observer {securityResponse->
+            if (securityResponse.code == "100") {
+                val token = securityResponse.data!!.authToken
+                val jsResponse = securityResponse.data!!.questions
+                val intent = Intent(context, SecurityQuestionsActivity::class.java)
+                intent.putExtra("responseObj", jsResponse)
+                intent.putExtra("token", token)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            }
+        })
     }
-
-    @Override
-    public void DashboardResponse(DashboardResponse dashboardResponse) {
-       CommonUtils.showdialog(dashboardResponse.getMessage(), getContext(), false);
-        String reportDate = dashboardResponse.getData().getCreditReport().getReportDate();
-        String nextDate = dashboardResponse.getData().getCreditReport().getNextDate();
-        fragmentBinding.tvReportDate.setText(reportDate);
-        fragmentBinding.tvNextDate.setText(nextDate);
-
-    }
-
-    @Override
-    public void SecurityResponse(SecurityResponse securityResponse) {
-        if(securityResponse.getCode().equals("100")){
-            String token = securityResponse.getData().getAuthToken();
-            String jsResponse = securityResponse.getData().getQuestions();
-            Intent intent = new Intent(getContext(), SecurityQuestionsActivity.class);
-            intent.putExtra("responseObj",jsResponse);
-            intent.putExtra("token",token);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-    }
-
-  /*  private final int[] mColors = new int[]{
-            0xFFFF80AB,
-            0xFFFF4081,
-            0xFFFF5177,
-            0xFFFF7997
-    };
-
-
-   public void startColorChangeAnim() {
-
-        ObjectAnimator animator = ObjectAnimator.ofInt(fragmentBinding.layout, "backgroundColor", mColors);
-        animator.setDuration(3000);
-       animator.setEvaluator(new ArgbEvaluator());
-        animator.start();
-    }*/
 }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.soft.credit911.R
 import com.soft.credit911.adaptor.OtherDocumentDetailsAdapter.OtherDocumentDetailsViewHolder
 import com.soft.credit911.databinding.OtherDocumentItemListBinding
@@ -35,10 +34,6 @@ class OtherDocumentDetailsAdapter(var context: Context) :
         val otherDocumentList = otherDocumentModels[position]
         holder.binding.tvUserLicence.text = otherDocumentList.userLicence
         holder.binding.tvUserStatus.text = otherDocumentList.userStatus
-        Glide.with(context)
-            .load(otherDocumentList.checkImage)
-            .placeholder(R.drawable.ic__check_circle)
-            .into(holder.binding.ivCheck)
     }
 
     override fun getItemCount(): Int {

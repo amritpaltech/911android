@@ -29,5 +29,8 @@ interface api_services {
         @Field("new_confirm_password") new_confirm_password: String
     ): Observable<ChangePasswordResponse>
 
+    @GET("api/get-user-info")
+    fun getUserReportData(): Observable<JsonObject>
+
 }
 

@@ -18,7 +18,7 @@
             android:layout_marginTop="@dimen/_18sdp"
             android:orientation="horizontal">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_user"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"

@@ -7,10 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.soft.credit911.ui.casemanagement.CaseManagementActivity
 import com.soft.credit911.R
 import com.soft.credit911.adaptor.CaseManagementDetailsAdapter.CaseManagementViewHolder
@@ -36,11 +32,7 @@ class CaseManagementDetailsAdapter(
         holder.binding.tvUserStatus.text = cashDemoModelList.userStatus
         holder.binding.tvAgentName.text = cashDemoModelList.agentName
         holder.binding.tvUserMessage.text = cashDemoModelList.userMessage
-        Glide.with(context)
-            .load(R.drawable.chris_hemsworth)
-            .apply(RequestOptions().transform(CenterCrop(), RoundedCorners(500)))
-            .placeholder(R.drawable.chris_hemsworth)
-            .into(holder.binding.ivUser)
+
         holder.binding.cassManagementMainLayout.setOnClickListener { v: View? ->
             val intent = Intent(context, CaseManagementActivity::class.java)
             context.startActivity(intent)

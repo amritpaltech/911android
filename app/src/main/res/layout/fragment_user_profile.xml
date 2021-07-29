@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-    </data>
-
-    <FrameLayout
+    xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.dashboard.UserProfile.Fragment.UserProfileFragment">
@@ -32,29 +26,35 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_42sdp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:id="@+id/iv_user_img"
-                            android:layout_width="@dimen/_110sdp"
-                            android:layout_height="@dimen/_110sdp"
-                            android:layout_marginLeft="@dimen/_30sdp"
-                            android:layout_marginTop="@dimen/_25sdp"
-                            android:src="@drawable/appicon" />
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/iv_user_img"
+                                android:layout_width="@dimen/_90sdp"
+                                android:layout_height="@dimen/_90sdp"
+                                android:layout_marginLeft="@dimen/_30sdp"
+
+                                android:src="@drawable/appicon" />
+                        </RelativeLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/_18sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
                             android:orientation="vertical">
 
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_42sdp"
-                                android:text="@string/User_name"
+                                android:id="@+id/userName"
+                                android:maxLines="1"
+                                android:ellipsize="end"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_18sdp" />
 
@@ -62,7 +62,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_6sdp"
-                                android:text="@string/user_number"
+                                android:id="@+id/mobile"
+                                android:maxLines="1"
+                                android:ellipsize="end"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -70,7 +72,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_6sdp"
-                                android:text="@string/user_email"
+                                android:id="@+id/emailId"
+                                android:maxLines="1"
+                                android:ellipsize="end"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_12sdp" />
 
@@ -167,4 +171,3 @@
         </ScrollView>
 
     </FrameLayout>
-</layout>

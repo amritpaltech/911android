@@ -1,80 +1,65 @@
-package com.soft.credit911.ui.dashboard;
+package com.soft.credit911.ui.dashboard
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import com.ing.quiz.ui.base_classes.SubBaseActivity
+import com.soft.credit911.R
+import com.soft.credit911.ui.Chat.Fragment.ChatFragment
+import com.soft.credit911.ui.casemanagement.Fragement.CaseManagementFragment
+import com.soft.credit911.ui.dashboard.Dashboard.DashboardFragment
+import com.soft.credit911.ui.dashboard.UserProfile.Fragment.UserProfileFragment
+import kotlinx.android.synthetic.main.activity_landing.*
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
+class LandingActivity : SubBaseActivity() {
+    var isError = 0
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.soft.credit911.ui.casemanagement.Fragement.CaseManagementFragment;
-import com.soft.credit911.ui.Chat.Fragment.ChatFragment;
-import com.soft.credit911.ui.dashboard.Dashboard.fragment.DashboardFragment;
-import com.soft.credit911.R;
-import com.soft.credit911.ui.dashboard.UserProfile.Fragment.UserProfileFragment;
-import com.soft.credit911.databinding.ActivityLandingBinding;
+    override fun getLayoutID(): Int {
 
-public class LandingActivity extends AppCompatActivity {
-    private ActivityLandingBinding layoutLanding;
+        return R.layout.activity_landing
+    }
 
-
-    int isError=0;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        layoutLanding = ActivityLandingBinding.inflate(getLayoutInflater());
-        View view = layoutLanding.getRoot();
-        setContentView(view);
-
-        if(getIntent().hasExtra("isError")){
-            isError=getIntent().getIntExtra("isError",0);
+    override fun onViewCreated() {
+        if (intent.hasExtra("isError")) {
+            isError = intent.getIntExtra("isError", 0)
         }
-
-        layoutLanding.bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                Fragment fragment = null;
-                switch (item.getItemId()) {
-
-                    case R.id.Dashboard:
-                        fragment = new DashboardFragment();
-                        Bundle bundle=new Bundle();
-                        bundle.putInt("isError",isError);
-                        fragment.setArguments(bundle);
-                        loadFragment(fragment);
-                        break;
-                    case R.id.Contact_message:
-                        fragment = new ChatFragment();
-                        loadFragment(fragment);
-                        break;
-                    case R.id.Case_management:
-                        fragment = new CaseManagementFragment();
-                        loadFragment(fragment);
-                        break;
-                    case R.id.More:
-                        fragment = new UserProfileFragment();
-                        loadFragment(fragment);
-                        break;
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            var fragment: Fragment? = null
+            when (item.itemId) {
+                R.id.Dashboard -> {
+                    fragment = DashboardFragment()
+                    val bundle = Bundle()
+                    bundle.putInt("isError", isError)
+                    fragment.setArguments(bundle)
+                    loadFragment(fragment)
                 }
-                return true;
+                R.id.Contact_message -> {
+                    fragment = ChatFragment()
+                    loadFragment(fragment)
+                }
+                R.id.Case_management -> {
+                    fragment = CaseManagementFragment()
+                    loadFragment(fragment)
+                }
+                R.id.More -> {
+                    fragment = UserProfileFragment()
+                    loadFragment(fragment)
+                }
             }
-        });
-        layoutLanding.bottomNavigationView.setSelectedItemId(R.id.Dashboard);
+            true
+        }
+       bottomNavigationView.selectedItemId = R.id.Dashboard
     }
 
-    public void loadFragment(Fragment fragment){
+    fun loadFragment(fragment: Fragment?) {
         if (fragment != null) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.flFragment, fragment);
-            fragmentTransaction.commit();
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.flFragment, fragment)
+            fragmentTransaction.commit()
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }

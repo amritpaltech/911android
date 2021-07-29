@@ -15,7 +15,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.soft.credit911.R
 import com.soft.credit911.adaptor.DocumentDetailsAdapter.DocumentViewHolder
 import com.soft.credit911.databinding.DocumentItemListBinding
@@ -56,10 +55,6 @@ class DocumentDetailsAdapter(var context: Context) : RecyclerView.Adapter<Docume
         }
         holder.binding.tvUserLicence.text = documentModelList.userLicence
         holder.binding.tvUserStatus.text = documentModelList.userStatus
-        Glide.with(context)
-            .load(documentModelList.checkImage)
-            .placeholder(R.drawable.ic__check_circle)
-            .into(holder.binding.ivCheck)
         holder.binding.mainLayoutLl.setOnClickListener { v: View? ->
             dialog = Dialog(context)
             dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)

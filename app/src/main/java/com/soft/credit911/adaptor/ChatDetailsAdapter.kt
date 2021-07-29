@@ -7,10 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.soft.credit911.R
 import com.soft.credit911.adaptor.ChatDetailsAdapter.ChatViewHolder
 import com.soft.credit911.databinding.ChatItemListBinding
@@ -37,11 +33,6 @@ class ChatDetailsAdapter(private val demoModels: List<DemoModel>, var context: C
             val intent = Intent(context, ChatActivity::class.java)
             context.startActivity(intent)
         }
-        Glide.with(context)
-            .load(R.drawable.chris_hemsworth)
-            .apply(RequestOptions().transform(CenterCrop(), RoundedCorners(150)))
-            .placeholder(R.drawable.chris_hemsworth)
-            .into(holder.chatItemListBinding.ivUser)
     }
 
     override fun getItemCount(): Int {

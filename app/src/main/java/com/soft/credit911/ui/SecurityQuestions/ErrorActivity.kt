@@ -6,8 +6,7 @@ import android.os.CountDownTimer
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.soft.credit911.databinding.ActivityErrrorBinding
-import com.soft.credit911.ui.SecurityQuestions.ErrorActivity
-import com.soft.credit911.ui.dashboard.Dashboard.fragment.DashboardFragment
+import com.soft.credit911.ui.dashboard.Dashboard.DashboardFragment
 import com.soft.credit911.ui.dashboard.LandingActivity
 
 class ErrorActivity : AppCompatActivity() {
