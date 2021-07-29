@@ -3,8 +3,6 @@ package com.ing.quiz.network
 
 import android.os.Handler
 import com.google.gson.Gson
-import com.ing.quiz.shared_prefrences.Prefs
-import com.ing.quiz.shared_prefrences.SharedPreferencesName
 import com.ing.quiz.ui.base_classes.BaseActivity
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.soft.credit911.NetworkUtils.APIConstants
@@ -24,24 +22,29 @@ class RestClient {
 
     companion object {
         val MULTIPART_FORM_DATA = "multipart/form-data"
-        var mBaseActivity :BaseActivity?=null
+
+        var mBaseActivity: BaseActivity? = null
+        fun createRequestBody(s: String): RequestBody {
+            return RequestBody.create(
+                MULTIPART_FORM_DATA.toMediaTypeOrNull(), s
+            )
+        }
+
         fun create(): api_services {
             var interceptor = HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            val clientBuilder = OkHttpClient.Builder()
-            clientBuilder.addInterceptor(interceptor)
-                .build()
+            var client = OkHttpClient.Builder().addInterceptor(interceptor).build()
             var token = ""
             try {
                 val info = AppPreference(mBaseActivity).getUserObject().data?.apiToken
                 if (info != null && info.isNotEmpty()) {
-                    token = "Bearer " + info
+                    token = "Bearer " +info ?: ""
                 }
 
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
+            val clientBuilder = OkHttpClient.Builder()
             if (token != null && token.length > 0) {
                 clientBuilder.addInterceptor { chain ->
                     val request = chain.request()
@@ -61,6 +64,7 @@ class RestClient {
             clientBuilder.writeTimeout(1, TimeUnit.MINUTES)
             clientBuilder.readTimeout(1, TimeUnit.MINUTES)
 
+            clientBuilder.addInterceptor(interceptor).build()
             val retrofit2 = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -75,5 +79,6 @@ class RestClient {
 
         }
     }
+
 
 }

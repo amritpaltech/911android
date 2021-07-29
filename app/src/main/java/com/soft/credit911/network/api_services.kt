@@ -10,6 +10,8 @@ import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 import java.util.*
+import kotlin.collections.HashMap
+
 interface api_services {
 
 
@@ -20,9 +22,11 @@ interface api_services {
         @Body login:JsonObject
     ): Observable<LoginResponse>
 
+    @FormUrlEncoded
     @POST("api/change-password")
     fun changePassword(
-        @Body login:JsonObject
+        @Field("new_password") new_password: String,
+        @Field("new_confirm_password") new_confirm_password: String
     ): Observable<ChangePasswordResponse>
 
 }

@@ -24,7 +24,7 @@ abstract class SubBaseActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             }
@@ -37,7 +37,7 @@ abstract class SubBaseActivity : BaseActivity() {
                 window.statusBarColor = Color.parseColor("#ff6200")
             }
 
-        }
+        }*/
 
     }
 

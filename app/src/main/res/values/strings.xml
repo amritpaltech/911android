@@ -53,9 +53,9 @@
     <string name="current_password">CurrentPassword</string>
     <string name="New_password">New Password</string>
     <string name="Confirm_password">Confirm Password</string>
-    <string name="currentPassword_error">Enter CurrentPassword</string>
-    <string name="newPassword_error">Enter NewPassword</string>
-    <string name="new_Confirm_Password_error">Enter New Confirm Password</string>
+    <string name="currentPassword_error">Enter your current password</string>
+    <string name="newPassword_error">Enter valid new password. Password should be minumum 8 digit alpha numeric</string>
+    <string name="new_Confirm_Password_error">New password and confirm password does not matched.</string>
     <string name="password_not_matching">Password Not matching</string>
 
 

@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 class ChangePasswordActivity : SubBaseActivity() {
 
-
     var mViewModel: ChangePasswordViewModel? = ChangePasswordViewModel()
 
 
@@ -41,19 +40,19 @@ class ChangePasswordActivity : SubBaseActivity() {
 
     private val isValid: Boolean
         private get() {
-            if (etConfirmPassword.text.toString().trim { it <= ' ' } == "") {
-                etConfirmPassword.error =
+            if (etCurrentPassword.text.toString().length<4) {
+                etCurrentPassword.error =
                     resources.getString(R.string.currentPassword_error)
-                etConfirmPassword.requestFocus()
+                etCurrentPassword.requestFocus()
                 return false
             }
-            if (etNewPassword.text.toString().trim { it <= ' ' } == "") {
+            if (etNewPassword.text.toString().length<8) {
                 etNewPassword.error =
                     resources.getString(R.string.newPassword_error)
                 etNewPassword.requestFocus()
                 return false
             }
-            if (etConfirmPassword.text.toString().trim { it <= ' ' } == "") {
+            if (!etConfirmPassword.text.toString().equals(etNewPassword.text.toString())) {
                 etConfirmPassword.error =
                     resources.getString(R.string.new_Confirm_Password_error)
                 etConfirmPassword.requestFocus()
