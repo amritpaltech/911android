@@ -14,7 +14,7 @@ class LoginResponse {
 
     inner class Data {
         @SerializedName("user_avatar")
-        val userAvatar: String? = null
+        var userAvatar: String? = null
 
         @SerializedName("api_token")
         val apiToken: String? = null

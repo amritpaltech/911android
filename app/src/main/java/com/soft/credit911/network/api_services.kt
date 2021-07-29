@@ -3,6 +3,7 @@ package com.ing.quiz.network
 import com.google.gson.JsonObject
 import com.soft.credit911.datamodel.ChangePasswordResponse
 import com.soft.credit911.datamodel.LoginResponse
+import com.soft.credit911.datamodel.UpdateProfileResponse
 
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -31,6 +32,12 @@ interface api_services {
 
     @GET("api/get-user-info")
     fun getUserReportData(): Observable<JsonObject>
+
+    @FormUrlEncoded
+    @POST("api/update-avatar")
+    fun uploadImage(
+        @Field("imageblob") new_password: String
+    ): Observable<UpdateProfileResponse>
 
 }
 

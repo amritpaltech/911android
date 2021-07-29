@@ -14,3 +14,12 @@ fun ImageView.loadImg(url1: String?) {
         UIL_Image_options.options
     )
 }
+
+fun ImageView.loadProfileImage(url: String) {
+    val imageLoader = ImageLoader.getInstance()
+
+    imageLoader.displayImage(
+        url, this,
+        UIL_Image_options.profile
+    )
+}
