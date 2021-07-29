@@ -27,7 +27,7 @@
             android:textStyle="bold" />
         <ScrollView
             android:layout_width="match_parent"
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/scroolableContent"
             android:layout_height="match_parent">
 
@@ -139,11 +139,16 @@
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:src="@drawable/linechart" />
-
+                <HorizontalScrollView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    >
+                    <view
+                        android:layout_width="wrap_content"
+                        android:layout_height="300dp"
+                        class="im.dacer.androidcharts.LineView"
+                        android:id="@+id/lineView" />
+                </HorizontalScrollView>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

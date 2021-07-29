@@ -3,14 +3,16 @@ package com.soft.credit911.ui.dashboard.Dashboard
 import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Observer
+import com.github.mikephil.charting.components.*
 import com.ing.quiz.ui.base_classes.BaseFragment
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
-import com.soft.credit911.datamodel.DashboardResponse
-import com.soft.credit911.datamodel.SecurityResponse
 import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class DashboardFragment : BaseFragment() {
 
@@ -71,6 +73,60 @@ class DashboardFragment : BaseFragment() {
             val nextDate = dashboardResponse.data!!.creditReport!!.nextDate
             tv_report_date.text = reportDate
             tv_next_date.text = nextDate
+            setChartData()
+            scroolableContent.visibility=View.VISIBLE
+
+
+            val dataList: ArrayList<Int> = ArrayList()
+            var random = (Math.random() * 9 + 1).toFloat()
+            for (i in 0 until 30) {
+                dataList.add((Math.random() * random).toInt())
+            }
+
+            val dataList2: ArrayList<Int> = ArrayList()
+            random = ((Math.random() * 9 + 1).toInt()).toFloat()
+            for (i in 0 until 30) {
+                dataList2.add((Math.random() * random).toInt())
+            }
+
+            val dataList3: ArrayList<Int> = ArrayList()
+            random = ((Math.random() * 9 + 1) .toInt()).toFloat()
+            for (i in 0 until 30) {
+                dataList3.add((Math.random() * random).toInt())
+            }
+
+            val dataLists: ArrayList<ArrayList<Int>> = ArrayList()
+            dataLists.add(dataList)
+            dataLists.add(dataList2)
+            dataLists.add(dataList3)
+
+//            lineView.setDataList(dataLists)
+
+            val dataListF: ArrayList<Float> = ArrayList()
+            var randomF = (Math.random() * 9 + 1).toFloat()
+            for (i in 0 until 30) {
+                dataListF.add((Math.random() * randomF).toFloat())
+            }
+
+            val dataListF2: ArrayList<Float> = ArrayList()
+            randomF = ((Math.random() * 9 + 1) .toInt()).toFloat()
+            for (i in 0 until 30) {
+                dataListF2.add((Math.random() * randomF).toFloat())
+            }
+
+            val dataListF3: ArrayList<Float> = ArrayList()
+            randomF = ((Math.random() * 9 + 1) .toInt()).toFloat()
+            for (i in 0 until 30) {
+                dataListF3.add((Math.random() * randomF).toFloat())
+            }
+
+            val dataListFs: ArrayList<ArrayList<Float>> = ArrayList()
+            dataListFs.add(dataListF)
+            dataListFs.add(dataListF2)
+            dataListFs.add(dataListF3)
+
+            lineView.setFloatDataList(dataListFs)
+
         })
 
         viewModel?.responseSecurity?.observe(viewLifecycleOwner, Observer {securityResponse->
@@ -85,4 +141,10 @@ class DashboardFragment : BaseFragment() {
             }
         })
     }
+
+
+    fun setChartData(){
+
+    }
+
 }

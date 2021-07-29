@@ -17,7 +17,7 @@ class DashboardResponse {
         var creditReport: CreditReport? = null
 
         @SerializedName("credit_report_history")
-        var creditReportHistory: List<CreditReportHistoryItem>? = null
+        var creditReportHistory: ArrayList<CreditReportHistoryItem>? = null
 
         @SerializedName("userinfo")
         var userinfo: Userinfo? = null
