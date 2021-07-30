@@ -1,8 +1,5 @@
 package com.ing.quiz.network
 
-
-import android.os.Handler
-import com.google.gson.Gson
 import com.ing.quiz.ui.base_classes.BaseActivity
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.soft.credit911.NetworkUtils.APIConstants
@@ -12,13 +9,11 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
-import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class RestClient {
-
 
     companion object {
         val MULTIPART_FORM_DATA = "multipart/form-data"

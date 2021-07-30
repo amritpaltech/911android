@@ -28,7 +28,7 @@
             android:textStyle="bold" />
         <ScrollView
             android:layout_width="match_parent"
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/scroolableContent"
             android:layout_height="match_parent">
 
@@ -68,7 +68,7 @@
                         android:src="@drawable/imgpsh_fullsize_anim"
                         android:id="@+id/progress"
                         app:startAngleDegrees="90"
-                        app:progress=".1"
+                        app:progress=".2"
                         app:thumbColor="@color/blue"
                         app:thumbDrawable="@drawable/thumb"
                         app:trackGradient="@array/progressRainbow"
