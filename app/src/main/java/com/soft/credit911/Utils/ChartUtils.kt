@@ -1,15 +1,17 @@
 package com.soft.credit911
 
-import android.R
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
-import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.soft.credit911.datamodel.DashboardResponse
+import java.text.SimpleDateFormat
 
 
 class ChartUtils {
@@ -18,7 +20,7 @@ class ChartUtils {
     var chart: LineChart? = null
     var context:Context?=null
 
-    fun  setChartData(chart: LineChart?, knowledgeAreas: ArrayList<DashboardResponse.CreditReportHistoryItem>?) {
+    fun  setChartData(chart: LineChart, knowledgeAreas: ArrayList<DashboardResponse.CreditReportHistoryItem>?) {
         if(knowledgeAreas?.size!=0) {
             this.chart = chart
             this.knowledgeAreas?.clear()
@@ -58,36 +60,74 @@ class ChartUtils {
 
 
     fun setData() {
-        val values = ArrayList<Entry>()
-        val colors = ArrayList<Int>()
-        for (obj in knowledgeAreas!!) {
-            barSet.add(obj.scoreDate ?: "")
-
-            Log.e("FF"+knowledgeAreas?.indexOf(obj)?.toFloat(),""+obj.score)
-            values.add(Entry(
-                knowledgeAreas?.indexOf(obj)?.toFloat() as Float,
-                ((obj.score?.toInt()?:0/1.0f).toFloat())
-            ))
-            colors.add(Color.parseColor("#00655d"))
+        val entries: MutableList<Entry> = ArrayList()
+        val xValsDateLabel = ArrayList<String>()
+        for(i in knowledgeAreas!!){
+            i.score?.toInt()?.let { Entry(knowledgeAreas?.indexOf(i)?.toFloat()?:0f, it?.toFloat()) }
+                ?.let { entries.add(it) }
+            xValsDateLabel.add(i.scoreDate.toString())
         }
 
-        val bardataset = LineDataSet(values, "")
-        chart!!.animateY(0)
-        val data = LineData(bardataset as ILineDataSet)
-        bardataset.setColors(colors)
-        bardataset.setDrawValues(false)
-        chart?.setDescription(null);
-        chart?.setPinchZoom(false)
-        chart?.setScaleEnabled(false)
-        chart?.extraLeftOffset=0.0f
-        val rightYAxis: YAxis? = chart?.getAxisRight()
+        val vf: ValueFormatter = object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                return "" + value.toInt()
+            }
+        }
+        val set1 = LineDataSet(entries, "CK_NAVEEN")
+        set1.setValueFormatter(vf)
+        var dataSet = java.util.ArrayList<ILineDataSet>()
+        dataSet.add(set1)
 
-        rightYAxis?.isEnabled = true
-        rightYAxis?.setAxisMinValue(0.0f)
-        rightYAxis?.setAxisMaxValue(100.0f)
+        val lineData = LineData(dataSet)
+        chart?.data = lineData
+        chart?.getData()?.setHighlightEnabled(false);
+        set1.color = Color.parseColor("#31fce8")
+        set1.mode = LineDataSet.Mode.LINEAR
+        chart?.description?.text = ""
+        chart?.isDoubleTapToZoomEnabled=false
+        chart?.fitScreen()
+        chart?.setScaleEnabled(false);
+        chart?.legend?.isEnabled = false
+        val xAxis = chart?.xAxis
+        xAxis?.position = XAxis.XAxisPosition.BOTTOM
+        xAxis?.setDrawGridLines(false)
+        chart?.axisLeft?.isEnabled = true
+        chart?.getXAxis()?.setLabelCount(knowledgeAreas?.size?:0, true)
+        xAxis?.valueFormatter = (MyValueFormatter(xValsDateLabel))
+        chart?.getAxisLeft()?.setAxisMaxValue(900f);
+        chart?.getAxisLeft()?.setAxisMinValue(0f);
+        chart?.getAxisLeft()?.setLabelCount(5);
+        xAxis?.setAxisMinValue(-.30f)
+        xAxis?.granularity = 1f
+        xAxis?.isGranularityEnabled = true
+        chart?.setPadding(200 , 2 , 2 , 2)
+        chart?.setExtraLeftOffset(15f);
+        chart?.setExtraRightOffset(15f);
+        chart?.setViewPortOffsets(60f, 0f, 50f, 60f)
+        chart?.setExtraLeftOffset(36f);
+        chart?.getAxisLeft()?.setDrawGridLines(false);
+        chart?.getXAxis()?.setDrawGridLines(false);
+        chart?.invalidate()
+    }
 
-        val leftAxis: YAxis? = chart?.axisLeft
-        leftAxis?.setAxisMinValue(0f);
-        chart?.data = data
+
+
+    class MyValueFormatter(private val xValsDateLabel: ArrayList<String>) : ValueFormatter() {
+
+        override fun getFormattedValue(value: Float): String {
+            return value.toString()
+        }
+
+        override fun getAxisLabel(value: Float, axis: AxisBase): String {
+            val dateFormat: String = "yyyy-MM-dd"
+            val parser = SimpleDateFormat(dateFormat)
+            if (value.toInt() >= 0 && value.toInt() <= xValsDateLabel.size - 1) {
+                val date = parser.parse(xValsDateLabel[value.toInt()])
+                val outputFormat = SimpleDateFormat("MMM")
+                return outputFormat.format(date)
+            } else {
+                return ("").toString()
+            }
+        }
     }
     }

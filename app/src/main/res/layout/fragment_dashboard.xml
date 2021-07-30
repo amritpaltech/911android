@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.dashboard.Dashboard.DashboardFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.dashboard.Dashboard.DashboardFragment">
 
         <include
             android:id="@+id/toolbarLayout"
@@ -27,7 +28,7 @@
             android:textStyle="bold" />
         <ScrollView
             android:layout_width="match_parent"
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/scroolableContent"
             android:layout_height="match_parent">
 
@@ -47,14 +48,56 @@
 
                 <RelativeLayout android:id="@+id/layout"
                     xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_height="@dimen/_200sdp">
 
-                    <io.netopen.hotbitmapgg.view.OldCreditSesameView
-                        android:id="@+id/sesame_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true" />
+                   <ImageView
+                       android:layout_width="@dimen/_200sdp"
+                       android:scaleType="fitXY"
+                       android:layout_centerHorizontal="true"
+                       android:src="@drawable/imgpsh_fullsize_anim"
+                       android:layout_height="@dimen/_110sdp"></ImageView>
+
+                    <com.tenclouds.gaugeseekbar.GaugeSeekBar
+                        android:layout_width="@dimen/_400sdp"
+                        android:layout_height="@dimen/_400sdp"
+                        app:interactive="false"
+                        app:showProgress="false"
+                        android:src="@drawable/imgpsh_fullsize_anim"
+                        android:id="@+id/progress"
+                        app:startAngleDegrees="90"
+                        app:progress=".1"
+                        app:thumbColor="@color/blue"
+                        app:thumbDrawable="@drawable/thumb"
+                        app:trackGradient="@array/progressRainbow"
+                        app:trackWidth="0.01dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:id="@+id/score"
+                            android:textSize="@dimen/_28sdp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Need  Imp"
+                            android:id="@+id/scoreAbout"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
 
                 </RelativeLayout>
 
@@ -63,6 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="-100dp"
                     android:layout_marginRight="@dimen/_12sdp"
                     android:orientation="horizontal">
 
@@ -113,7 +157,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_3sdp"
                             android:gravity="right"
-                            android:text="@string/july_2_2021"
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -139,16 +182,10 @@
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
 
-                <HorizontalScrollView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    >
-                    <view
-                        android:layout_width="wrap_content"
-                        android:layout_height="300dp"
-                        class="im.dacer.androidcharts.LineView"
-                        android:id="@+id/lineView" />
-                </HorizontalScrollView>
+                <com.github.mikephil.charting.charts.LineChart
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/chart"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

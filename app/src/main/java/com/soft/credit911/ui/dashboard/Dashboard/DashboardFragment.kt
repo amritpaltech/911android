@@ -1,10 +1,12 @@
 package com.soft.credit911.ui.dashboard.Dashboard
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import com.github.mikephil.charting.components.*
 import com.ing.quiz.ui.base_classes.BaseFragment
+import com.soft.credit911.ChartUtils
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
 import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
@@ -36,11 +38,7 @@ class DashboardFragment : BaseFragment() {
             val intent = Intent(context, SecurityQuestionsActivity::class.java)
             context?.startActivity(intent)
         }
-        sesame_view.setOnClickListener {
-            sesame_view.setSesameValues(
-                1000
-            )
-        }
+
         scroolableContent.visibility = View.VISIBLE
         txtErrorText.visibility = View.GONE
         if (arguments != null) {
@@ -75,57 +73,20 @@ class DashboardFragment : BaseFragment() {
             tv_next_date.text = nextDate
             setChartData()
             scroolableContent.visibility=View.VISIBLE
-
-
-            val dataList: ArrayList<Int> = ArrayList()
-            var random = (Math.random() * 9 + 1).toFloat()
-            for (i in 0 until 30) {
-                dataList.add((Math.random() * random).toInt())
+            score.text=dashboardResponse?.data?.creditReport?.score?:"0"
+            val score=dashboardResponse.data?.creditReport?.score?.toInt()?:0
+            if(score<400){
+                scoreAbout.text="POOR"
             }
-
-            val dataList2: ArrayList<Int> = ArrayList()
-            random = ((Math.random() * 9 + 1).toInt()).toFloat()
-            for (i in 0 until 30) {
-                dataList2.add((Math.random() * random).toInt())
+            else if(score<700){
+                scoreAbout.text="NEEDS WORK"
+            }else{
+                scoreAbout.text="GOOD"
             }
-
-            val dataList3: ArrayList<Int> = ArrayList()
-            random = ((Math.random() * 9 + 1) .toInt()).toFloat()
-            for (i in 0 until 30) {
-                dataList3.add((Math.random() * random).toInt())
-            }
-
-            val dataLists: ArrayList<ArrayList<Int>> = ArrayList()
-            dataLists.add(dataList)
-            dataLists.add(dataList2)
-            dataLists.add(dataList3)
-
-//            lineView.setDataList(dataLists)
-
-            val dataListF: ArrayList<Float> = ArrayList()
-            var randomF = (Math.random() * 9 + 1).toFloat()
-            for (i in 0 until 30) {
-                dataListF.add((Math.random() * randomF).toFloat())
-            }
-
-            val dataListF2: ArrayList<Float> = ArrayList()
-            randomF = ((Math.random() * 9 + 1) .toInt()).toFloat()
-            for (i in 0 until 30) {
-                dataListF2.add((Math.random() * randomF).toFloat())
-            }
-
-            val dataListF3: ArrayList<Float> = ArrayList()
-            randomF = ((Math.random() * 9 + 1) .toInt()).toFloat()
-            for (i in 0 until 30) {
-                dataListF3.add((Math.random() * randomF).toFloat())
-            }
-
-            val dataListFs: ArrayList<ArrayList<Float>> = ArrayList()
-            dataListFs.add(dataListF)
-            dataListFs.add(dataListF2)
-            dataListFs.add(dataListF3)
-
-            lineView.setFloatDataList(dataListFs)
+            ChartUtils().setChartData(chart,dashboardResponse?.data?.creditReportHistory)
+            var progress1:Double=(score*100.0/900.0)/100.0
+            Log.e("sasas","sas"+(progress1).toFloat())
+            progress.setProgress((progress1).toFloat())
 
         })
 
