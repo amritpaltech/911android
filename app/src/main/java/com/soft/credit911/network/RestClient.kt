@@ -38,8 +38,8 @@ class RestClient {
             try {
                 val info = AppPreference(mBaseActivity).getUserObject().data?.apiToken
                 if (info != null && info.isNotEmpty()) {
-//                    token = "Bearer " +info ?: ""
-                    token="Bearer n168VBfVAt0XXsT6jqePsItoiFEDLbObxF9g1j5yQj8AgquDyGy5sSE4ewvGT"
+                    token = "Bearer " +info ?: ""
+
                 }
 
             } catch (e: Exception) {
