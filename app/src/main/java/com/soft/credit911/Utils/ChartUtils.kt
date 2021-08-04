@@ -96,7 +96,7 @@ class ChartUtils {
         xAxis?.valueFormatter = (MyValueFormatter(xValsDateLabel))
         chart?.getAxisLeft()?.setAxisMaxValue(900f);
         chart?.getAxisLeft()?.setAxisMinValue(0f);
-        chart?.getAxisLeft()?.setLabelCount(5);
+        chart?.getAxisLeft()?.setLabelCount(9);
         xAxis?.setAxisMinValue(-.30f)
         xAxis?.granularity = 1f
         xAxis?.isGranularityEnabled = true

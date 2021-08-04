@@ -44,7 +44,6 @@ class UserProfileFragment : BaseFragment() {
 
     override fun onViewCreated() {
         setprofileInfo()
-        attachObserver()
         EventBus.getDefault().register(this)
         setOnClick()
     }
@@ -96,6 +95,7 @@ class UserProfileFragment : BaseFragment() {
         }
 
         viewmodel= ProfileViewModel()
+        attachObserver()
     }
 
 
@@ -106,7 +106,7 @@ class UserProfileFragment : BaseFragment() {
             val uriPathHelper = URIPathHelper()
             val selectedVideoPath = data?.data?.let { uriPathHelper.getPath(activity as BaseActivity, it) }
             iv_user_img.loadProfileImage(data?.data.toString())
-            baseActivity?.showProgress()
+//            baseActivity?.showProgress()
 
               val bitmap = BitmapFactory.decodeFile(selectedVideoPath)
                 var str=getEncoded64ImageStringFromBitmap(bitmap)

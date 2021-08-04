@@ -54,7 +54,8 @@ public class OTPVerificationPresenter implements NetworkAPIResponseCallback {
             mJsObjParam.put("code", code);
             Type parserType = new TypeToken<GenerateOTPResponse>() {
             }.getType();
-            NetworkAPICallModel networkAPICallModel = new NetworkAPICallModel(APIConstants.VERIFICATION_OTP_CODE, AppConstants.POST_REQUEST, mJsObjParam);
+            NetworkAPICallModel networkAPICallModel = new NetworkAPICallModel(APIConstants.VERIFICATION_OTP_CODE,
+                    AppConstants.POST_REQUEST, mJsObjParam);
             networkAPICallModel.setParserType(parserType);
             networkAPICallModel.setShowProgress(true);
             mNetworkAPICall.callApplicationWS((Activity) mContext, networkAPICallModel, this);
