@@ -1,10 +1,7 @@
 package com.ing.quiz.network
 
 import com.google.gson.JsonObject
-import com.soft.credit911.datamodel.ChangePasswordResponse
-import com.soft.credit911.datamodel.LoginResponse
-import com.soft.credit911.datamodel.MyProfileResponse
-import com.soft.credit911.datamodel.UpdateProfileResponse
+import com.soft.credit911.datamodel.*
 
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -17,7 +14,11 @@ import kotlin.collections.HashMap
 interface api_services {
 
 
+    @GET("api/generate2fatoken")
+    fun generate2fatoken(): Observable<GenerateOTPResponse>
 
+    @POST("api/verify-2fa-code")
+    fun verifyOtp(  @Body login:JsonObject ): Observable<GenerateOTPResponse>
 
     @POST("api/customer/sign-in")
     fun LoginUser(

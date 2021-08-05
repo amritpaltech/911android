@@ -1,29 +1,27 @@
 package com.soft.credit911.ui.OTPVerification
 
 import android.content.Intent
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.ing.quiz.ui.base_classes.BaseActivity
+import com.intsab.otpfetcher.OtpFetcher
+import com.intsab.otpfetcher.listeners.OtpListener
+import com.intsab.otpfetcher.models.MessageItem
 import com.soft.credit911.R
 import com.soft.credit911.Utils.AppConstants
 import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils
-import com.soft.credit911.databinding.ActivityLoginVerificationBinding
-import com.soft.credit911.databinding.ToolbarBinding
-import com.soft.credit911.datamodel.GenerateOTPResponse
-import com.soft.credit911.ui.OTPVerification.mvp.OTPVerificationPresenter
-import com.soft.credit911.ui.OTPVerification.mvp.OTPVerificationView
 import com.soft.credit911.ui.dashboard.LandingActivity
 import kotlinx.android.synthetic.main.activity_login_verification.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.lang.String
 
-class LoginVerificationActivity : BaseActivity(), OTPVerificationView {
-    private var OTPVerificationPresenter: OTPVerificationPresenter? = null
+
+class LoginVerificationActivity : BaseActivity() {
+    private var viewModel: OtpViewModel? = null
 
     var appPreference: AppPreference? = null
     override fun getLayoutID(): Int {
@@ -31,25 +29,50 @@ class LoginVerificationActivity : BaseActivity(), OTPVerificationView {
     }
 
     override fun onViewCreated() {
-        OTPVerificationPresenter = OTPVerificationPresenter(this, this)
+        viewModel= OtpViewModel()
+        attchObserver()
         appPreference = AppPreference(this)
         initView()
+
+        OtpFetcher.getInstance().verifyOtpByMatchingString(this, "code", 25000*60, object :
+            OtpListener {
+            override fun onReceived(messageItem: MessageItem) {
+                Toast.makeText(applicationContext, "" + messageItem.message, Toast.LENGTH_SHORT).show()
+                etOtpNum1.setText("X")
+                etOtpNum2.setText("X")
+                etOtpNum3.setText("X")
+                etOtpNum4.setText("X")
+                etOtpNum5.setText("X")
+                etOtpNum6.setText("X")
+                try {
+                    viewModel?.verifyOtp(messageItem.message.split(":")[1].trim())
+                }catch (e:Exception){}
+            }
+
+            override fun onTimeOut() {
+
+
+            }
+        })
     }
 
     private fun initView() {
 
         toolbarTitle.text = "Login"
-        navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
-        OTPVerificationPresenter!!.getOTPVerification()
-        displayTextTv.text =
-            resources.getString(R.string.verification_number) + " " + appPreference!!.userObject.data!!.phoneNumber
+        navigationIcon.setOnClickListener {
+                v: View? -> onBackPressed()
+        }
+        viewModel?.getOTPVerification()
+        displayTextTv.text = resources.getString(R.string.verification_number) + " " + appPreference!!.userObject.data!!.phoneNumber
         etOtpNum1.addTextChangedListener(GenericTextWatcher(etOtpNum1))
         etOtpNum2.addTextChangedListener(GenericTextWatcher(etOtpNum2))
         etOtpNum3.addTextChangedListener(GenericTextWatcher(etOtpNum3))
         etOtpNum4.addTextChangedListener(GenericTextWatcher(etOtpNum4))
         etOtpNum5.addTextChangedListener(GenericTextWatcher(etOtpNum5))
         etOtpNum6.addTextChangedListener(GenericTextWatcher(etOtpNum6))
-        resendOTPTv.setOnClickListener { v: View? -> OTPVerificationPresenter!!.getOTPVerification() }
+        resendOTPTv.setOnClickListener {
+                v: View? -> viewModel?.getOTPVerification()
+        }
         /*toolbarBinding.tvToolbarLogin.setVisibility(View.VISIBLE);*/
         tvVerify.setOnClickListener { v: View? ->
             if (isValid) {
@@ -59,9 +82,10 @@ class LoginVerificationActivity : BaseActivity(), OTPVerificationView {
                         etOtpNum4.text.toString().trim { it <= ' ' } +
                         etOtpNum5.text.toString().trim { it <= ' ' } +
                         etOtpNum6.text.toString().trim { it <= ' ' }
-                OTPVerificationPresenter!!.verifiyOTP(otp)
+                viewModel!!.verifyOtp(otp)
             }
         }
+
     }
 
     private val isValid: Boolean
@@ -99,26 +123,6 @@ class LoginVerificationActivity : BaseActivity(), OTPVerificationView {
             return true
         }
 
-    override fun generateOTPResponse(generateOTPResponse: GenerateOTPResponse) {
-        Toast.makeText(this, generateOTPResponse.message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun verifiyOTPResponse(generateOTPResponse: GenerateOTPResponse) {
-        if (generateOTPResponse.status == AppConstants.API_SUCCESS) {
-            appPreference!!.isLogin = true
-            if (appPreference!!.userObjectString != "") appPreference!!.userLoggedIn =
-                String.valueOf(
-                    appPreference!!.userObject.data!!.id
-                )
-            Toast.makeText(this, generateOTPResponse.message, Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, LandingActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
-        } else {
-            //Toast.makeText(this, generateOTPResponse.getMessage(), Toast.LENGTH_SHORT).show();
-            CommonUtils.showdialog(generateOTPResponse.message, this, false)
-        }
-    }
 
     internal inner class GenericTextWatcher(private val view: View) : TextWatcher {
         override fun afterTextChanged(editable: Editable) {
@@ -136,5 +140,36 @@ class LoginVerificationActivity : BaseActivity(), OTPVerificationView {
 
         override fun beforeTextChanged(arg0: CharSequence, arg1: Int, arg2: Int, arg3: Int) {}
         override fun onTextChanged(arg0: CharSequence, arg1: Int, arg2: Int, arg3: Int) {}
+    }
+
+    fun attchObserver(){
+        viewModel?.isLoading?.observe(this,androidx.lifecycle.Observer {
+
+            if(it){
+                showProgress()
+            }else{
+                hideProgress()
+            }
+        })
+
+        viewModel?.getOtpResponse?.observe(this, Observer {generateOTPResponse->
+            Toast.makeText(this, generateOTPResponse.message, Toast.LENGTH_SHORT).show()
+        })
+        viewModel?.otpVeryResponse?.observe(this, Observer {generateOTPResponse->
+            if (generateOTPResponse.status == AppConstants.API_SUCCESS) {
+                appPreference!!.isLogin = true
+                if (appPreference!!.userObjectString != "") appPreference!!.userLoggedIn =
+                    String.valueOf(
+                        appPreference!!.userObject.data!!.id
+                    )
+                Toast.makeText(this, generateOTPResponse.message, Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LandingActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            } else {
+                CommonUtils.showdialog(generateOTPResponse.message, this, false)
+            }
+        })
+
     }
 }

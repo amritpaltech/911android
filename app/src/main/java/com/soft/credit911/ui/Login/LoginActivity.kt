@@ -1,20 +1,25 @@
 package com.soft.credit911.ui.Login
 
+import android.content.Context
 import android.content.Intent
 import android.view.View
 import com.ing.quiz.ui.base_classes.SubBaseActivity
-import com.soft.credit911.ui.ForgotPassword.ForgetPasswordActivity
-import com.soft.credit911.ui.dashboard.LandingActivity
-import com.soft.credit911.ui.OTPVerification.LoginVerificationActivity
+import com.nabinbhandari.android.permissions.PermissionHandler
+import com.nabinbhandari.android.permissions.Permissions
 import com.soft.credit911.R
 import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.adaptor.ViewPagerAdapter
+import com.soft.credit911.ui.ForgotPassword.ForgetPasswordActivity
+import com.soft.credit911.ui.OTPVerification.LoginVerificationActivity
+import com.soft.credit911.ui.dashboard.LandingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.String
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.jar.Manifest
+
 
 class LoginActivity : SubBaseActivity() {
    
@@ -35,9 +40,30 @@ class LoginActivity : SubBaseActivity() {
     private fun initView() {
         tv_Login.setOnClickListener { v: View? ->
             if (validate()) {
-                mViewModel.signIn(
-                    etUserEmail.text.toString().trim { it <= ' ' },
-                    etUserPassword.text.toString().trim { it <= ' ' })
+
+                Permissions.check(
+                    this /*context*/,
+                    permissionsMessage,
+                    null /*rationale*/,
+                    null /*options*/,
+                    object : PermissionHandler() {
+                        override fun onGranted() {
+                            mViewModel.signIn(
+                                etUserEmail.text.toString().trim { it <= ' ' },
+                                etUserPassword.text.toString().trim { it <= ' ' })
+                        }
+
+                        override fun onDenied(
+                            context: Context?,
+                            deniedPermissions: ArrayList<kotlin.String>?
+                        ) {
+                            super.onDenied(context, deniedPermissions)
+                            mViewModel.signIn(
+                                etUserEmail.text.toString().trim { it <= ' ' },
+                                etUserPassword.text.toString().trim { it <= ' ' })
+                        }
+                    })
+
             }
         }
         tv_Forget_your_password.setOnClickListener { v: View? ->
