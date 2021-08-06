@@ -11,7 +11,7 @@ class data_docs {
     class Documents:Serializable{
         val other: ArrayList<DocData>?=null
 
-        val required: Array<DocData>?=null
+        val required: ArrayList<DocData>?=null
     }
     class DocData:Serializable{
         val Label: String? = null

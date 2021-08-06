@@ -31,8 +31,9 @@ class RestClient {
             var client = OkHttpClient.Builder().addInterceptor(interceptor).build()
             var token = ""
             try {
-                val info = "SdPuWzZPX2R9kKBItukPHaJ296O440NvPKa02dlh7rEbAUMdatWcLY4tCSKN"
-                    //AppPreference(mBaseActivity).getUserObject().data?.apiToken
+                val info = AppPreference(mBaseActivity).getUserObject().data?.apiToken
+//                    "SdPuWzZPX2R9kKBItukPHaJ296O440NvPKa02dlh7rEbAUMdatWcLY4tCSKN"
+                    //
                 if (info != null && info.isNotEmpty()) {
                     token = "Bearer " +info ?: ""
 

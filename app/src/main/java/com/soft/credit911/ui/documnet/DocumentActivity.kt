@@ -5,68 +5,130 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.github.dhaval2404.imagepicker.ImagePicker
+import com.ing.quiz.ui.base_classes.BaseActivity
 import com.soft.credit911.R
+import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.adaptor.DocumentDetailsAdapter
-import com.soft.credit911.adaptor.OtherDocumentDetailsAdapter
-import com.soft.credit911.databinding.ActivityDocumentBinding
-import com.soft.credit911.databinding.ToolbarBinding
-import com.soft.credit911.datamodel.DocumentModel
-import com.soft.credit911.datamodel.OtherDocumentModel
+import com.soft.credit911.adaptor.OtherDocAdap
+import com.soft.credit911.datamodel.data_docs
+import com.soft.credit911.dialog.DialogCamera
+import kotlinx.android.synthetic.main.activity_document.*
+import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
-class DocumentActivity : AppCompatActivity() {
-    private var layoutBinding: ActivityDocumentBinding? = null
-    private var toolbarBinding: ToolbarBinding? = null
+class DocumentActivity : BaseActivity() {
+
     private var documentDetailsAdapter: DocumentDetailsAdapter? = null
-    private var otherDocumentDetailsAdapter: OtherDocumentDetailsAdapter? = null
-    private val otherDocumentModels = ArrayList<OtherDocumentModel>()
-    private val documentModels = ArrayList<DocumentModel>()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        layoutBinding = ActivityDocumentBinding.inflate(
-            layoutInflater
-        )
-        val view = layoutBinding!!.root
-        setContentView(view)
-        toolbarBinding = layoutBinding!!.toolbarLayout
-        toolbarBinding!!.toolbarTitle.text = "Document"
-        toolbarBinding!!.navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
-        documentDetailsAdapter = DocumentDetailsAdapter(this)
-        layoutBinding!!.rvDocument.adapter = documentDetailsAdapter
-        val document = DocumentModel()
-        document.userLicence = "Driving Licence (Font)"
-        document.userStatus = "pending"
-        document.checkImage = R.drawable.ic__check_circle
-        documentModels.add(document)
-        val document1 = DocumentModel()
-        document1.userLicence = "Driving Licence (Back)"
-        document1.userStatus = "pending"
-        document1.checkImage = R.drawable.ic__check_circle
-        documentModels.add(document1)
-        val document2 = DocumentModel()
-        document2.userLicence = "Social Security Number"
-        document2.userStatus = "Completed"
-        document2.checkImage = R.drawable.ic_check_circle_green
-        documentModels.add(document2)
-        val document3 = DocumentModel()
-        document3.userLicence = "Residence Proof"
-        document3.userStatus = "Rejected"
-        document3.checkImage = R.drawable.alert
-        documentModels.add(document3)
-        documentDetailsAdapter!!.addList(documentModels)
-        otherDocumentDetailsAdapter = OtherDocumentDetailsAdapter(this)
-        layoutBinding!!.rvOtherDocument.adapter = otherDocumentDetailsAdapter
-        val otherDocument = OtherDocumentModel()
-        otherDocument.userLicence = "Other Document 1"
-        otherDocument.userStatus = "...."
-        otherDocument.checkImage = R.drawable.ic__check_circle
-        otherDocumentModels.add(otherDocument)
-        val otherDocument2 = OtherDocumentModel()
-        otherDocument2.userLicence = "Other Document 2"
-        otherDocument2.userStatus = "...."
-        otherDocument2.checkImage = R.drawable.ic__check_circle
-        otherDocumentModels.add(otherDocument2)
-        otherDocumentDetailsAdapter!!.addList(otherDocumentModels)
+    private var otherDocAdaptor: OtherDocAdap? = null
+    private var documentRequred = ArrayList<data_docs.DocData>()
+    private var documentOther = ArrayList<data_docs.DocData>()
+    val viewModel=DocumentViewModel()
+    override fun getLayoutID(): Int {
+       return  R.layout.activity_document
+    }
+
+    override fun onViewCreated() {
+   
+        toolbarTitle.text = "Document"
+        navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
+        init()
+    }
+
+    fun init(){
+        viewModel.getDocuments()
+        attachObserver()
+    }
+
+    fun attachObserver() {
+        viewModel?.apiError.observe(this, androidx.lifecycle.Observer {
+            CommonUtils.showdialog(it.toString(), this, false)
+        })
+
+        viewModel?.isLoading?.observe(this, androidx.lifecycle.Observer {
+
+            if (it) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
+        })
+
+        viewModel?.dataDocs.observe(this, androidx.lifecycle.Observer {
+           if(it.status.equals("success")){
+               if(it?.documents?.other!=null) {
+                   documentOther = it?.documents?.other
+
+               }
+               if(it?.documents?.required!=null) {
+                   documentRequred = it?.documents?.required
+
+               }
+               setLListdata()
+           }
+        })
+    }
+
+    fun setLListdata(){
+        otherDocAdaptor = OtherDocAdap(documentOther){
+            handleDocumentClick(it)
+        }
+        rv_other_document.adapter=otherDocAdaptor
+
+        val requireAdap=OtherDocAdap(documentRequred){
+            handleDocumentClick(it)
+        }
+        rv_documentCompulsary.adapter=requireAdap
+        var completedDoc=0
+        for(i in documentRequred){
+            if(i.status.equals("completed")){
+                completedDoc=completedDoc+1
+            }
+        }
+        completedText.text="Task comleted "+completedDoc+" of "+documentRequred.size
+    }
+
+    fun handleDocumentClick(dataDocs: data_docs.DocData){
+
+        when(dataDocs.status){
+            "missing"->{
+
+                val dialog= DialogCamera(){op->
+               when(op){
+                   1->{
+                       ImagePicker.with(this)
+                           .crop()	  .cameraOnly()  			//Crop image(Optional), Check Customization for more option
+                           .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                           .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                           .start()
+                   }
+                   2->{
+                       ImagePicker.with(this)
+                           .crop()	 .galleryOnly()   			//Crop image(Optional), Check Customization for more option
+                           .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                           .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                           .start()
+                   }
+
+                   3->{
+
+                   }
+               }
+
+                }
+                dialog.show(supportFragmentManager, "options")
+            }
+            "pending"->{
+                CommonUtils.showdialog("Please wait while we verify your document", this, false)
+            }
+            "approved"->{
+                CommonUtils.showdialog("Document you provided is approved", this, false)
+            }
+            "rejected"->{
+                CommonUtils.showdialog("Document you provided is rejected:", this, false)
+            }
+
+        }
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

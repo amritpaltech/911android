@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.ing.quiz.ui.base_classes.BaseActivity
 import com.ing.quiz.ui.base_classes.BaseFragment
 import com.soft.credit911.R
+import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.adaptor.CaseAdaptor
 import com.soft.credit911.ui.casemanagement.CaseManagementActivity
 import kotlinx.android.synthetic.main.fragment_case_management.*
@@ -28,6 +30,10 @@ class CaseManagementFragment : BaseFragment() {
     }
 
     fun attachObserver(){
+        viewModel?.apiError.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            CommonUtils.showdialog(it.toString(), activity as BaseActivity, false)
+        })
+
         viewModel?.isLoading?.observe(viewLifecycleOwner,androidx.lifecycle.Observer {
 
             if(it){
