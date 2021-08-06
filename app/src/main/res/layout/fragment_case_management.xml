@@ -14,6 +14,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_case_management"
             android:layout_width="match_parent"
+            android:orientation="vertical"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>

@@ -84,7 +84,7 @@ class DashboardFragment : BaseFragment() {
                 scoreAbout.text="GOOD"
             }
             ChartUtils().setChartData(chart,dashboardResponse?.data?.creditReportHistory)
-            var progress1:Double=(score*100.0/900.0)/100.0
+            var progress1:Double=((600-300)*100.0/600.0)/100.0
             Log.e("sasas","sas"+(progress1).toFloat())
             progress.setProgress((progress1).toFloat())
 

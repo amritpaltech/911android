@@ -47,5 +47,12 @@ interface api_services {
         @Field("imageblob") new_password: String
     ): Observable<UpdateProfileResponse>
 
+
+    @GET("api/get-doc-list")
+    fun getDocumentList(): Observable<data_docs>
+
+    @GET("api/get-cases")
+    fun getCases(): Observable<data_cases>
+
 }
 
