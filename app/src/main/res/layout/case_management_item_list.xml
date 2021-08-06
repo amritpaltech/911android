@@ -47,7 +47,7 @@
                     android:id="@+id/tv_mark"
                     android:layout_width="@dimen/_10sdp"
                     android:layout_height="@dimen/_10sdp"
-                    android:layout_marginTop="2sp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/rounded_textview"
                     android:gravity="center"
                     android:textColor="@android:color/white"
@@ -59,11 +59,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:text="Open"
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/tv_date"
+                    android:layout_marginTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -125,6 +127,8 @@
             <TextView
                 android:id="@+id/tv_user_message"
                 android:layout_width="match_parent"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:layout_height="wrap_content"
                 android:text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old."
                 android:textSize="@dimen/_12sdp" />

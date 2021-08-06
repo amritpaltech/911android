@@ -42,12 +42,12 @@
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/tv_mark"
                         android:layout_width="@dimen/_10sdp"
                         android:layout_height="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:background="@drawable/rounded_textview"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/rounded_textview"
                         android:gravity="center"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/_20sdp" />
@@ -58,11 +58,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:text="Open"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
                         android:id="@+id/tv_date"
+                        android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5sdp"
@@ -70,7 +72,7 @@
                         android:textSize="@dimen/_10sdp" />
 
 
-                    <FrameLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -78,12 +80,14 @@
                             android:id="@+id/tv_agent_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right|center_vertical"
                             android:background="@drawable/rectangle_shape_text_view"
-                            android:paddingLeft="@dimen/_12sdp"
                             android:paddingTop="@dimen/_4sdp"
+                            android:paddingLeft="@dimen/_26sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
                             android:paddingRight="@dimen/_8sdp"
                             android:paddingBottom="@dimen/_4sdp"
+                            android:layout_gravity="right|center_vertical"
                             android:text="Agent: Harry"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_10sdp" />
@@ -91,26 +95,30 @@
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/iv_user"
+                            android:layout_toLeftOf="@+id/tv_agent_name"
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
-                            android:layout_gravity="center_vertical|center"
-                            android:layout_marginLeft="@dimen/_10sdp"
-                            tools:src="@tools:sample/avatars" />
+                            app:civ_border_width="1dp"
+                            app:civ_circle_background_color="@color/teal_700"
+                            app:civ_border_color="@color/blue"
+                            android:layout_marginRight="-30dp"
+                            tools:src="@tools:sample/avatars"
+                            android:layout_gravity="center_vertical|center"/>
 
                         <TextView
                             android:id="@+id/tv_user_status"
                             android:layout_width="@dimen/_8sdp"
+                            android:layout_toLeftOf="@+id/tv_agent_name"
                             android:layout_height="@dimen/_8sdp"
-                            android:layout_gravity="center_vertical|center"
                             android:layout_marginTop="@dimen/_6sdp"
-                            android:layout_marginRight="@dimen/_2sdp"
                             android:layout_marginBottom="@dimen/_15sdp"
                             android:background="@drawable/rounded_textview"
+                            android:layout_gravity="center_vertical|center"
                             android:gravity="center"
                             android:textColor="@android:color/white"
                             android:textSize="30sp" />
 
-                    </FrameLayout>
+                    </RelativeLayout>
 
 
                 </LinearLayout>
@@ -122,20 +130,6 @@
                     android:text="@string/user_message"
                     android:textSize="@dimen/_12sdp" />
 
-                <TextView
-                    android:id="@+id/tv_user_mess"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:text="@string/user_mess"
-                    android:textSize="@dimen/_12sdp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:text="@string/user_mess"
-                    android:textSize="@dimen/_12sdp" />
 
                 <FrameLayout
                     android:layout_width="match_parent"

@@ -39,9 +39,9 @@ class CaseManagementFragment : BaseFragment() {
         viewModel.dataCases.observe(viewLifecycleOwner, androidx.lifecycle.Observer {case->
         if(case.status.equals("success")){
             val adap= case.cases?.let {
-                CaseAdaptor(it){
+                CaseAdaptor(it){caseData->
                     val intent= Intent(activity, CaseManagementActivity::class.java)
-                    intent.putExtra("caseData",case)
+                    intent.putExtra("caseData",caseData)
                     startActivity(intent)
                 }
             }
