@@ -5,8 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.chuzi.utils.URIPathHelper
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.ing.quiz.network.RestClient
 import com.ing.quiz.ui.base_classes.BaseActivity
@@ -18,8 +21,11 @@ import com.soft.credit911.adaptor.DocumentDetailsAdapter
 import com.soft.credit911.adaptor.OtherDocAdap
 import com.soft.credit911.datamodel.data_docs
 import com.soft.credit911.dialog.DialogCamera
+import droidninja.filepicker.FilePickerBuilder
+import droidninja.filepicker.FilePickerConst
 import kotlinx.android.synthetic.main.activity_document.*
 import kotlinx.android.synthetic.main.toolbar.*
+import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -28,6 +34,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.*
+
 
 class DocumentActivity : BaseActivity() {
 
@@ -129,7 +136,11 @@ class DocumentActivity : BaseActivity() {
                    }
 
                    3->{
-
+                       FilePickerBuilder.instance
+                           .setMaxCount(1) //optional
+//                    .setSelectedFiles(filePaths) //optional
+                           .setActivityTheme(R.style.LibAppTheme) //optional
+                           .pickFile(this, 3000);
                    }
                }
 
@@ -179,7 +190,7 @@ class DocumentActivity : BaseActivity() {
 
 
             }
-            if (requestCode== 1234 && resultCode== Activity.RESULT_OK )
+            else if (requestCode== 1234 && resultCode== Activity.RESULT_OK )
             {
                 val file = File(getVideoFilePath(this))
                 val outStream: OutputStream = BufferedOutputStream(FileOutputStream(file))
@@ -201,6 +212,33 @@ class DocumentActivity : BaseActivity() {
                 }
                 else
                     Toast.makeText(MainActivity@this,"Something wen't wrong.",Toast.LENGTH_LONG).show()
+            }
+            else if (requestCode== 3000 && resultCode== Activity.RESULT_OK )
+            {
+                try {
+                    val dataList: ArrayList<Uri> =
+                        data?.getParcelableArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS)!!
+                    if (dataList != null) {
+                        val uriPathHelper = URIPathHelper()
+                        val selectedVideoPath = uriPathHelper.getPath(this, dataList.get(0))
+                        var file= File(selectedVideoPath)
+                        if(file.isFile){
+                            val requestFile = RequestBody.create((getContentResolver().
+                            getType(dataList.get(0)))?.toMediaTypeOrNull(), file!!)
+                            bodyImgeThumb?.add(
+                                MultipartBody.Part.createFormData(
+                                    "file",
+                                    file?.name,
+                                    requestFile
+                                )
+                            )
+                            uploadData()
+                        }
+
+                    }
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
             }
 
         } else if (resultCode == ImagePicker.RESULT_ERROR) {

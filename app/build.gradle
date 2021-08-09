@@ -92,4 +92,5 @@ dependencies {
     implementation 'com.github.mayuce:AndroidDocumentScanner:1.5.3'
     implementation project(':gaugeseekbar')
     implementation project(':openCVLibrary')
+    implementation 'com.droidninja:filepicker:2.2.5'
 }
