@@ -103,20 +103,20 @@ class DocumentActivity : BaseActivity() {
         }
         rv_documentCompulsary.adapter=requireAdap
         var completedDoc=0
-        for(i in documentRequred){
-            if(i.status.equals("completed")){
+        for(iDoc in documentRequred){
+            if(iDoc.status.equals("approved")){
                 completedDoc=completedDoc+1
             }
         }
-        completedText.text="Task comleted "+completedDoc+" of "+documentRequred.size
+        completedText.text="Task completed "+completedDoc+" of "+documentRequred.size
     }
 
 
 
     fun handleDocumentClick(selectedDoc: data_docs.DocData){
         this.selectedDoc=selectedDoc
-        when(selectedDoc.status){
-            "missing"->{
+        if(selectedDoc.action.equals("upload-document")){
+
 
                 val dialog= DialogCamera(){op->
                when(op){
@@ -147,16 +147,9 @@ class DocumentActivity : BaseActivity() {
                 }
                 dialog.show(supportFragmentManager, "options")
             }
-            "pending"->{
-                CommonUtils.showdialog("Please wait while we verify your document", this, false)
-            }
-            "approved"->{
-                CommonUtils.showdialog("Document you provided is approved", this, false)
-            }
-            "rejected"->{
-                CommonUtils.showdialog("Document you provided is rejected:", this, false)
-            }
-
+        else if(selectedDoc.action.equals("uploaded")){
+            CommonUtils.showdialog(if(selectedDoc.message!=null) selectedDoc.message else "Your document under review. Please wait!",
+                this, false)
         }
     }
 

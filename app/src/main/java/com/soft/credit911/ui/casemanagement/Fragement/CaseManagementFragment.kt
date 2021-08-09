@@ -44,14 +44,20 @@ class CaseManagementFragment : BaseFragment() {
         })
         viewModel.dataCases.observe(viewLifecycleOwner, androidx.lifecycle.Observer {case->
         if(case.status.equals("success")){
-            val adap= case.cases?.let {
-                CaseAdaptor(it){caseData->
-                    val intent= Intent(activity, CaseManagementActivity::class.java)
-                    intent.putExtra("caseData",caseData)
-                    startActivity(intent)
+            if(case.cases?.size?:0>0){
+                cases.visibility=View.GONE
+                val adap= case.cases?.let {
+                    CaseAdaptor(it){caseData->
+                        val intent= Intent(activity, CaseManagementActivity::class.java)
+                        intent.putExtra("caseData",caseData)
+                        startActivity(intent)
+                    }
                 }
+                rv_case_management.adapter = adap
+            }else{
+                cases.visibility=View.VISIBLE
             }
-            rv_case_management.adapter = adap
+
         }
 
         })

@@ -22,7 +22,7 @@ class data_docs {
         val description: String? = null
         val notes: String? = null
         val action: String? = null
-
+        val message: String? = null
         val doc_id: String? = null
 
         val document_type: String? = null
