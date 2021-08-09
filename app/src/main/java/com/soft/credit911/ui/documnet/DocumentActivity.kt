@@ -1,16 +1,17 @@
 package com.soft.credit911.ui.documnet
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.provider.MediaStore
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.chuzi.utils.URIPathHelper
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.ing.quiz.network.RestClient
 import com.ing.quiz.ui.base_classes.BaseActivity
+import com.labters.documentscanner.ImageCropActivity
+import com.labters.documentscanner.helpers.ScannerConstants
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.adaptor.DocumentDetailsAdapter
@@ -22,7 +23,10 @@ import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import java.io.BufferedOutputStream
 import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 import java.util.*
 
 class DocumentActivity : BaseActivity() {
@@ -148,18 +152,57 @@ class DocumentActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            val uriPathHelper = URIPathHelper()
-            val selectedVideoPath = data?.data?.let { uriPathHelper.getPath(this, it) }
-            val imagePath = File(selectedVideoPath)
-            val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imagePath!!)
-            bodyImgeThumb?.add(
-                MultipartBody.Part.createFormData(
-                    "file",
-                    imagePath?.name,
-                    requestFile
-                )
-            )
-            uploadData()
+
+
+            if(requestCode== ImagePicker.REQUEST_CODE) {
+                var selectedImage = data?.data
+                var btimap: Bitmap? = null
+                try {
+                    val inputStream = selectedImage?.let { contentResolver.openInputStream(it) }
+                    btimap = BitmapFactory.decodeStream(inputStream)
+                    ScannerConstants.selectedImageBitmap = btimap
+                    ScannerConstants.cropText="CROP"
+                    ScannerConstants.backText="CLOSE"
+                    ScannerConstants.imageError="Can't picked image please try again."
+                    ScannerConstants.cropError="You have not selected a valid field. Please make corrections until the lines are blue.";
+                    ScannerConstants.cropColor="#6666ff"
+                    ScannerConstants.backColor="#ff0000"
+                    ScannerConstants.progressColor="#331199"
+                    ScannerConstants.saveStorage=true
+                    startActivityForResult(
+                        Intent( this, ImageCropActivity::class.java),
+                        1234
+                    )
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+
+            }
+            if (requestCode== 1234 && resultCode== Activity.RESULT_OK )
+            {
+                val file = File(getVideoFilePath(this))
+                val outStream: OutputStream = BufferedOutputStream(FileOutputStream(file))
+                if (ScannerConstants.selectedImageBitmap!=null) {
+                    val myFile = ScannerConstants.selectedImageBitmap.compress(
+                        Bitmap.CompressFormat.PNG,
+                        100,
+                        outStream
+                    );
+                    val requestFile = RequestBody.create("image/png".toMediaTypeOrNull(), file!!)
+                    bodyImgeThumb?.add(
+                        MultipartBody.Part.createFormData(
+                            "file",
+                            file?.name,
+                            requestFile
+                        )
+                    )
+                    uploadData()
+                }
+                else
+                    Toast.makeText(MainActivity@this,"Something wen't wrong.",Toast.LENGTH_LONG).show()
+            }
+
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
             Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
         } else {
@@ -182,4 +225,11 @@ class DocumentActivity : BaseActivity() {
         private const val SELECT_PICTURES = 0
         private const val PICK_FROM_CAMERA = 1
     }
+
+    fun getVideoFilePath(context: Context): String {
+        val dir = context.getExternalFilesDir(null)
+        return ((if (dir == null) "" else dir.absolutePath + "/")
+                + System.currentTimeMillis() + ".png")
+    }
+
 }
