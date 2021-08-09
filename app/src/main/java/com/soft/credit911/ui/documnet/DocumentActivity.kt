@@ -1,11 +1,15 @@
 package com.soft.credit911.ui.documnet
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.chuzi.utils.URIPathHelper
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.ing.quiz.network.RestClient
 import com.ing.quiz.ui.base_classes.BaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils
@@ -15,6 +19,10 @@ import com.soft.credit911.datamodel.data_docs
 import com.soft.credit911.dialog.DialogCamera
 import kotlinx.android.synthetic.main.activity_document.*
 import kotlinx.android.synthetic.main.toolbar.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 import java.util.*
 
 class DocumentActivity : BaseActivity() {
@@ -24,6 +32,8 @@ class DocumentActivity : BaseActivity() {
     private var documentRequred = ArrayList<data_docs.DocData>()
     private var documentOther = ArrayList<data_docs.DocData>()
     val viewModel=DocumentViewModel()
+    var selectedDoc:data_docs.DocData?=null
+    var bodyImgeThumb: ArrayList<MultipartBody.Part>? = ArrayList<MultipartBody.Part>()
     override fun getLayoutID(): Int {
        return  R.layout.activity_document
     }
@@ -56,6 +66,8 @@ class DocumentActivity : BaseActivity() {
 
         viewModel?.dataDocs.observe(this, androidx.lifecycle.Observer {
            if(it.status.equals("success")){
+               documentOther.clear()
+               documentRequred.clear()
                if(it?.documents?.other!=null) {
                    documentOther = it?.documents?.other
 
@@ -88,9 +100,11 @@ class DocumentActivity : BaseActivity() {
         completedText.text="Task comleted "+completedDoc+" of "+documentRequred.size
     }
 
-    fun handleDocumentClick(dataDocs: data_docs.DocData){
 
-        when(dataDocs.status){
+
+    fun handleDocumentClick(selectedDoc: data_docs.DocData){
+        this.selectedDoc=selectedDoc
+        when(selectedDoc.status){
             "missing"->{
 
                 val dialog= DialogCamera(){op->
@@ -131,26 +145,37 @@ class DocumentActivity : BaseActivity() {
         }
     }
 
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            SELECT_PICTURES -> if (resultCode == RESULT_OK) {
-                if (data!!.clipData != null) {
-                    val count = data.clipData!!.itemCount
-                    var i = 0
-                    while (i < count) {
-                        val imageUri = data.clipData!!.getItemAt(i).uri
-                        i++
-                    }
-                }
-            } else if (data!!.data != null) {
-                val imagePath = data.data!!.path
-            }
-            PICK_FROM_CAMERA -> if (resultCode == RESULT_OK) {
-                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(cameraIntent, PICK_FROM_CAMERA)
-            }
+        if (resultCode == Activity.RESULT_OK) {
+            val uriPathHelper = URIPathHelper()
+            val selectedVideoPath = data?.data?.let { uriPathHelper.getPath(this, it) }
+            val imagePath = File(selectedVideoPath)
+            val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imagePath!!)
+            bodyImgeThumb?.add(
+                MultipartBody.Part.createFormData(
+                    "file",
+                    imagePath?.name,
+                    requestFile
+                )
+            )
+            uploadData()
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+        } else {
+
         }
+    }
+
+    fun uploadData(){
+        val ob = HashMap<String, RequestBody>()
+        ob.put("title", RestClient.createRequestBody(selectedDoc?.Label!!.trim()))
+        ob.put("document__id", RestClient.createRequestBody(selectedDoc?.doc_id!!.trim()))
+        ob.put("doc_type", RestClient.createRequestBody(selectedDoc?.document_type.toString().trim()))
+        ob.put("case_id", RestClient.createRequestBody(selectedDoc?.case_id.toString().trim()))
+        ob.put("fk_documentrequest_id", RestClient.createRequestBody(selectedDoc?.fk_documentrequest_id.toString().trim()))
+        ob.put("notes", RestClient.createRequestBody(selectedDoc?.notes.toString().trim()))
+        bodyImgeThumb?.let { viewModel.uploadDocument(ob, it) }
     }
 
     companion object {

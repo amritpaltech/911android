@@ -17,9 +17,10 @@ class data_docs {
         val Label: String? = null
 
         val case_id: String? = null
+        val fk_documentrequest_id:Int?=0
 
         val description: String? = null
-
+        val notes: String? = null
         val action: String? = null
 
         val doc_id: String? = null

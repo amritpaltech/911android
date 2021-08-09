@@ -12,6 +12,8 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.jetbrains.anko.doAsync
 import org.json.JSONObject
 import java.io.IOException
@@ -53,6 +55,47 @@ class DocumentViewModel: BaseViewModel() {
                 e.printStackTrace()
 
                 }            }
+        }
+    }
+
+
+    fun uploadDocument(partMap: Map<String, @JvmSuppressWildcards RequestBody>,
+                       file: ArrayList<MultipartBody.Part>) {
+        isLoading.value = true
+        doAsync {
+            GlobalScope.launch(Dispatchers.IO) {
+                val webService = RestClient.create()
+                try {
+                    val response =
+                        webService.updateDocument(partMap,file)
+                    response?.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+
+                        .subscribe({
+                            isLoading.value=false
+                            dataDocs.postValue(it)
+                        }, { error ->
+                            isLoading.postValue(false)
+                            if (error is SocketTimeoutException)
+                            {
+                                "No Internet Connection try again later"?.let { apiError.postValue(it) }
+                            } else if(error is com.jakewharton.retrofit2.adapter.rxjava2.HttpException){
+
+                                var body=(error as com.jakewharton.retrofit2.adapter.rxjava2.HttpException).response().errorBody()?.string()
+                                var obj=JSONObject(body)
+                                apiError.postValue(obj.getString("message"))
+                            }
+                            else {
+                                apiError.postValue("Something Went Wrong")
+                            }
+
+                        })
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+
+            }
         }
     }
 

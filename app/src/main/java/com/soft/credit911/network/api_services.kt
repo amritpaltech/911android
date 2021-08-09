@@ -54,5 +54,12 @@ interface api_services {
     @GET("api/get-cases")
     fun getCases(): Observable<data_cases>
 
+    @Multipart
+    @POST("api/upload-document")
+    fun updateDocument(
+        @PartMap partMap: Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part file: List<MultipartBody.Part>
+    ): Observable<data_docs>
+
 }
 
