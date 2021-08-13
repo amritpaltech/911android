@@ -103,6 +103,14 @@ class DocumentActivity : BaseActivity() {
                 completedDoc=completedDoc+1
             }
         }
+
+        var otherDocDoneC=0
+        for(iDoc in documentOther){
+            if(iDoc.status.equals("approved")){
+                otherDocDoneC=otherDocDoneC+1
+            }
+        }
+        completedTextOther.text="Task completed "+otherDocDoneC+" of "+documentOther.size
         completedText.text="Task completed "+completedDoc+" of "+documentRequred.size
     }
 

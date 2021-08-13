@@ -38,7 +38,7 @@
                                 android:id="@+id/iv_user_img"
                                 android:layout_width="@dimen/_90sdp"
                                 android:layout_height="@dimen/_90sdp"
-                                android:src="@drawable/appicon" />
+                                android:src="@mipmap/ic_launcher" />
                             <ImageView
                                 android:layout_width="@dimen/_24sdp"
                                 android:layout_centerVertical="true"
