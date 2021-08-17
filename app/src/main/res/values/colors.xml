@@ -10,6 +10,7 @@
     <color name="grey">#34888282</color>
     <array name="progressRainbow">
         <item>#cc1818</item>
+        <item>#cc1818</item>
         <item>#ff5656</item>
         <item>#ffcb00</item>
         <item>#29ef95</item>

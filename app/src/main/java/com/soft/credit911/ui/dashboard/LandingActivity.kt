@@ -58,8 +58,9 @@ class LandingActivity : SubBaseActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
+
+    fun selectCaseScreen(){
+        bottomNavigationView.selectedItemId=R.id.Case_management
     }
+
 }

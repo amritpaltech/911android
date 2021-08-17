@@ -10,6 +10,7 @@ import com.soft.credit911.ChartUtils
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
 import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
+import com.soft.credit911.ui.dashboard.LandingActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
@@ -35,8 +36,7 @@ class DashboardFragment : BaseFragment() {
         attachObserver()
 
         tv_credit_repair_status.setOnClickListener { v: View? ->
-            val intent = Intent(context, SecurityQuestionsActivity::class.java)
-            context?.startActivity(intent)
+            (activity as LandingActivity).selectCaseScreen()
         }
 
         scroolableContent.visibility = View.VISIBLE
@@ -74,19 +74,34 @@ class DashboardFragment : BaseFragment() {
             setChartData()
             scroolableContent.visibility=View.VISIBLE
             score.text=dashboardResponse?.data?.creditReport?.score?:"0"
-            val score=dashboardResponse.data?.creditReport?.score?.toInt()?:0
-            if(score<400){
+            val sscore=dashboardResponse.data?.creditReport?.score?.toInt()?:0
+            if(sscore<400){
                 scoreAbout.text="POOR"
             }
-            else if(score<700){
+            else if(sscore<700){
                 scoreAbout.text="NEEDS WORK"
             }else{
                 scoreAbout.text="GOOD"
             }
             ChartUtils().setChartData(chart,dashboardResponse?.data?.creditReportHistory)
-            var progress1:Double=(score*100/900.0)/100.0
-            Log.e("sasas","sas"+(progress1).toFloat())
-            progress.setProgress((progress1).toFloat())
+            if(sscore<=300){
+                progress.setProgress(0.01f)
+            }else if (sscore<=500){
+                progress.setProgress((sscore-300)/1000.0f)
+            }
+            else if (sscore<=575){
+                progress.setProgress(.2f+(sscore-500f)*0.0027f)
+            }
+            else if (sscore<=650){
+                progress.setProgress(.4f+(sscore-575f)*0.0033f)
+            }
+            else if (sscore<=750){
+                progress.setProgress(.65f+(sscore-650f)*0.0015f)
+            }
+            else if (sscore<=900){
+                progress.setProgress(.8f+(sscore-750f)*0.0015f)
+            }
+
 
         })
 

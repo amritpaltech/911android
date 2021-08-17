@@ -125,14 +125,14 @@ class DocumentActivity : BaseActivity() {
                when(op){
                    1->{
                        ImagePicker.with(this)
-                           .crop()	  .cameraOnly()  			//Crop image(Optional), Check Customization for more option
+                           .cameraOnly()  			//Crop image(Optional), Check Customization for more option
                            .compress(1024)			//Final image size will be less than 1 MB(Optional)
                            .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
                            .start()
                    }
                    2->{
                        ImagePicker.with(this)
-                           .crop()	 .galleryOnly()   			//Crop image(Optional), Check Customization for more option
+                            .galleryOnly()   			//Crop image(Optional), Check Customization for more option
                            .compress(1024)			//Final image size will be less than 1 MB(Optional)
                            .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
                            .start()

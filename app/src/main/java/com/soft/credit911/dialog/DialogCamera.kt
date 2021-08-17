@@ -35,6 +35,9 @@ class DialogCamera(val  onClick: (op:Int) -> Unit) : BaseFragmentDialog() {
             dismiss()
             onClick(3)
         }
+        closeBtn.setOnClickListener {
+            dismiss()
+        }
     }
 
     fun setData()

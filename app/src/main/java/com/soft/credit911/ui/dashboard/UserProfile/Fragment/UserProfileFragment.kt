@@ -24,6 +24,7 @@ import com.soft.credit911.ui.Chat.Activity.ChatActivity
 import com.soft.credit911.ui.Login.LoginActivity
 import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
 import com.soft.credit911.ui.casemanagement.CaseManagementActivity
+import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.DocumentActivity
 import com.soft.credit911.ui.notifications.NotificationActivity
 import kotlinx.android.synthetic.main.fragment_user_profile.*
@@ -76,8 +77,7 @@ class UserProfileFragment : BaseFragment() {
         }
 
         tv_Case_Management.setOnClickListener { v: View? ->
-            val intent = Intent(activity, CaseManagementActivity::class.java)
-            activity?.startActivity(intent)
+          (activity as  LandingActivity).selectCaseScreen()
         }
         logoutTv.setOnClickListener { v: View? ->
             AppPreference(activity).isLogin = false

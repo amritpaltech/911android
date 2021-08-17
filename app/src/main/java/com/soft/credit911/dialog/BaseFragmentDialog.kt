@@ -24,7 +24,7 @@ abstract class BaseFragmentDialog : DialogFragment() {
         val act= activity as BaseActivity
         mBaseActivity=act
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogJourney)
+//        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogJourney)
 
     }
 
@@ -36,7 +36,7 @@ abstract class BaseFragmentDialog : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        isCancelable = false
+        isCancelable = true
         return inflater.inflate(getLayoutID(), container, false)
 
     }
@@ -48,13 +48,13 @@ abstract class BaseFragmentDialog : DialogFragment() {
 
     override fun onResume() {
         super.onResume()
-        val window = dialog?.window
-        val size = Point()
-        val display = window!!.windowManager.defaultDisplay
-        display.getSize(size)
-        val width = size.x
-        window.setLayout((width * 0.90).toInt(), WindowManager.LayoutParams.WRAP_CONTENT)
-        window.setGravity(Gravity.CENTER)
+//        val window = dialog?.window
+//        val size = Point()
+//        val display = window!!.windowManager.defaultDisplay
+//        display.getSize(size)
+//        val width = size.x
+//        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
+//        window.setGravity(Gravity.CENTER)
 
 
     }
