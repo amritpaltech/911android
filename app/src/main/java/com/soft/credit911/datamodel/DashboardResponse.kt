@@ -21,6 +21,24 @@ class DashboardResponse {
 
         @SerializedName("userinfo")
         var userinfo: Userinfo? = null
+
+        @SerializedName("document_alert")
+        var document_alert: DocumentAlert? = null
+    }
+
+    inner  class DocumentAlert{
+        @SerializedName("color_code")
+        var color_code: String? = null
+
+        @SerializedName("message")
+        var message: String? = null
+
+        @SerializedName("action")
+        var action: String? = null
+
+        @SerializedName("alert_status")
+        var alert_status: String? = null
+
     }
 
     inner class Userinfo {

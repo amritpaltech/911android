@@ -1,6 +1,7 @@
 package com.soft.credit911.ui.dashboard.Dashboard
 
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
 import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
 import com.soft.credit911.ui.dashboard.LandingActivity
+import com.soft.credit911.ui.documnet.DocumentActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
@@ -51,6 +53,11 @@ class DashboardFragment : BaseFragment() {
         } else {
             viewModel?.getCreditInfo()
         }
+
+        CardToDoc.setOnClickListener {
+            val intent = Intent(activity, DocumentActivity::class.java)
+            activity?.startActivity(intent)
+        }
     }
 
     fun attachObserver(){
@@ -67,6 +74,7 @@ class DashboardFragment : BaseFragment() {
             if(dashboardResponse.message!=null && dashboardResponse?.message?.length?:0>0){
                 context?.let { showdialog(dashboardResponse.message, it, false) }
             }
+
             val reportDate = dashboardResponse.data!!.creditReport!!.reportDate
             val nextDate = dashboardResponse.data!!.creditReport!!.nextDate
             tv_report_date.text = reportDate
@@ -102,6 +110,12 @@ class DashboardFragment : BaseFragment() {
                 progress.setProgress(.8f+(sscore-750f)*0.0015f)
             }
 
+            if(dashboardResponse?.data?.document_alert!=null
+                && dashboardResponse?.data?.document_alert?.alert_status.equals("y")){
+                CardToDoc.visibility=View.VISIBLE
+                textMessage.text= dashboardResponse?.data?.document_alert?.message
+                CardToDoc.setCardBackgroundColor(Color.parseColor(dashboardResponse?.data?.document_alert?.color_code))
+            }
 
         })
 
