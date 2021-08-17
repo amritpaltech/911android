@@ -50,9 +50,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
+                        android:textColor="@color/blue"
                         android:id="@+id/completedText"
                         android:layout_marginLeft="@dimen/_4sdp"
-                        android:textSize="@dimen/_12sdp" />
+                        android:textSize="@dimen/_16sdp" />
 
 
                 </LinearLayout>
@@ -93,10 +94,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@color/blue"
                         android:gravity="right"
                         android:id="@+id/completedTextOther"
                         android:layout_marginLeft="@dimen/_4sdp"
-                        android:textSize="@dimen/_12sdp" />
+                        android:textSize="@dimen/_16sdp" />
 
                 </LinearLayout>
 

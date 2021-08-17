@@ -21,7 +21,7 @@ import java.net.SocketTimeoutException
 
 class DocumentViewModel: BaseViewModel() {
     val dataDocs= MutableLiveData<data_docs>()
-
+    val dataDocsUpload= MutableLiveData<data_docs>()
 
     fun getDocuments(){
         doAsync{
@@ -73,7 +73,7 @@ class DocumentViewModel: BaseViewModel() {
 
                         .subscribe({
                             isLoading.value=false
-                            dataDocs.postValue(it)
+                            dataDocsUpload.postValue(it)
                         }, { error ->
                             isLoading.postValue(false)
                             if (error is SocketTimeoutException)

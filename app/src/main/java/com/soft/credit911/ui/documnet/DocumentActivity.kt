@@ -1,6 +1,7 @@
 package com.soft.credit911.ui.documnet
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -26,8 +27,9 @@ import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.jetbrains.anko.startActivityForResult
-import java.io.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.util.*
 
 
@@ -70,6 +72,7 @@ class DocumentActivity : BaseActivity() {
             }
         })
 
+
         viewModel?.dataDocs.observe(this, androidx.lifecycle.Observer {
            if(it.status.equals("success")){
                documentOther.clear()
@@ -84,6 +87,23 @@ class DocumentActivity : BaseActivity() {
                }
                setLListdata()
            }
+        })
+
+        viewModel?.dataDocsUpload.observe(this, androidx.lifecycle.Observer {
+            if(it.status.equals("success")){
+                it.message?.let { it1 -> createAlert(it1) }
+                documentOther.clear()
+                documentRequred.clear()
+                if(it?.documents?.other!=null) {
+                    documentOther = it?.documents?.other
+
+                }
+                if(it?.documents?.required!=null) {
+                    documentRequred = it?.documents?.required
+
+                }
+                setLListdata()
+            }
         })
     }
 
@@ -179,8 +199,20 @@ class DocumentActivity : BaseActivity() {
             }
             else if (requestCode== 1234 && resultCode== Activity.RESULT_OK )
             {
-
-                val file = File(data?.getStringExtra("path"))
+                val byteArray = data?.getByteArrayExtra("path")
+                val file = File(getVideoFilePath(this));
+                val bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
+                try {
+                    FileOutputStream(file.path).use { out ->
+                        bmp.compress(
+                            Bitmap.CompressFormat.JPEG,
+                            100,
+                            out
+                        ) // bmp is your Bitmap instance
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
                 val requestFile = RequestBody.create((getContentResolver().
                 getType(Uri.parse(file.path))?.toMediaTypeOrNull()), file!!)
                 bodyImgeThumb?.add(
@@ -247,6 +279,10 @@ class DocumentActivity : BaseActivity() {
         val dir = context.getExternalFilesDir(null)
         return ((if (dir == null) "" else dir.absolutePath + "/")
                 + System.currentTimeMillis() + ".png")
+    }
+
+    fun createAlert(message:String){
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
 }
