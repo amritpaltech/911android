@@ -44,9 +44,9 @@ class OtherDocAdap(val dataList: ArrayList<data_docs.DocData>,
 
             when(data.status){
                 "missing"->{
-                    itemView.mainLayout_ll.setBackgroundColor(Color.parseColor("#f4f9f3"))
-                    itemView.iv_check.setColorFilter(Color.parseColor("#f5c242"))
-                    itemView.iv_check.setImageResource(R.drawable.ic__check_circle)
+                    itemView.mainLayout_ll.setBackgroundColor(Color.parseColor("#fffdd0"))
+                    itemView.iv_check.setColorFilter(Color.parseColor("#d4d4d4"))
+                    itemView.iv_check.setImageResource(R.drawable.ic_baseline_brightness_1_24)
                     itemView.tv_user_licence.setTextColor(Color.parseColor("#d4d4d4"))
                     itemView.tv_user_status.setTextColor(Color.parseColor("#f58442"))
                     itemView.tv_user_status.text=data.message
@@ -56,7 +56,7 @@ class OtherDocAdap(val dataList: ArrayList<data_docs.DocData>,
                 "pending"->{
                     itemView.mainLayout_ll.setBackgroundColor(Color.parseColor("#f4f9f3"))
                     itemView.iv_check.setColorFilter(Color.parseColor("#d4d4d4"))
-                    itemView.iv_check.setImageResource(R.drawable.ic__check_circle)
+                    itemView.iv_check.setImageResource(R.drawable.ic_baseline_brightness_1_24)
                     itemView.tv_user_licence.setTextColor(Color.parseColor("#d4d4d4"))
                     itemView.tv_user_status.setTextColor(Color.parseColor("#f59342"))
 //                    itemView.tv_user_status.text="Pending Approval"

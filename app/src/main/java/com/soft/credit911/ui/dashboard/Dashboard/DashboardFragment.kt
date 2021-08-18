@@ -27,9 +27,13 @@ class DashboardFragment : BaseFragment() {
     }
 
     override fun onViewCreated() {
-        setInformation()
+
     }
 
+    override fun onResume() {
+        super.onResume()
+        setInformation()
+    }
 
     fun setInformation() {
         toolbarTitle.text = "Dashboard"
@@ -109,7 +113,7 @@ class DashboardFragment : BaseFragment() {
             else if (sscore<=900){
                 progress.setProgress(.8f+(sscore-750f)*0.0015f)
             }
-
+            CardToDoc.visibility=View.GONE
             if(dashboardResponse?.data?.document_alert!=null
                 && dashboardResponse?.data?.document_alert?.alert_status.equals("y")){
                 CardToDoc.visibility=View.VISIBLE

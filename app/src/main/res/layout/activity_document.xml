@@ -39,7 +39,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Required Document"
+                        android:text="Required Documents"
                         android:layout_marginRight="@dimen/_4sdp"
                         android:textSize="@dimen/_16sdp"
                         />
@@ -88,7 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Other Document"
+                        android:text="Other Documents"
                         android:textSize="@dimen/_16sdp" />
                     <TextView
                         android:layout_width="wrap_content"

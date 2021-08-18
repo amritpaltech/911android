@@ -130,8 +130,8 @@ class DocumentActivity : BaseActivity() {
                 otherDocDoneC=otherDocDoneC+1
             }
         }
-        completedTextOther.text="Task completed "+otherDocDoneC+" of "+documentOther.size
-        completedText.text="Task completed "+completedDoc+" of "+documentRequred.size
+        completedTextOther.text="Task Completed "+otherDocDoneC+" of "+documentOther.size
+        completedText.text="Task Completed "+completedDoc+" of "+documentRequred.size
     }
 
 
