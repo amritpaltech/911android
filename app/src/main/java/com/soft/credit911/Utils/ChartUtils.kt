@@ -50,7 +50,7 @@ class ChartUtils {
         l?.setXEntrySpace(10f)
         l?.setEnabled(false)
         chart?.getAxisLeft()?.setLabelCount(0, false)
-        chart?.setExtraOffsets(0f, 0f, 0f, 0f);
+        chart?.setExtraOffsets(0f, 10f, 0f, 0f);
         chart?.getLegend()?.setWordWrapEnabled(true);
         setData()
 

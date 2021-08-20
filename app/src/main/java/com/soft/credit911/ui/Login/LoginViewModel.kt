@@ -26,8 +26,8 @@ class LoginViewModel: BaseViewModel() {
                     val mJsObjParam = JSONObject()
                     mJsObjParam.put("email", email)
                     mJsObjParam.put("password", password)
-                    mJsObjParam.put("device_token", dToken)
-                    mJsObjParam.put("device_type", 1)
+                   // mJsObjParam.put("device_token", dToken)
+                   // mJsObjParam.put("device_type", 1)
                     val myOb = JsonParser().parse(mJsObjParam.toString()).asJsonObject
                 val response = webService.LoginUser(myOb)
                 response?.subscribeOn(Schedulers.io())

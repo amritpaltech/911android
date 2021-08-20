@@ -8,15 +8,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.soft.credit911.R
 import com.soft.credit911.Utils.loadImg
+import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.datamodel.data_cases
 import com.soft.credit911.datamodel.data_docs
 import com.soft.credit911.datamodel.data_notification
+import kotlinx.android.synthetic.main.item_credit_history.view.*
 import kotlinx.android.synthetic.main.notification_item_list.view.*
+import kotlinx.android.synthetic.main.notification_item_list.view.tv_start_time
+import kotlinx.android.synthetic.main.notification_item_list.view.tv_user_notification
 
 
-class NotificationAdaptor(val dataList: MutableList<data_notification.AppNotification>,
-                          private val onItemClick: (data_list: data_notification.AppNotification) -> Unit) :
-    RecyclerView.Adapter<NotificationAdaptor.ViewHolder>() {
+class CreditHistoryListAdaptor(val dataList: ArrayList<DashboardResponse.CreditReportHistoryItem>,
+                               private val onItemClick: (data_list: data_notification.AppNotification) -> Unit) :
+    RecyclerView.Adapter<CreditHistoryListAdaptor.ViewHolder>() {
 
     var mContext: Context? = null
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -25,7 +29,7 @@ class NotificationAdaptor(val dataList: MutableList<data_notification.AppNotific
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent?.context).inflate(R.layout.notification_item_list, parent, false)
+        val v = LayoutInflater.from(parent?.context).inflate(R.layout.item_credit_history, parent, false)
         mContext = parent.context
         return ViewHolder(v);
     }
@@ -40,14 +44,8 @@ class NotificationAdaptor(val dataList: MutableList<data_notification.AppNotific
 
         fun bind() {
             val data= dataList.get(adapterPosition)
-            itemView.tv_user_notification.text = data.description
-            itemView.tv_start_time.text = data.created_at
-            itemView?.setOnClickListener {
-                onItemClick( dataList.get(adapterPosition))
-            }
-
-
-
+            itemView.dateText.text = data.scoreDate
+            itemView.scoreText.text = data.score
 
         }
 

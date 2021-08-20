@@ -1,8 +1,9 @@
 package com.soft.credit911.datamodel
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class DashboardResponse {
+class DashboardResponse :Serializable{
     @SerializedName("data")
     var data: Data? = null
 
@@ -12,7 +13,7 @@ class DashboardResponse {
     @SerializedName("status")
     var status: String? = null
 
-    inner class Data {
+    inner class Data :Serializable{
         @SerializedName("credit_report")
         var creditReport: CreditReport? = null
 
@@ -26,7 +27,7 @@ class DashboardResponse {
         var document_alert: DocumentAlert? = null
     }
 
-    inner  class DocumentAlert{
+    inner  class DocumentAlert:Serializable{
         @SerializedName("color_code")
         var color_code: String? = null
 
@@ -41,7 +42,7 @@ class DashboardResponse {
 
     }
 
-    inner class Userinfo {
+    inner class Userinfo :Serializable{
         @SerializedName("user_avatar")
         var userAvatar: String? = null
 
@@ -85,7 +86,7 @@ class DashboardResponse {
         var status: String? = null
     }
 
-    inner class RolesItem {
+    inner class RolesItem :Serializable{
         @SerializedName("updated_at")
         var updatedAt: String? = null
 
@@ -108,7 +109,7 @@ class DashboardResponse {
         var slug: String? = null
     }
 
-    inner class Pivot {
+    inner class Pivot :Serializable{
         @SerializedName("role_id")
         var roleId: Int? = null
 
@@ -119,7 +120,7 @@ class DashboardResponse {
         var modelId: Int? = null
     }
 
-    inner class CreditReport {
+    inner class CreditReport :Serializable{
         @SerializedName("score")
         var score: String? = null
 
@@ -157,7 +158,7 @@ class DashboardResponse {
         var reportDate: String? = null
     }
 
-    inner class CreditReportHistoryItem {
+    inner class CreditReportHistoryItem :Serializable{
         @SerializedName("score")
         var score: String? = null
 

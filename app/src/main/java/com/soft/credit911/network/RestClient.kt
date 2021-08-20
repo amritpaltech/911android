@@ -1,5 +1,8 @@
 package com.ing.quiz.network
 
+import android.os.Build
+import com.ing.quiz.shared_prefrences.Prefs
+import com.ing.quiz.shared_prefrences.SharedPreferencesName
 import com.ing.quiz.ui.base_classes.BaseActivity
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.soft.credit911.NetworkUtils.APIConstants
@@ -11,6 +14,7 @@ import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 class RestClient {
@@ -32,8 +36,6 @@ class RestClient {
             var token = ""
             try {
                 val info = AppPreference(mBaseActivity).getUserObject().data?.apiToken
-//                    "SdPuWzZPX2R9kKBItukPHaJ296O440NvPKa02dlh7rEbAUMdatWcLY4tCSKN"
-                    //
                 if (info != null && info.isNotEmpty()) {
                     token = "Bearer " +info ?: ""
 
@@ -45,18 +47,43 @@ class RestClient {
             val clientBuilder = OkHttpClient.Builder()
             if (token != null && token.length > 0) {
                 clientBuilder.addInterceptor { chain ->
-                    val request = chain.request()
-                        .newBuilder()
-                        .addHeader("Authorization", token)
-                        .build()
-                    chain.proceed(request)
+                    val request = mBaseActivity?.let { Prefs.with(it?.applicationContext).getString(SharedPreferencesName.DEVICETOKEN,"") }
+                        ?.let {
+                            chain.request()
+                                .newBuilder()
+                                .addHeader("Authorization", token)
+                                .addHeader("device_id",
+                                    it
+                                )
+                                .addHeader("device_type", "android")
+                                .addHeader("app_version", "android")
+                                .addHeader("device_info", Build.MANUFACTURER+Build.MODEL+","+android.os.Build.VERSION.SDK)
+                                .addHeader("device_timezone", TimeZone.getDefault().id.toString())
+                                .addHeader("app_version",
+                                    mBaseActivity?.getPackageManager()?.getPackageInfo(mBaseActivity?.getPackageName()!!, 0)?.versionName.toString()
+                                )
+                                .build()
+                        }
+                    request?.let { chain.proceed(it) }!!
                 }
             } else {
                 clientBuilder.addInterceptor { chain ->
-                    val request = chain.request()
-                        .newBuilder()
-                        .build()
-                    chain.proceed(request)
+                    val request = mBaseActivity?.let { Prefs.with(it?.applicationContext).getString(SharedPreferencesName.DEVICETOKEN,"") }
+                        ?.let {
+                            chain.request()
+                                .newBuilder()
+                                .addHeader("device_id",
+                                    it
+                                )
+                                .addHeader("device_type", "android")
+                                .addHeader("app_version",
+                                    mBaseActivity?.getPackageManager()?.getPackageInfo(mBaseActivity?.getPackageName()!!, 0)?.versionName.toString()
+                                )
+                                .addHeader("device_info", Build.MANUFACTURER+Build.MODEL+", "+android.os.Build.VERSION.SDK)
+                                .addHeader("device_timezone", TimeZone.getDefault().id.toString())
+                                .build()
+                        }
+                    request?.let { chain.proceed(it) }!!
                 }
             }
             clientBuilder.writeTimeout(1, TimeUnit.MINUTES)

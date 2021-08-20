@@ -37,6 +37,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.ForgotPassword.ForgetPasswordActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.dashboard.ActivityCreditHistory"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.dashboard.ActivityCreditReport"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ui.Splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>

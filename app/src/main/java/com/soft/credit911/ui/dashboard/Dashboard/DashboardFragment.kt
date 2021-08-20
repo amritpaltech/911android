@@ -10,7 +10,10 @@ import com.ing.quiz.ui.base_classes.BaseFragment
 import com.soft.credit911.ChartUtils
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
+import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
+import com.soft.credit911.ui.dashboard.ActivityCreditHistory
+import com.soft.credit911.ui.dashboard.ActivityCreditReport
 import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.DocumentActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
@@ -22,6 +25,9 @@ import kotlin.collections.ArrayList
 class DashboardFragment : BaseFragment() {
 
     var viewModel: DashBoardViewModel? = null
+    var historyData:ArrayList<DashboardResponse.CreditReportHistoryItem>?=null
+    var creditData:DashboardResponse.CreditReport?=null
+
     override fun getLayoutID(): Int {
         return R.layout.fragment_dashboard
     }
@@ -43,6 +49,22 @@ class DashboardFragment : BaseFragment() {
 
         tv_credit_repair_status.setOnClickListener { v: View? ->
             (activity as LandingActivity).selectCaseScreen()
+        }
+
+        tv_credit_history.setOnClickListener {
+            if(historyData!=null) {
+                val intent = Intent(activity, ActivityCreditHistory::class.java)
+                intent.putExtra("history", historyData)
+                startActivity(intent)
+            }
+        }
+
+        tv_credit_report.setOnClickListener {
+            if(creditData!=null) {
+                val intent = Intent(activity, ActivityCreditReport::class.java)
+                intent.putExtra("creditData", creditData)
+                startActivity(intent)
+            }
         }
 
         scroolableContent.visibility = View.VISIBLE
@@ -81,6 +103,8 @@ class DashboardFragment : BaseFragment() {
 
             val reportDate = dashboardResponse.data!!.creditReport!!.reportDate
             val nextDate = dashboardResponse.data!!.creditReport!!.nextDate
+            historyData=dashboardResponse.data?.creditReportHistory
+            creditData=dashboardResponse?.data?.creditReport
             tv_report_date.text = reportDate
             tv_next_date.text = nextDate
             setChartData()
