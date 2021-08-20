@@ -53,6 +53,13 @@
         <activity android:name=".ui.dashboard.LandingActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.OTPVerification.LoginVerificationActivity" android:screenOrientation="portrait"/>
         <activity android:name="com.soft.credit911.ui.Login.LoginActivity" android:screenOrientation="portrait" />
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

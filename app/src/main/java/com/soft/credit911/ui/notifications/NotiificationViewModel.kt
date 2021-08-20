@@ -1,39 +1,37 @@
-package com.soft.credit911.ui.Login
+package com.soft.credit911.ui.notifications
 
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.ing.quiz.network.RestClient
 import com.soft.credit911.base_classes.BaseViewModel
-import com.soft.credit911.datamodel.LoginResponse
+import com.soft.credit911.datamodel.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.jetbrains.anko.doAsync
 import org.json.JSONObject
 import java.io.IOException
 import java.net.SocketTimeoutException
 
-class LoginViewModel: BaseViewModel() {
-    val responseAppHomedata= MutableLiveData<LoginResponse>()
-    fun signIn( email:String,  password:String,dToken:String){
+class NotiificationViewModel: BaseViewModel() {
+    val dataNotification= MutableLiveData<data_notification>()
+    fun getNotifications(){
         doAsync{
             GlobalScope.launch(Dispatchers.IO) {
                 try{
                     isLoading.postValue(true)
                     val webService = RestClient.create()
-                    val mJsObjParam = JSONObject()
-                    mJsObjParam.put("email", email)
-                    mJsObjParam.put("password", password)
-                    mJsObjParam.put("device_token", dToken)
-                    mJsObjParam.put("device_type", 1)
-                    val myOb = JsonParser().parse(mJsObjParam.toString()).asJsonObject
-                val response = webService.LoginUser(myOb)
+                val response = webService.getNotifications()
                 response?.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        responseAppHomedata.postValue(it)
+                        dataNotification.postValue(it)
                         isLoading.postValue(false)
                     }, { error ->
                         isLoading.postValue(false)
@@ -57,5 +55,7 @@ class LoginViewModel: BaseViewModel() {
                 }            }
         }
     }
+
+
 
 }

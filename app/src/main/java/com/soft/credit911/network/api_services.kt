@@ -54,6 +54,9 @@ interface api_services {
     @GET("api/get-cases")
     fun getCases(): Observable<data_cases>
 
+    @GET("api/get-user-activities")
+    fun getNotifications(): Observable<data_notification>
+
     @Multipart
     @POST("api/upload-document")
     fun updateDocument(

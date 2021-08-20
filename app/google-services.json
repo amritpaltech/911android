@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "277244966954",
+    "project_id": "credit-7fac2",
+    "storage_bucket": "credit-7fac2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277244966954:android:f276637a969402d67d6b53",
+        "android_client_info": {
+          "package_name": "com.soft.credit911"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "277244966954-tqrps3ldm0noppqul4pvs0vhe2ghqu8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHuHug6b1GRXON4-yxyOVyMcfcsVFA_BM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "277244966954-tqrps3ldm0noppqul4pvs0vhe2ghqu8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

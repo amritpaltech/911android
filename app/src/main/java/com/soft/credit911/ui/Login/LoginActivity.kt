@@ -3,6 +3,8 @@ package com.soft.credit911.ui.Login
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import com.ing.quiz.shared_prefrences.Prefs
+import com.ing.quiz.shared_prefrences.SharedPreferencesName
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
@@ -50,7 +52,9 @@ class LoginActivity : SubBaseActivity() {
                         override fun onGranted() {
                             mViewModel.signIn(
                                 etUserEmail.text.toString().trim { it <= ' ' },
-                                etUserPassword.text.toString().trim { it <= ' ' })
+                                etUserPassword.text.toString().trim { it <= ' ' },
+                            Prefs.with(this@LoginActivity).
+                            getString(SharedPreferencesName.DEVICETOKEN,""))
                         }
 
                         override fun onDenied(
@@ -60,7 +64,9 @@ class LoginActivity : SubBaseActivity() {
                             super.onDenied(context, deniedPermissions)
                             mViewModel.signIn(
                                 etUserEmail.text.toString().trim { it <= ' ' },
-                                etUserPassword.text.toString().trim { it <= ' ' })
+                                etUserPassword.text.toString().trim { it <= ' ' },
+                                Prefs.with(this@LoginActivity).
+                                getString(SharedPreferencesName.DEVICETOKEN,""))
                         }
                     })
 

@@ -155,6 +155,9 @@ class LoginVerificationActivity : BaseActivity() {
         viewModel?.getOtpResponse?.observe(this, Observer {generateOTPResponse->
             Toast.makeText(this, generateOTPResponse.message, Toast.LENGTH_SHORT).show()
         })
+        viewModel?.apiError?.observe(this, androidx.lifecycle.Observer {
+            CommonUtils.showdialog(it, this, false)
+        })
         viewModel?.otpVeryResponse?.observe(this, Observer {generateOTPResponse->
             if (generateOTPResponse.status == AppConstants.API_SUCCESS) {
                 appPreference!!.isLogin = true
