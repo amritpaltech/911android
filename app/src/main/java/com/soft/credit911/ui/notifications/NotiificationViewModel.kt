@@ -21,13 +21,13 @@ import java.net.SocketTimeoutException
 
 class NotiificationViewModel: BaseViewModel() {
     val dataNotification= MutableLiveData<data_notification>()
-    fun getNotifications(){
+    fun getNotifications(url:String){
         doAsync{
             GlobalScope.launch(Dispatchers.IO) {
                 try{
                     isLoading.postValue(true)
                     val webService = RestClient.create()
-                val response = webService.getNotifications()
+                val response = webService.getNotifications(url)
                 response?.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({

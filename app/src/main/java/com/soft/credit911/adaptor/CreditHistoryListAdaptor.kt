@@ -16,6 +16,9 @@ import kotlinx.android.synthetic.main.item_credit_history.view.*
 import kotlinx.android.synthetic.main.notification_item_list.view.*
 import kotlinx.android.synthetic.main.notification_item_list.view.tv_start_time
 import kotlinx.android.synthetic.main.notification_item_list.view.tv_user_notification
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CreditHistoryListAdaptor(val dataList: ArrayList<DashboardResponse.CreditReportHistoryItem>,
@@ -44,7 +47,14 @@ class CreditHistoryListAdaptor(val dataList: ArrayList<DashboardResponse.CreditR
 
         fun bind() {
             val data= dataList.get(adapterPosition)
-            itemView.dateText.text = data.scoreDate
+            val simpleDateFormat =
+                SimpleDateFormat("yyyy-MM-dd")
+            val myDate: Date = simpleDateFormat.parse(data.scoreDate)
+            val simpleDateFormat2 =
+                SimpleDateFormat("MMM dd, yyyy")
+
+
+            itemView.dateText.text = simpleDateFormat2.format(myDate)
             itemView.scoreText.text = data.score
 
         }

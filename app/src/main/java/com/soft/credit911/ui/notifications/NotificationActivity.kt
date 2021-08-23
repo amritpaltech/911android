@@ -17,6 +17,8 @@ class NotificationActivity : SubBaseActivity() {
 
     var viewModel=NotiificationViewModel()
     var adap:NotificationAdaptor?=null
+    var serverUrl="api/get-user-activities"
+    var isLoading=false
     var dataList:MutableList<data_notification.AppNotification>?= mutableListOf()
     override fun getLayoutID(): Int {
        return R.layout.activity_notification
@@ -39,8 +41,14 @@ class NotificationActivity : SubBaseActivity() {
         })
 
         viewModel?.dataNotification.observe(this, androidx.lifecycle.Observer {
-            it.data?.let { it1 -> dataList?.addAll(it1) }
-            adap?.notifyDataSetChanged()
+            if(  it.data?.size?:0>0) {
+                isLoading = false
+                it.data?.let { it1 -> dataList?.addAll(it1) }
+                adap?.notifyDataSetChanged()
+                var linkstr = it.links?.next
+                linkstr = linkstr?.split("page=")?.get(1)
+                serverUrl = serverUrl + "?page=" + linkstr
+            }
         })
 
     }
@@ -60,6 +68,8 @@ class NotificationActivity : SubBaseActivity() {
             }
         }
         rv_notification.adapter = adap
+
+
     }
     fun setLazyLoaderForRecyclerView() {
         val recyclerViewOnScrollListener = object : RecyclerView.OnScrollListener() {
@@ -78,7 +88,9 @@ class NotificationActivity : SubBaseActivity() {
                         && firstVisibleItemPosition >= 0
                     ) {
 
-                        getData()
+                        if(!isLoading) {
+                            getData()
+                        }
                     }
 
                 }
@@ -89,6 +101,7 @@ class NotificationActivity : SubBaseActivity() {
     }
 
     fun getData(){
-        viewModel.getNotifications()
+        isLoading=true
+        viewModel.getNotifications(serverUrl)
     }
 }
