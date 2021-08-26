@@ -19,8 +19,9 @@ class ActivityCreditHistory:SubBaseActivity() {
     override fun onViewCreated() {
         toolbarTitle.text="Credit History"
         historyData=intent.getSerializableExtra("history") as ArrayList<DashboardResponse.CreditReportHistoryItem>
-        historyData?.sortByDescending{it.scoreDate}
-        var adap= historyData?.let {
+        val myList2=historyData
+        myList2?.sortByDescending{it.scoreDate}
+        var adap= myList2?.let {
             CreditHistoryListAdaptor(it){
 
             }

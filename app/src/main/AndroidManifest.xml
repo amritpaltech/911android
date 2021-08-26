@@ -19,11 +19,13 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:debuggable="true"
         android:theme="@style/Theme.911Credit"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
-        tools:replace="android:appComponentFactory">
+        tools:replace="android:appComponentFactory"
+        tools:ignore="HardcodedDebugMode">
 
         <activity android:name=".ui.SecurityQuestions.CongratulationsActivity"
             android:screenOrientation="portrait"></activity>

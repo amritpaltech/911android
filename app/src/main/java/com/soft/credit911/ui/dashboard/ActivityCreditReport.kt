@@ -30,7 +30,6 @@ class ActivityCreditReport:SubBaseActivity() {
 //            myStr = myStr?.replace("\"", "")
             var json= JSONArray(myStr)
             var adap = CreditreportListAdaptor(json!!) {
-
             }
             rvFactor.adapter = adap
         }catch (e:Exception){

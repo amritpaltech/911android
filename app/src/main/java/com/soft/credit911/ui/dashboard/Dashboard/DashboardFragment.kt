@@ -216,6 +216,7 @@ class DashboardFragment : BaseFragment() {
                         startActivity(intent)
                 }
                 }
+                pushData=null
             }
         })
 
