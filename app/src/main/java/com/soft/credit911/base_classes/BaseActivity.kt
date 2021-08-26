@@ -20,6 +20,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.android.volley.toolbox.ImageLoader
+import com.google.firebase.messaging.FirebaseMessaging
 import com.ing.quiz.network.RestClient
 import com.ing.quiz.shared_prefrences.Prefs
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
@@ -122,7 +123,13 @@ abstract class BaseActivity : AppConfigActivity() {
         val `in` = Intent(this, SplashActivity::class.java)
         `in`.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(`in`)
-
+        Thread(Runnable {
+            try {
+                FirebaseMessaging.getInstance().deleteToken()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }).start()
         finish()
     }
 

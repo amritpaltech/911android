@@ -4,50 +4,72 @@
     android:id="@+id/linear_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="horizontal"
+    android:padding="@dimen/_8sdp"
+    android:orientation="vertical"
     >
 
     <!-- Parent Layout of ImageView -->
     <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center"
         android:layout_height="wrap_content">
 
         <!--Image to be displayed beside the notification text-->
         <ImageView
-            android:id="@+id/icon"
-            android:layout_width="@dimen/_44sdp"
-            android:layout_height="@dimen/_44sdp"
-            android:padding="5dp"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
             android:src="@mipmap/ic_launcher" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_marginLeft="@dimen/_4sdp"
+            android:textColor="#222222"
+            android:textSize="@dimen/text10sp"
+            />
     </LinearLayout>
 
-    <!-- Parent layout for holding the Title and the Body-->
+
+
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal"
+        >
 
-        <!-- TextView for Title -->
-        <TextView
-            android:id="@+id/title"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textSize="@dimen/text14sp"
-            android:textColor="#000"
-            />
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="@dimen/text14sp"
+                android:textColor="#000"
+                />
 
-        <!-- TextView for Body -->
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Message"
-            android:textColor="#222222"
-            android:textSize="@dimen/text12sp"
+            <!-- TextView for Body -->
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Message"
+                android:textColor="#222222"
+                android:textSize="@dimen/text12sp"
+                />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/_34sdp"
+            android:scaleType="centerCrop"
+            android:layout_height="@dimen/_34sdp"
             />
 
     </LinearLayout>

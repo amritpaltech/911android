@@ -8,20 +8,25 @@ import android.app.PendingIntent
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.MediaPlayer
 import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.Log
 import android.widget.RemoteViews
 import androidx.annotation.Keep
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.google.gson.Gson
 import com.ing.quiz.shared_prefrences.Prefs
 import com.ing.quiz.shared_prefrences.SharedPreferencesName
-import com.scanlibrary.SplashActivity
 import com.soft.credit911.R
-import org.greenrobot.eventbus.EventBus
+import com.soft.credit911.ui.dashboard.LandingActivity
+import java.io.IOException
 import java.io.Serializable
+import java.net.URL
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -42,58 +47,19 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             Log.e(TAG + p0.notification!!.title!!, "Notification Body: " + p0.notification!!.body!!)
         }
 
-        val pushType = Integer.parseInt(p0.data.get("push_type").toString())
-        var myNotiObj=notificationObject()
-        if (pushType == 1 ||pushType == 2) {
-
-            try {
-                if (p0.data.size > 0) {
                     val title = p0.data.get("title").toString()
-                    val type = p0.data.get("push_type").toString()
+                    val type = p0.data.get("action").toString()
                     val message = p0.data.get("message").toString()
-                    val combatData = p0.data.get("combat_data").toString()
+        var obj=notificationObject()
+        obj.title=title
+        obj.message=message
+        obj.notificationType=type
+        try{
+            obj.  imageIcon=p0.data.get("imageUrl").toString()
+        }catch (e:Exception){
 
-                    myNotiObj.title = title
-                    myNotiObj.message = message
-                    myNotiObj.notificationType = type.toInt()
-                    myNotiObj.combatData = combatData
-                    if (p0.data.containsKey("data_xp_points"))
-                    {
-//                        val  xp_pont=p0.data.get("data_xp_points")
-//                        try {
-//                            val myPointData = Gson().fromJson(
-//                                xp_pont.toString(),
-//                                data_rewards::class.java
-//                            )
-//                            myNotiObj.data_rewards = myPointData
-//                        }catch (e:Exception){}
-                    }
-                    showNotification(myNotiObj)
-                }
-            }catch (e:Exception){
-
-                e.printStackTrace()
-            }
-        }else{
-            val title = p0.data.get("title").toString()
-            val type = p0.data.get("push_type").toString()
-            val message = p0.data.get("message").toString()
-            val  xp_pont=p0.data.get("data_xp_points")?.toString()
-            myNotiObj.title = title
-            myNotiObj.message = message
-            if (xp_pont!=null)
-            {
-//                val myPointData = Gson().fromJson(
-//                    xp_pont.toString(),
-//                    data_rewards::class.java
-//                )
-//                myNotiObj.data_rewards=myPointData
-            }
-
-            myNotiObj.notificationType = type.toInt()
-            showNotification(myNotiObj)
         }
-
+        showNotification(obj)
     }
 
     override fun onSendError(p0: String, p1: Exception) {
@@ -114,10 +80,14 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         )
         remoteViews.setTextViewText(R.id.title, pushData.title)
         remoteViews.setTextViewText(R.id.message,  pushData.message)
-        remoteViews.setImageViewResource(
-            R.id.icon,
-            R.mipmap.ic_launcher
-        )
+
+        try {
+            val url = URL(pushData.imageIcon)
+            val image: Bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+            remoteViews.setImageViewBitmap(R.id.icon, image)
+        } catch (e: IOException) {
+            System.out.println(e)
+        }
         return remoteViews
     }
 
@@ -126,7 +96,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     )
     {
 
-        val intent = Intent(this, com.soft.credit911.ui.Splash.SplashActivity::class.java)
+        val intent = Intent(this, LandingActivity::class.java)
         val channel_id = "notification_channel"
         intent.putExtra("push_data",pushData)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -148,7 +118,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             )
             .setOnlyAlertOnce(true)
             .setContentIntent(pendingIntent)
-        builder = if (Build.VERSION.SDK_INT
+         builder = if (Build.VERSION.SDK_INT
             >= Build.VERSION_CODES.JELLY_BEAN
         ) {
             builder.setContent(
@@ -174,15 +144,18 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 notificationChannel
             )
         }
-        if (pushData?.notificationType==1 &&!isAppIsInBackground(this))
-        {
-            EventBus.getDefault().post(pushData)
-        }else
-        {
+
             notificationManager.notify(0, builder.build())
+
+        val mediaPlayer: MediaPlayer = MediaPlayer.create(this, R.raw.music)
+        mediaPlayer.start()
+
+        val v: Vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            v.vibrate(1000)
         }
-
-
     }
 
 }
@@ -190,10 +163,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 class  notificationObject:Serializable{
     var title:String?=null
     var message:String?=null
-    var notificationType:Int?=0
-    var combatData:String?=null
-    var refId:Int?=0
-//    var data_rewards: data_rewards?=null
+    var imageIcon:String?=null
+    var notificationType:String?=null
 }
 
 private fun isAppIsInBackground(context: Context): Boolean {

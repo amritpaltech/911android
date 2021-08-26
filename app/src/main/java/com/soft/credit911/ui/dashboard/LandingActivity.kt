@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
+import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.Chat.Fragment.ChatFragment
 import com.soft.credit911.ui.casemanagement.Fragement.CaseManagementFragment
 import com.soft.credit911.ui.dashboard.Dashboard.DashboardFragment
@@ -19,6 +20,7 @@ class LandingActivity : SubBaseActivity() {
     }
 
     override fun onViewCreated() {
+
         if (intent.hasExtra("isError")) {
             isError = intent.getIntExtra("isError", 0)
         }

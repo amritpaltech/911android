@@ -11,11 +11,17 @@ import com.soft.credit911.ChartUtils
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
 import com.soft.credit911.datamodel.DashboardResponse
+import com.soft.credit911.fcm.notificationObject
+import com.soft.credit911.ui.Changepassword.ChangePasswordActivity
+import com.soft.credit911.ui.Chat.Activity.ChatActivity
+import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
 import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
+import com.soft.credit911.ui.casemanagement.CaseManagementActivity
 import com.soft.credit911.ui.dashboard.ActivityCreditHistory
 import com.soft.credit911.ui.dashboard.ActivityCreditReport
 import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.DocumentActivity
+import com.soft.credit911.ui.notifications.NotificationActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
@@ -23,7 +29,7 @@ import kotlin.collections.ArrayList
 
 
 class DashboardFragment : BaseFragment() {
-
+    var pushData: notificationObject?=null
     var viewModel: DashBoardViewModel? = null
     var historyData:ArrayList<DashboardResponse.CreditReportHistoryItem>?=null
     var creditData:DashboardResponse.CreditReport?=null
@@ -33,7 +39,10 @@ class DashboardFragment : BaseFragment() {
     }
 
     override fun onViewCreated() {
-
+        if (activity?.intent?.hasExtra("push_data") == true &&
+            activity?.intent?.getSerializableExtra("push_data") != null) {
+            pushData =  activity?.intent?.getSerializableExtra("push_data") as notificationObject
+        }
     }
 
     override fun onResume() {
@@ -145,6 +154,69 @@ class DashboardFragment : BaseFragment() {
                 CardToDoc.setCardBackgroundColor(Color.parseColor(dashboardResponse?.data?.document_alert?.color_code))
             }
 
+            if(pushData!=null){
+                when(pushData?.notificationType){
+                    "document"->{
+
+                        val intent=Intent(activity, DocumentActivity::class.java)
+                        intent.putExtra("pushData",pushData)
+                        startActivity(intent)
+                    }
+                    "dashboard"->{
+
+                    }
+                    "notifications"->{
+                        val intent=Intent(activity, NotificationActivity::class.java)
+                        intent.putExtra("pushData",pushData)
+                        startActivity(intent)
+                    }
+                    "credit_history"->{
+                        val intent=Intent(activity, ActivityCreditHistory::class.java)
+                        intent.putExtra("pushData",pushData)
+                        intent.putExtra("history", historyData)
+                        startActivity(intent)
+                    }
+                    "credit_report"->{
+                        val intent=Intent(activity, ActivityCreditReport::class.java)
+                        intent.putExtra("pushData",pushData)
+                        intent.putExtra("history", historyData)
+                        startActivity(intent)
+                    }
+                    "profile"->{
+                        val intent=Intent(activity, MyProfileActivity::class.java)
+                        intent.putExtra("pushData",pushData)
+                        intent.putExtra("history", historyData)
+                        startActivity(intent)
+                    }
+                    "password"->{
+                        val intent=Intent(activity, ChangePasswordActivity::class.java)
+                        intent.putExtra("pushData",pushData)
+                        intent.putExtra("history", historyData)
+                        startActivity(intent)
+                    }
+
+                    "chat"->{
+                        val intent=Intent(activity, ChatActivity::class.java)
+                        intent.putExtra("pushData",pushData)
+                        intent.putExtra("creditData", creditData)
+                        startActivity(intent)
+                    }
+
+                    "case_management"->{
+                        val intent=Intent(activity, CaseManagementActivity::class.java)
+                        intent.putExtra("pushData",pushData)
+                        intent.putExtra("history", historyData)
+                        startActivity(intent)
+
+                    }
+                    "security_questions"->{
+                        val intent=Intent(activity, SecurityQuestionsActivity::class.java)
+                        intent.putExtra("pushData",pushData)
+                        intent.putExtra("history", historyData)
+                        startActivity(intent)
+                }
+                }
+            }
         })
 
         viewModel?.responseSecurity?.observe(viewLifecycleOwner, Observer {securityResponse->
