@@ -9,6 +9,13 @@
         android:paddingTop="@dimen/_4sdp"
         android:paddingBottom="@dimen/_4sdp">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_8sdp"
+            android:src="@color/black"
+            android:id="@+id/dottedImg"
+            android:visibility="gone"
+            android:layout_marginTop="12dp"
+            android:layout_height="@dimen/_8sdp"></de.hdodenhof.circleimageview.CircleImageView>
 
         <TextView
             android:layout_width="wrap_content"

@@ -46,7 +46,8 @@ class CreditreportListAdaptor(val dataList: JSONArray,
 
         fun bind() {
             val data:JSONObject= JSONObject(dataList.get(adapterPosition).toString())
-            itemView.dateText.text = data.getString("@_Text")
+            itemView.dateText.text = ""+data.getString("@_Text")
+            itemView.dottedImg.visibility=View.VISIBLE
             itemView.scoreText.text=""
 
         }

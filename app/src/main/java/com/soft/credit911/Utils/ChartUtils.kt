@@ -62,12 +62,12 @@ class ChartUtils {
     fun setData() {
         val entries: MutableList<Entry> = ArrayList()
         val xValsDateLabel = ArrayList<String>()
-        for(i in knowledgeAreas!!){
-            i.score?.toInt()?.let { Entry(knowledgeAreas?.indexOf(i)?.toFloat()?:0f, it?.toFloat()) }
-                ?.let { entries.add(it) }
-            xValsDateLabel.add(i.scoreDate.toString())
-        }
 
+        for(i in 0 until knowledgeAreas!!.size){
+            val entry= knowledgeAreas?.get(i)?.score?.toInt()?.let { Entry(i.toFloat(), it?.toFloat()) }
+            entry?.let { entries.add(it) }
+            xValsDateLabel.add(knowledgeAreas?.get(i)?.scoreDate.toString())
+        }
         val vf: ValueFormatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
                 return "" + value.toInt()
@@ -97,7 +97,7 @@ class ChartUtils {
         chart?.getAxisLeft()?.setAxisMaxValue(900f);
         chart?.getAxisLeft()?.setAxisMinValue(0f);
         chart?.getAxisLeft()?.setLabelCount(9);
-        xAxis?.setAxisMinValue(-.30f)
+//        xAxis?.setAxisMinValue(-.30f)
         xAxis?.granularity = 1f
         xAxis?.isGranularityEnabled = true
         chart?.setPadding(200 , 2 , 2 , 2)
@@ -119,8 +119,7 @@ class ChartUtils {
         }
 
         override fun getAxisLabel(value: Float, axis: AxisBase): String {
-            val dateFormat: String = "yyyy-MM-dd"
-            val parser = SimpleDateFormat(dateFormat)
+            val parser = SimpleDateFormat("yyyy-MM-dd")
             if (value.toInt() >= 0 && value.toInt() <= xValsDateLabel.size - 1) {
                 val date = parser.parse(xValsDateLabel[value.toInt()])
                 val outputFormat = SimpleDateFormat("MMM")

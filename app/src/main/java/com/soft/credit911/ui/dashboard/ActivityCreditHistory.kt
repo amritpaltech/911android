@@ -19,8 +19,11 @@ class ActivityCreditHistory:SubBaseActivity() {
     override fun onViewCreated() {
         toolbarTitle.text="Credit History"
         historyData=intent.getSerializableExtra("history") as ArrayList<DashboardResponse.CreditReportHistoryItem>
-        var adap= CreditHistoryListAdaptor(historyData!!){
+        historyData?.sortByDescending{it.scoreDate}
+        var adap= historyData?.let {
+            CreditHistoryListAdaptor(it){
 
+            }
         }
         rv_documentCompulsary.adapter=adap
         ChartUtils().setChartData(chart,historyData)
