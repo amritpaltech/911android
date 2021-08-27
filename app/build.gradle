@@ -14,8 +14,8 @@ android {
         applicationId "com.soft.credit911"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 101
-        versionName "1.0.1"
+        versionCode 102
+        versionName "1.0.01"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
