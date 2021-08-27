@@ -34,6 +34,7 @@ class LandingActivity : SubBaseActivity() {
         if (intent?.hasExtra("push_data") == true &&
             intent?.getSerializableExtra("push_data") != null) {
             pushData = intent?.getSerializableExtra("push_data") as notificationObject
+            isPushHandled=false
         }
 
         if (intent.hasExtra("isError")) {
