@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.datamodel.DashboardResponse
+import com.soft.credit911.dialog.DialogPushInfo
 import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.Changepassword.ChangePasswordActivity
 import com.soft.credit911.ui.Chat.Activity.ChatActivity
@@ -83,7 +84,7 @@ class LandingActivity : SubBaseActivity() {
 
     fun handlePush(data: DashboardResponse.Data) {
         if (pushData != null && !isPushHandled) {
-            when (pushData?.notificationType) {
+            /*when (pushData?.notificationType) {
                 "document" -> {
 
                     val intent = Intent(this, DocumentActivity::class.java)
@@ -138,10 +139,21 @@ class LandingActivity : SubBaseActivity() {
                     intent.putExtra("pushData", pushData)
                     startActivity(intent)
                 }
+            }*/
+
+
+
+            if(pushData?.containPopUp==1){
+             val dialog= DialogPushInfo(){
+
+             }
+                pushData?.popupData?.let { dialog.setPopupInfo(it) }
+                dialog.show(supportFragmentManager,"ss")
             }
             pushData = null
             isPushHandled=true
         }
+
     }
 
 }

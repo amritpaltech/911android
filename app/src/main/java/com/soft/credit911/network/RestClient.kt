@@ -1,13 +1,16 @@
 package com.ing.quiz.network
 
+import android.content.Context
 import android.os.Build
+import android.provider.Settings
+import android.telephony.TelephonyManager
+import androidx.core.content.ContextCompat.getSystemService
 import com.ing.quiz.shared_prefrences.Prefs
 import com.ing.quiz.shared_prefrences.SharedPreferencesName
 import com.ing.quiz.ui.base_classes.BaseActivity
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.soft.credit911.NetworkUtils.APIConstants
 import com.soft.credit911.Utils.AppPreference
-import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -16,6 +19,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import java.util.concurrent.TimeUnit
+
 
 class RestClient {
 
@@ -30,6 +34,14 @@ class RestClient {
         }
 
         fun create(): api_services {
+            var IMEI_NO=""
+
+                IMEI_NO = Settings.Secure.getString(
+                    mBaseActivity?.getContentResolver(),
+                    Settings.Secure.ANDROID_ID
+                )
+
+
             var interceptor = HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             var client = OkHttpClient.Builder().addInterceptor(interceptor).build()
@@ -56,7 +68,7 @@ class RestClient {
                                     it
                                 )
                                 .addHeader("device_type", "android")
-                                .addHeader("app_version", "android")
+                                .addHeader("device_unique_id", IMEI_NO)
                                 .addHeader("device_info", Build.MANUFACTURER+Build.MODEL+","+android.os.Build.VERSION.SDK)
                                 .addHeader("device_timezone", TimeZone.getDefault().id.toString())
                                 .addHeader("app_version",

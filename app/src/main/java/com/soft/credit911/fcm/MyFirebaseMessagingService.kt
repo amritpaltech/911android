@@ -22,8 +22,10 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.ing.quiz.shared_prefrences.Prefs
 import com.ing.quiz.shared_prefrences.SharedPreferencesName
+import com.scanlibrary.MainActivity
 import com.soft.credit911.R
 import com.soft.credit911.ui.dashboard.LandingActivity
+import org.json.JSONObject
 import java.io.IOException
 import java.io.Serializable
 import java.net.URL
@@ -50,12 +52,27 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                     val title = p0.data.get("title").toString()
                     val type = p0.data.get("action").toString()
                     val message = p0.data.get("message").toString()
+
+
         var obj=notificationObject()
         obj.title=title
         obj.message=message
         obj.notificationType=type
+
         try{
             obj.  imageIcon=p0.data.get("imageUrl").toString()
+        }catch (e:Exception){
+
+        }
+
+        try{
+            obj.containPopUp=p0.data.get("is_pop_up").toString().toInt()
+
+        }catch (e:Exception){
+
+        }
+        try{
+            obj.popupData=p0.data.get("pop_up_data").toString()
         }catch (e:Exception){
 
         }
@@ -97,13 +114,14 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     {
 
         val intent = Intent(this, LandingActivity::class.java)
-        val channel_id = "notification_channel"
+        val channel_id = "notification_channel"+System.currentTimeMillis()
         intent.putExtra("push_data",pushData)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(
             this, 0, intent,
             PendingIntent.FLAG_ONE_SHOT
         )
+
         var builder = NotificationCompat.Builder(
             applicationContext,
             channel_id
@@ -121,9 +139,21 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
          builder = if (Build.VERSION.SDK_INT
             >= Build.VERSION_CODES.JELLY_BEAN
         ) {
+             var image:Bitmap?=null
+             try {
+                 val url = URL(pushData.imageIcon)
+                  image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+             } catch (e: IOException) {
+                 System.out.println(e)
+             }
+
             builder.setContent(
                 getCustomDesign(pushData)
-            )
+            ).setStyle(NotificationCompat.BigTextStyle()
+                .bigText(pushData.message)
+            ).setContentTitle(pushData.title)
+                .setContentText(pushData.message)
+                .setLargeIcon(image)
         }
         else {
             builder.setContentTitle(pushData.title)
@@ -162,6 +192,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 @Keep
 class  notificationObject:Serializable{
     var title:String?=null
+    var containPopUp:Int?=0
+    var popupData:String?=null
     var message:String?=null
     var imageIcon:String?=null
     var notificationType:String?=null
