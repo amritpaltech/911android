@@ -14,8 +14,7 @@
         android:layout_height="match_parent">
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
-            android:layout_centerVertical="true"
+            android:layout_height="@dimen/_100sdp"
             android:layout_centerHorizontal="true"
             android:id="@+id/animationView"
             app:lottie_autoPlay="true"

@@ -62,6 +62,10 @@ class ChatActivity : AppCompatActivity(), ChatContract.View {
 
         });
 */
+        if(intent.extras?.containsKey("pushData")==true){
+//            pushDataMain = intent?.getSerializableExtra("push_data") as notificationObject
+//            showPushDialog()
+        }
     }
 
     override fun notifyAdapterObjectAdded(position: Int) {

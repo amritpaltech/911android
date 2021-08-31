@@ -8,6 +8,7 @@ import com.soft.credit911.R
 import com.soft.credit911.adaptor.CreditHistoryListAdaptor
 import com.soft.credit911.adaptor.CreditreportListAdaptor
 import com.soft.credit911.datamodel.DashboardResponse
+import com.soft.credit911.fcm.notificationObject
 import kotlinx.android.synthetic.main.activity_credit_history.*
 import kotlinx.android.synthetic.main.activity_credit_report.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -44,6 +45,10 @@ class ActivityCreditReport:SubBaseActivity() {
         tv_next_date.text = nextDate
         source.text=creditReport?.source?:"0"
         cScore.text=creditReport?.score?:"0"
+        if(intent.extras?.containsKey("pushData")==true){
+            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
+            showPushDialog()
+        }
     }
 
 }

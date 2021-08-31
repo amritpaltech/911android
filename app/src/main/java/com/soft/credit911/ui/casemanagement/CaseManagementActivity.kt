@@ -6,6 +6,7 @@ import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.Utils.loadImg
 import com.soft.credit911.datamodel.data_cases
+import com.soft.credit911.fcm.notificationObject
 import kotlinx.android.synthetic.main.activity_case_management.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -41,5 +42,10 @@ class CaseManagementActivity : SubBaseActivity() {
                 tv_agent_name.text ="Agent: "+ cases?.matters?.get(0)?.agent_details?.first_name+ " "+cases?.matters?.get(0)?.agent_details?.last_name
                 iv_user.loadImg( cases?.matters?.get(0)?.agent_details?.avatar)
             }
+            if(intent.extras?.containsKey("pushData")==true){
+                pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
+                showPushDialog()
+            }
         }
+
     }

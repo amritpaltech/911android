@@ -6,6 +6,7 @@ import com.soft.credit911.ChartUtils
 import com.soft.credit911.R
 import com.soft.credit911.adaptor.CreditHistoryListAdaptor
 import com.soft.credit911.datamodel.DashboardResponse
+import com.soft.credit911.fcm.notificationObject
 import kotlinx.android.synthetic.main.activity_credit_history.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -30,5 +31,10 @@ class ActivityCreditHistory:SubBaseActivity() {
         rv_documentCompulsary.adapter=adap
 
         navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
+
+        if(intent.extras?.containsKey("pushData")==true){
+            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
+            showPushDialog()
+        }
     }
 }

@@ -13,6 +13,7 @@ import com.chuzi.utils.URIPathHelper
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.ing.quiz.network.RestClient
 import com.ing.quiz.ui.base_classes.BaseActivity
+import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.scanlibrary.ScanActivity
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils
@@ -20,6 +21,7 @@ import com.soft.credit911.adaptor.DocumentDetailsAdapter
 import com.soft.credit911.adaptor.OtherDocAdap
 import com.soft.credit911.datamodel.data_docs
 import com.soft.credit911.dialog.DialogCamera
+import com.soft.credit911.fcm.notificationObject
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
 import kotlinx.android.synthetic.main.activity_document.*
@@ -33,7 +35,7 @@ import java.io.IOException
 import java.util.*
 
 
-class DocumentActivity : BaseActivity() {
+class DocumentActivity : SubBaseActivity() {
 
     private var documentDetailsAdapter: DocumentDetailsAdapter? = null
     private var otherDocAdaptor: OtherDocAdap? = null
@@ -56,6 +58,11 @@ class DocumentActivity : BaseActivity() {
     fun init(){
         viewModel.getDocuments()
         attachObserver()
+        if(intent.extras?.containsKey("pushData")==true){
+            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
+            showPushDialog()
+        }
+
     }
 
     fun attachObserver() {

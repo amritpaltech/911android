@@ -26,6 +26,8 @@ import com.ing.quiz.shared_prefrences.Prefs
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import com.soft.credit911.R
 import com.soft.credit911.base_classes.AppConfigActivity
+import com.soft.credit911.dialog.DialogPushInfo
+import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.Splash.SplashActivity
 import io.reactivex.schedulers.Schedulers
 
@@ -38,6 +40,7 @@ import kotlin.collections.ArrayList
 abstract class BaseActivity : AppConfigActivity() {
 
     var isActive: Boolean = false
+    var pushDataMain: notificationObject?=null
     var is_image_zoomed: Boolean = false
     var mProgressDialog: Dialog? = null
     var profileClickable: Boolean = true
@@ -216,6 +219,18 @@ abstract class BaseActivity : AppConfigActivity() {
     override fun onDestroy() {
         super.onDestroy()
     }
+
+
+    fun showPushDialog(){
+        if(pushDataMain!=null && pushDataMain?.containPopUp==1){
+            val dialog= DialogPushInfo(){
+
+            }
+            pushDataMain?.popupData?.let { dialog.setPopupInfo(it) }
+            dialog.show(supportFragmentManager,"ss")
+        }
+        pushDataMain=null
+        }
 
 
 

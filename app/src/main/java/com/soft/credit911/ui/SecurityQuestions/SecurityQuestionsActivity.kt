@@ -8,19 +8,24 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.ing.quiz.ui.base_classes.SubBaseActivity
+import com.soft.credit911.R
 import com.soft.credit911.adaptor.SecurityQuestionAdapter
 import com.soft.credit911.databinding.ActivitySecurityQuestionsBinding
 import com.soft.credit911.databinding.ToolbarBinding
 import com.soft.credit911.datamodel.AnswersModel
 import com.soft.credit911.datamodel.AuthQuestionResponse
 import com.soft.credit911.datamodel.SecurityQuestionModel
+import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.SecurityQuestions.mvp.AuthQuestionPrSenter
 import com.soft.credit911.ui.SecurityQuestions.mvp.AuthQuestionView
 import com.soft.credit911.ui.SecurityQuestions.mvp.SecurityPresenter
+import kotlinx.android.synthetic.main.activity_security_questions.*
+import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
-class SecurityQuestionsActivity : AppCompatActivity(), AuthQuestionView {
-    private var layoutBinding: ActivitySecurityQuestionsBinding? = null
+class SecurityQuestionsActivity : SubBaseActivity(), AuthQuestionView {
+
     private var toolbarBinding: ToolbarBinding? = null
     var securityPresenter: SecurityPresenter? = null
     private var securityQuestionAdapter: SecurityQuestionAdapter? = null
@@ -36,22 +41,25 @@ class SecurityQuestionsActivity : AppCompatActivity(), AuthQuestionView {
     var token: String? = null
     var securityQuestionModels: List<SecurityQuestionModel>? = null
     @SuppressLint("SetTextI18n")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        layoutBinding = ActivitySecurityQuestionsBinding.inflate(
-            layoutInflater
-        )
-        val view = layoutBinding!!.root
-        setContentView(view)
-        toolbarBinding = layoutBinding!!.toolbarLayout
-        toolbarBinding!!.toolbarTitle.text = "Security Questions"
-        toolbarBinding!!.navigationIcon.visibility = View.GONE
-        intiView()
+
+    override fun getLayoutID(): Int {
+        return R.layout.activity_security_questions
     }
+
+    override fun onViewCreated() {
+        toolbarTitle.text = "Security Questions"
+        intiView()
+        if(intent.extras?.containsKey("pushData")==true){
+            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
+            showPushDialog()
+        }
+    }
+
+
 
     private fun intiView() {
         securityQuestionAdapter = SecurityQuestionAdapter(this)
-        layoutBinding!!.rvQuestion.adapter = securityQuestionAdapter
+        rv_question.adapter = securityQuestionAdapter
         if (intent.hasExtra("responseObj")) {
             val jsObj = intent.getStringExtra("responseObj")
             Log.e("TAX1", jsObj!!)
@@ -60,7 +68,7 @@ class SecurityQuestionsActivity : AppCompatActivity(), AuthQuestionView {
         if (intent.hasExtra("token")) {
             token = intent.getStringExtra("token")
         }
-        layoutBinding!!.tvSubmit.setOnClickListener { v: View? ->
+       tv_Submit.setOnClickListener { v: View? ->
             answer1 = securityQuestionAdapter!!.ans1
             answer2 = securityQuestionAdapter!!.ans2
             answer3 = securityQuestionAdapter!!.ans3

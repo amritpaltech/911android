@@ -20,7 +20,6 @@ import java.net.SocketTimeoutException
 
 
 abstract class SubBaseActivity : BaseActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_landing.*
 
 class LandingActivity : SubBaseActivity() {
     var isError = 0
-    var pushData: notificationObject?=null
+    var pushDataPre: notificationObject?=null
     var isPushHandled=true
     override fun getLayoutID(): Int {
 
@@ -34,7 +34,7 @@ class LandingActivity : SubBaseActivity() {
 
         if (intent?.hasExtra("push_data") == true &&
             intent?.getSerializableExtra("push_data") != null) {
-            pushData = intent?.getSerializableExtra("push_data") as notificationObject
+            pushDataPre = intent?.getSerializableExtra("push_data") as notificationObject
             isPushHandled=false
         }
 
@@ -83,74 +83,65 @@ class LandingActivity : SubBaseActivity() {
     }
 
     fun handlePush(data: DashboardResponse.Data) {
-        if (pushData != null && !isPushHandled) {
-            /*when (pushData?.notificationType) {
+        if (pushDataPre != null && !isPushHandled) {
+            when (pushDataPre?.notificationType) {
                 "document" -> {
 
                     val intent = Intent(this, DocumentActivity::class.java)
-                    intent.putExtra("pushData", pushData)
+                    intent.putExtra("pushData", pushDataPre)
                     startActivity(intent)
                 }
                 "dashboard" -> {
-
+                    pushDataMain=pushDataPre
+                    showPushDialog()
                 }
                 "notifications" -> {
                     val intent = Intent(this, NotificationActivity::class.java)
-                    intent.putExtra("pushData", pushData)
+                    intent.putExtra("pushData", pushDataPre)
                     startActivity(intent)
                 }
                 "credit_history" -> {
                     val intent = Intent(this, ActivityCreditHistory::class.java)
-                    intent.putExtra("pushData", pushData)
+                    intent.putExtra("pushData", pushDataPre)
                     intent.putExtra("history", data.creditReportHistory)
                     startActivity(intent)
                 }
                 "credit_report" -> {
                     val intent = Intent(this, ActivityCreditReport::class.java)
-                    intent.putExtra("pushData", pushData)
+                    intent.putExtra("pushData", pushDataPre)
                     intent.putExtra("creditData", data.creditReport)
                     startActivity(intent)
                 }
                 "profile" -> {
                     val intent = Intent(this, MyProfileActivity::class.java)
-                    intent.putExtra("pushData", pushData)
+                    intent.putExtra("pushData", pushDataPre)
                     startActivity(intent)
                 }
                 "password" -> {
                     val intent = Intent(this, ChangePasswordActivity::class.java)
-                    intent.putExtra("pushData", pushData)
+                    intent.putExtra("pushData", pushDataPre)
                     startActivity(intent)
                 }
 
                 "chat" -> {
                     val intent = Intent(this, ChatActivity::class.java)
-                    intent.putExtra("pushData", pushData)
+                    intent.putExtra("pushData", pushDataPre)
                     startActivity(intent)
                 }
 
                 "case_management" -> {
                     val intent = Intent(this, CaseManagementActivity::class.java)
-                    intent.putExtra("pushData", pushData)
+                    intent.putExtra("pushData", pushDataPre)
                     startActivity(intent)
 
                 }
                 "security_questions" -> {
                     val intent = Intent(this, SecurityQuestionsActivity::class.java)
-                    intent.putExtra("pushData", pushData)
+                    intent.putExtra("pushData", pushDataPre)
                     startActivity(intent)
                 }
-            }*/
-
-
-
-            if(pushData?.containPopUp==1){
-             val dialog= DialogPushInfo(){
-
-             }
-                pushData?.popupData?.let { dialog.setPopupInfo(it) }
-                dialog.show(supportFragmentManager,"ss")
             }
-            pushData = null
+            pushDataPre = null
             isPushHandled=true
         }
 

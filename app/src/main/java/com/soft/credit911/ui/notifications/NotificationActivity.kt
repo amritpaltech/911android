@@ -9,6 +9,7 @@ import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.adaptor.NotificationAdaptor
 import com.soft.credit911.datamodel.data_notification
+import com.soft.credit911.fcm.notificationObject
 import kotlinx.android.synthetic.main.activity_notification.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
@@ -29,6 +30,7 @@ class NotificationActivity : SubBaseActivity() {
         navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
         intiView()
         attachObserser()
+
     }
 
     fun attachObserser(){
@@ -58,6 +60,10 @@ class NotificationActivity : SubBaseActivity() {
         setLazyLoaderForRecyclerView();
         setList()
         getData()
+        if(intent.extras?.containsKey("pushData")==true){
+            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
+            showPushDialog()
+        }
     }
 
 

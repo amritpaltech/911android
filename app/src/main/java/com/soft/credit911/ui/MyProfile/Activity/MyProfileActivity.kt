@@ -10,6 +10,7 @@ import com.soft.credit911.R
 import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.datamodel.LoginResponse
+import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.dashboard.UserProfile.Fragment.ProfileViewModel
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -39,6 +40,10 @@ class MyProfileActivity : SubBaseActivity() {
         etLastName.setText(AppPreference(this).getUserObject().data?.lastName)
         etPhone.setText(AppPreference(this).getUserObject().data?.phoneNumber)
         et_email.setText(AppPreference(this).getUserObject().data?.email)
+        if(intent.extras?.containsKey("pushData")==true){
+            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
+            showPushDialog()
+        }
     }
 
     private fun initView() {

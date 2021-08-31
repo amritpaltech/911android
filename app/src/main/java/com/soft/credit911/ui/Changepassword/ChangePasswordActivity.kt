@@ -7,6 +7,7 @@ import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.datamodel.ChangePasswordResponse
+import com.soft.credit911.fcm.notificationObject
 import kotlinx.android.synthetic.main.activity_change_pass_word.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -34,6 +35,10 @@ class ChangePasswordActivity : SubBaseActivity() {
                     etNewPassword.text.toString().trim { it <= ' ' },
                     etConfirmPassword.text.toString().trim { it <= ' ' })
             }
+        }
+        if(intent.extras?.containsKey("pushData")==true){
+            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
+            showPushDialog()
         }
     }
 
