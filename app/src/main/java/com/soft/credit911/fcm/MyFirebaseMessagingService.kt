@@ -126,7 +126,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             applicationContext,
             channel_id
         )
-            .setSmallIcon(R.drawable.ic_case_management_icon)
+            .setSmallIcon(R.drawable.ic_stat_911_icon)
             .setAutoCancel(true)
             .setVibrate(
                 longArrayOf(
@@ -158,7 +158,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         else {
             builder.setContentTitle(pushData.title)
                 .setContentText(pushData.message)
-                .setSmallIcon(R.drawable.ic_case_management_icon)
+                .setSmallIcon(R.drawable.ic_stat_911_icon)
         }
         val notificationManager = getSystemService(
             NOTIFICATION_SERVICE
