@@ -30,24 +30,28 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_marginLeft="@dimen/_30sdp"
                             android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
                             android:layout_height="wrap_content">
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/iv_user_img"
                                 android:layout_width="@dimen/_90sdp"
                                 android:layout_height="@dimen/_90sdp"
                                 android:src="@mipmap/ic_launcher" />
-                            <ImageView
-                                android:layout_width="@dimen/_24sdp"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_photo_camera_black_48dp"
-                                app:tint="@color/white"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:text="@string/edit_photo"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
                                 android:id="@+id/upload"
+                                android:textSize="@dimen/_14sdp"
+                                android:layout_centerVertical="true"
                                 android:layout_centerHorizontal="true"
-                                android:layout_height="@dimen/_24sdp"></ImageView>
-                        </RelativeLayout>
+                                android:layout_height="@dimen/_24sdp"></TextView>
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"

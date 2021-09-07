@@ -116,5 +116,6 @@
     <string name="txt_select_browse">Browse</string>
     <string name="txt_dismiss">Ok</string>
     <string name="txt_image">Use an existing or take a new picture</string>
+    <string name="edit_photo"><u>Edit photo</u></string>
 
 </resources>

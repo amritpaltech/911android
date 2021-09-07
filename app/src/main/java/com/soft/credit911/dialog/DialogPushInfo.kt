@@ -35,19 +35,26 @@ class DialogPushInfo(val  onClick: (op:Int) -> Unit) : BaseFragmentDialog() {
     { val obj:JSONObject= JSONObject(data)
         title.text=""+obj.getString("title")
         message.text=""+obj.getString("message")
-        imageAnim.visibility= View.GONE
-        if(obj.getString("status").equals("congrats")){
-            animationView.setAnimation("congratulations.json")
+//        imageAnim.visibility= View.GONE
+        if(obj.getString("type").equals("success")){
+            if(obj.getInt("is_congrats")==1) {
+                animationView.setAnimation("congratulations.json")
+            }
             imageAnim.visibility= View.VISIBLE
         }
-        else if(obj.getString("status").equals("warning")){
-            animationView.setAnimation("warn.json")
+        else if(obj.getString("type").equals("warning")){
+//            animationView.setAnimation("warn.json")
+            imageAnim.setImageResource(R.drawable.ic_baseline_warning_24)
+            imageAnim.visibility= View.VISIBLE
         }
-        else if(obj.getString("status").equals("notice")){
-            animationView.setAnimation("notice.json")
+        else if(obj.getString("type").equals("notice")){
+//            animationView.setAnimation("notice.json")
+            imageAnim.setImageResource(R.drawable.notice)
+            imageAnim.visibility= View.VISIBLE
         }
         else{
-            animationView.setAnimation("notice.json")
+            imageAnim.setImageResource(R.drawable.notice)
+            imageAnim.visibility= View.VISIBLE
         }
 
         animationView.loop(true)
