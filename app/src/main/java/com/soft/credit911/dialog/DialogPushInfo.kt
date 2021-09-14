@@ -40,11 +40,13 @@ class DialogPushInfo(val  onClick: (op:Int) -> Unit) : BaseFragmentDialog() {
             if(obj.getInt("is_congrats")==1) {
                 animationView.setAnimation("congratulations.json")
             }
+            animationView.loop(true)
+            animationView.playAnimation()
             imageAnim.visibility= View.VISIBLE
         }
         else if(obj.getString("type").equals("warning")){
 //            animationView.setAnimation("warn.json")
-            imageAnim.setImageResource(R.drawable.ic_baseline_warning_24)
+            imageAnim.setImageResource(R.drawable.warning)
             imageAnim.visibility= View.VISIBLE
         }
         else if(obj.getString("type").equals("notice")){
@@ -57,7 +59,6 @@ class DialogPushInfo(val  onClick: (op:Int) -> Unit) : BaseFragmentDialog() {
             imageAnim.visibility= View.VISIBLE
         }
 
-        animationView.loop(true)
-        animationView.playAnimation()
+
     }
 }
