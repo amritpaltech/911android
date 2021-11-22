@@ -48,7 +48,7 @@
 
         <activity android:name=".ui.dashboard.ActivityCreditReport"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.Splash.SplashActivity"
+        <activity android:name=".ui.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

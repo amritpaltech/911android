@@ -1,18 +1,11 @@
-package com.utility.adapter
+package com.soft.credit911.adaptor
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.marriageapp.R
-import com.marriageapp.pojo.response.CameraItem
-import com.marriageapp.pojo.response.CamerasOnSaleItem
-import com.marriageapp.pojo.response.profile.PicturesItem
-import com.marriageapp.pojo.response.profile.ProductsItem
-import com.marriageapp.utils.DisplayUtils
-import com.marriageapp.utils.loadImg
-import kotlinx.android.synthetic.main.item_images.view.*
+import com.soft.credit911.R
 
 
 class AdapAutoLoans() : RecyclerView.Adapter<AdapAutoLoans.ViewHolder>() {
