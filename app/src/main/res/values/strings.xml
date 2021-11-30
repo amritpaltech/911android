@@ -119,5 +119,5 @@
     <string name="edit_photo"><u>Edit photo</u></string>
     <string name="agreement">I agree the terms and conditions.</string>
     <string name="clear_pad">Clear Pad</string>
-    <string name="save_signature">Save Signature</string>
+    <string name="save_signature">Save</string>
 </resources>

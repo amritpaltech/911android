@@ -99,4 +99,44 @@ class DocumentViewModel: BaseViewModel() {
         }
     }
 
+
+    fun uploadDocumentSignature(partMap: Map<String, @JvmSuppressWildcards RequestBody>) {
+        isLoading.value = true
+        doAsync {
+            GlobalScope.launch(Dispatchers.IO) {
+                val webService = RestClient.create()
+                try {
+                    val response =
+                        webService.updateDocumentSignature(partMap)
+                    response?.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+
+                        .subscribe({
+                            isLoading.value=false
+                            dataDocsUpload.postValue(it)
+                        }, { error ->
+                            isLoading.postValue(false)
+                            if (error is SocketTimeoutException)
+                            {
+                                "No Internet Connection try again later"?.let { apiError.postValue(it) }
+                            } else if(error is com.jakewharton.retrofit2.adapter.rxjava2.HttpException){
+
+                                var body=(error as com.jakewharton.retrofit2.adapter.rxjava2.HttpException).response().errorBody()?.string()
+                                var obj=JSONObject(body)
+                                apiError.postValue(obj.getString("message"))
+                            }
+                            else {
+                                apiError.postValue("Something Went Wrong")
+                            }
+
+                        })
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+
+            }
+        }
+    }
+
 }

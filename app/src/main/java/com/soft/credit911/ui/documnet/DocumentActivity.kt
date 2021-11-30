@@ -1,7 +1,6 @@
 package com.soft.credit911.ui.documnet
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,7 +11,6 @@ import android.widget.Toast
 import com.chuzi.utils.URIPathHelper
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.ing.quiz.network.RestClient
-import com.ing.quiz.ui.base_classes.BaseActivity
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.scanlibrary.ScanActivity
 import com.soft.credit911.R
@@ -22,6 +20,8 @@ import com.soft.credit911.adaptor.OtherDocAdap
 import com.soft.credit911.datamodel.data_docs
 import com.soft.credit911.dialog.DialogCamera
 import com.soft.credit911.fcm.notificationObject
+import com.soft.credit911.ui.signature.SignatureActivity
+import com.soft.credit911.ui.signature.signatureObject
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
 import kotlinx.android.synthetic.main.activity_document.*
@@ -29,6 +29,9 @@ import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -48,8 +51,15 @@ class DocumentActivity : SubBaseActivity() {
        return  R.layout.activity_document
     }
 
+
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
+    }
+
     override fun onViewCreated() {
-   
+        EventBus.getDefault().register(this)
         toolbarTitle.text = "Document"
         navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
         init()
@@ -147,35 +157,50 @@ class DocumentActivity : SubBaseActivity() {
         this.selectedDoc=selectedDoc
         if(selectedDoc.action.equals("upload-document")){
 
+            if(selectedDoc.document_type?.equals("agreement")?:false){
 
-                val dialog= DialogCamera(){op->
-               when(op){
-                   1->{
-                       ImagePicker.with(this)
-                           .cameraOnly()  			//Crop image(Optional), Check Customization for more option
-                           .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                           .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-                           .start()
-                   }
-                   2->{
-                       ImagePicker.with(this)
-                            .galleryOnly()   			//Crop image(Optional), Check Customization for more option
-                           .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                           .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-                           .start()
-                   }
+                val intent= Intent(this, SignatureActivity::class.java)
+                intent.putExtra("docData",selectedDoc)
+                startActivity(intent)
+            }
 
-                   3->{
-                       FilePickerBuilder.instance
-                           .setMaxCount(1) //optional
+            else{
+                val dialog= DialogCamera() { op ->
+                    when (op) {
+                        1 -> {
+                            ImagePicker.with(this)
+                                .cameraOnly()            //Crop image(Optional), Check Customization for more option
+                                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                                .maxResultSize(
+                                    1080,
+                                    1080
+                                )    //Final image resolution will be less than 1080 x 1080(Optional)
+                                .start()
+                        }
+                        2 -> {
+                            ImagePicker.with(this)
+                                .galleryOnly()            //Crop image(Optional), Check Customization for more option
+                                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                                .maxResultSize(
+                                    1080,
+                                    1080
+                                )    //Final image resolution will be less than 1080 x 1080(Optional)
+                                .start()
+                        }
+
+                        3 -> {
+                            FilePickerBuilder.instance
+                                .setMaxCount(1) //optional
 //                    .setSelectedFiles(filePaths) //optional
-                           .setActivityTheme(R.style.LibAppTheme) //optional
-                           .pickFile(this, 3000);
-                   }
-               }
-
+                                .setActivityTheme(R.style.LibAppTheme) //optional
+                                .pickFile(this, 3000);
+                        }
+                    }
                 }
+
+
                 dialog.show(supportFragmentManager, "options")
+            }
             }
         else if(selectedDoc.action.equals("uploaded")){
             CommonUtils.showdialog(if(selectedDoc.message!=null) selectedDoc.message else "Your document under review. Please wait!",
@@ -290,6 +315,19 @@ class DocumentActivity : SubBaseActivity() {
 
     fun createAlert(message:String){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: signatureObject?) {
+        val ob = HashMap<String, RequestBody>()
+        ob.put("title", RestClient.createRequestBody(event?.docObj?.Label!!.trim()))
+        ob.put("signatureimage", RestClient.createRequestBody(event.signatureStr?:""))
+        ob.put("document__id", RestClient.createRequestBody(event?.docObj?.doc_id!!.trim()))
+        ob.put("doc_type", RestClient.createRequestBody(event?.docObj?.document_type.toString().trim()))
+        ob.put("case_id", RestClient.createRequestBody(event?.docObj?.case_id.toString().trim()))
+        ob.put("fk_documentrequest_id", RestClient.createRequestBody(event?.docObj?.fk_documentrequest_id.toString().trim()))
+        ob.put("notes", RestClient.createRequestBody(event?.docObj?.notes.toString().trim()))
+        viewModel.uploadDocumentSignature(ob)
     }
 
 }

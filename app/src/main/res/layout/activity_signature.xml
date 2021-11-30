@@ -1,67 +1,150 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:signature="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#f2f2f2"
+   android:orientation="vertical"
    >
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/buttons_container"
-        android:id="@+id/signature_pad_container">
-
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginBottom="8dp"
-            android:layout_above="@+id/signature_pad_description" />
-
-        <TextView
-            android:id="@+id/signature_pad_description"
-            android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:padding="14dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginBottom="16dp"
-            android:layout_alignParentBottom="true"
-            android:text="@string/agreement" />
+            >
 
-        <com.github.gcacace.signaturepad.views.SignaturePad
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/signature_pad" />
-    </RelativeLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:elevation="10dp"
+                signature:cardCornerRadius="6dp"
 
-    <LinearLayout
-        android:id="@+id/buttons_container"
-        android:paddingTop="16dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+                signature:cardBackgroundColor="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:gravity="center"
+                    android:id="@+id/txtHtml"
+                    android:text="@string/Login_ViewPager"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    />
 
-        <Button
-            android:id="@+id/clear_button"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/clear_pad"
-            android:enabled="false" />
+            </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/save_signature"
-            android:enabled="false" />
-    </LinearLayout>
 
-</RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textStyle="bold"
+                android:text="Signature"
+                android:textColor="#005389"
+                android:textSize="@dimen/_14sdp"
+                />
+            <androidx.cardview.widget.CardView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                signature:cardCornerRadius="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_above="@+id/buttons_container"
+                android:id="@+id/signature_pad_container">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="#005389"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text14sp"
+                    android:text="Place your Signature"
+                    android:layout_height="34dp"></TextView>
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="34dp"
+                    android:background="@android:color/white"
+                    android:layout_marginBottom="8dp"
+                    android:layout_above="@+id/signature_pad_description" />
+
+
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:layout_width="fill_parent"
+                    android:layout_marginTop="34dp"
+                    android:layout_height="@dimen/_360sdp"
+                    android:id="@+id/signature_pad" />
+
+                <LinearLayout
+                    android:id="@+id/buttons_container"
+                    android:paddingTop="16dp"
+                    android:layout_gravity="bottom"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_32sdp"
+                        android:text="Cancel"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
+                        android:textColor="@color/white"
+                        android:background="@color/lightGrey"
+                        android:onClick="BackBtn"
+                        />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="1dp"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_32sdp"
+                        android:text="Save"
+                        android:id="@+id/mSaveButton"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:paddingRight="@dimen/_20sdp"
+                        android:textColor="@color/white"
+                        android:background="#005389"
+                        android:onClick="BackBtn"
+                        />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/mClearButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_32sdp"
+                    android:text="Clear"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:onClick="BackBtn"
+                    android:enabled="false" />
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -46,9 +46,12 @@
         <activity android:name=".ui.dashboard.ActivityCreditHistory"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.signature.SignatureActivity"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".ui.dashboard.ActivityCreditReport"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.Splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

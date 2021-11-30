@@ -64,5 +64,10 @@ interface api_services {
         @Part file: List<MultipartBody.Part>
     ): Observable<data_docs>
 
+    @Multipart
+    @POST("api/upload-document")
+    fun updateDocumentSignature(
+        @PartMap partMap: Map<String, @JvmSuppressWildcards RequestBody>
+    ): Observable<data_docs>
 }
 
