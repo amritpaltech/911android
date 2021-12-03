@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.text.Html
+import android.text.method.ScrollingMovementMethod
 import android.util.Base64
 import android.util.Log
 import androidx.core.app.ActivityCompat
@@ -36,6 +37,8 @@ class SignatureActivity : BaseActivity() {
 
     override fun onViewCreated() {
         toolbarTitle.text = "Place your Signature"
+        txtHtml.setMovementMethod(ScrollingMovementMethod())
+
         docData=intent.getSerializableExtra("docData") as data_docs.DocData
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
