@@ -22,7 +22,7 @@
               android:layout_alignParentRight="true"
                 app:tint="@color/white"
                 android:padding="2dp"
-                android:src="@drawable/ic_close_black_24dp"
+                android:src="@drawable/ic_close_black_24"
                 android:layout_height="@dimen/_20sdp"></ImageView>
 
             <TextView

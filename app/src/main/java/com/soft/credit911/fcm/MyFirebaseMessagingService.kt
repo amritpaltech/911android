@@ -22,7 +22,6 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.ing.quiz.shared_prefrences.Prefs
 import com.ing.quiz.shared_prefrences.SharedPreferencesName
-import com.scanlibrary.MainActivity
 import com.soft.credit911.R
 import com.soft.credit911.ui.dashboard.LandingActivity
 import org.json.JSONObject

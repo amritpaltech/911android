@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'com.google.gms.google-services'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 30
@@ -11,6 +12,9 @@ android {
 
 
     defaultConfig {
+        configurations.all {
+            resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
+        }
         applicationId "com.soft.credit911"
         minSdkVersion 21
         targetSdkVersion 30
@@ -95,4 +99,10 @@ dependencies {
     implementation project(':gaugeseekbar')
     implementation project(':scanlibrary')
     implementation 'com.droidninja:filepicker:2.2.5'
+    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
