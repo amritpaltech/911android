@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.dashboard.UserProfile.Fragment.UserProfileFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_195sdp"
+                    android:background="@drawable/curve_toolbar_bg"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_42sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_marginLeft="@dimen/_30sdp"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_height="wrap_content">
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/iv_user_img"
+                                android:layout_width="@dimen/_90sdp"
+                                android:layout_height="@dimen/_90sdp"
+                                android:src="@mipmap/ic_launcher" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:text="@string/edit_photo"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:id="@+id/upload"
+                                android:textSize="@dimen/_14sdp"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="@dimen/_24sdp"></TextView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/userName"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_18sdp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_6sdp"
+                                android:id="@+id/mobile"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_6sdp"
+                                android:id="@+id/emailId"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_My_Profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:drawableLeft="@drawable/user_email_icon"
+                        android:drawablePadding="@dimen/_12sdp"
+                        android:text="@string/my_profile"
+                        android:textColor="@color/userProfileTextColor"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_Document"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:drawableLeft="@drawable/ic_doc"
+                        android:drawablePadding="@dimen/_12sdp"
+                        android:text="Document"
+                        android:textColor="@color/userProfileTextColor"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_Change_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:drawableLeft="@drawable/ic_change_password_icon"
+                        android:drawablePadding="@dimen/_12sdp"
+                        android:text="@string/change_password"
+                        android:textColor="@color/userProfileTextColor"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_Chat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:drawableLeft="@drawable/ic_chat_icon"
+                        android:drawablePadding="@dimen/_12sdp"
+                        android:text="@string/chat"
+                        android:textColor="@color/userProfileTextColor"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:drawableLeft="@drawable/ic_baseline_notifications_none_24"
+                        android:drawablePadding="@dimen/_12sdp"
+                        android:text="@string/notifications"
+                        android:textColor="@color/userProfileTextColor"
+                        android:textSize="@dimen/_16sdp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_Case_Management"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:drawableLeft="@drawable/ic_case_management_icon_dark_"
+                        android:drawablePadding="@dimen/_12sdp"
+                        android:text="@string/case_management"
+                        android:textColor="@color/userProfileTextColor"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <TextView
+                        android:id="@+id/logoutTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:drawableLeft="@drawable/ic_log_out_icon"
+                        android:drawablePadding="@dimen/_12sdp"
+                        android:text="@string/logout"
+                        android:textColor="@color/userProfileTextColor"
+                        android:textSize="@dimen/_16sdp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Changepassword.ChangePasswordActivity"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/toolbarLayout"
+            layout="@layout/toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_36sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/current_password"
+                android:textColor="@color/MyProfileTextColor"
+                android:textSize="@dimen/_14sdp" />
+
+            <EditText
+                android:id="@+id/etCurrentPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:background="@drawable/rectangle_shape"
+                android:paddingTop="@dimen/_6sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_6sdp"
+                android:textColor="@color/MyProfileTextColor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/New_password"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/MyProfileTextColor"
+                android:textSize="@dimen/_14sdp" />
+
+            <EditText
+                android:id="@+id/etNewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:background="@drawable/rectangle_shape"
+                android:paddingTop="@dimen/_6sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_6sdp"
+                android:textColor="@color/MyProfileTextColor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/Confirm_password"
+                android:textColor="@color/MyProfileTextColor"
+                android:textSize="@dimen/_14sdp" />
+
+            <EditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:background="@drawable/rectangle_shape"
+                android:paddingTop="@dimen/_6sdp"
+                android:paddingBottom="@dimen/_6sdp"
+                android:textColor="@color/MyProfileTextColor" />
+
+            <TextView
+                android:id="@+id/tv_Save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:background="@drawable/rectangle_btn_shape"
+                android:gravity="center"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>

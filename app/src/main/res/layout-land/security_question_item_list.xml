@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="@dimen/_5sdp"
+            android:layout_margin="@dimen/_15sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:text="What is the monthly payment of your most recent mortgage?"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/rg_answer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:backgroundTint="@color/blue">
+
+                    <RadioButton
+                        android:id="@+id/radia_id1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="$ 100 - $ 1500"
+                        android:textSize="20dp" />
+
+                    <RadioButton
+                        android:id="@+id/radia_id2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" $ 1501 - $ 2000"
+                        android:textSize="20dp" />
+
+                    <RadioButton
+                        android:id="@+id/radia_id3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" $ 100 - $ 2500"
+                        android:textSize="20dp" />
+
+                    <RadioButton
+                        android:id="@+id/radia_id4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" $ 100 - $ 3000"
+                        android:textSize="20dp" />
+
+                    <RadioButton
+                        android:id="@+id/radia_id5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="None this the Above"
+                        android:textSize="20dp" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+</layout>
