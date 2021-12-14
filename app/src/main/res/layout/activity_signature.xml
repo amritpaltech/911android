@@ -61,7 +61,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="14dp"
         android:layout_marginRight="14dp"
         android:text="For best results use a stylus to sign your name...if you don't have a stylus, turn the phone sideways (landscape mode) and sign with your finger."

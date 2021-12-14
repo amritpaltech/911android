@@ -1,11 +1,9 @@
 package com.soft.credit911.ui.signature
 
-import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.net.Uri
@@ -15,42 +13,42 @@ import android.text.Html
 import android.text.method.ScrollingMovementMethod
 import android.util.Base64
 import android.util.Log
-import androidx.core.app.ActivityCompat
 import com.github.gcacace.signaturepad.views.SignaturePad
-import com.ing.quiz.ui.base_classes.BaseActivity
+import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import com.soft.credit911.R
 import com.soft.credit911.datamodel.data_docs
+import com.soundcloud.android.crop.Crop
 import kotlinx.android.synthetic.main.activity_signature.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.greenrobot.eventbus.EventBus
 import java.io.*
 
 
-class SignatureActivity : BaseActivity() {
+class SignatureActivity : SubBaseActivity() {
 
-   var  docData: data_docs.DocData?=null
+    var docData: data_docs.DocData? = null
     override fun getLayoutID(): Int {
-       return R.layout.activity_signature
+        return R.layout.activity_signature
     }
 
     override fun onViewCreated() {
         toolbarTitle.text = "Place your Signature"
         txtHtml.setMovementMethod(ScrollingMovementMethod())
-
-        docData=intent.getSerializableExtra("docData") as data_docs.DocData
+        docData = intent.getSerializableExtra("docData") as data_docs.DocData
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            txtHtml.setText(Html.fromHtml(docData?.agreement, Html.FROM_HTML_MODE_COMPACT));
+                txtHtml.setText(Html.fromHtml(docData?.agreement, Html.FROM_HTML_MODE_COMPACT));
             } else {
-                        txtHtml.setText(Html.fromHtml(docData?.agreement));
+                txtHtml.setText(Html.fromHtml(docData?.agreement));
             }
-        }catch (e:Exception){}
-      
+        } catch (e: Exception) {
+        }
+
         signature_pad!!.setOnSignedListener(object : SignaturePad.OnSignedListener {
             override fun onStartSigning() {
-               // Toast.makeText(this@SignatureActivity, "OnStartSigning", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this@SignatureActivity, "OnStartSigning", Toast.LENGTH_SHORT).show()
             }
 
             override fun onSigned() {
@@ -70,22 +68,45 @@ class SignatureActivity : BaseActivity() {
 
             Permissions.check(
                 this /*context*/,
-                permissionsMessage,
+                permissionsStorage,
                 null /*rationale*/,
                 null /*options*/,
                 object : PermissionHandler() {
                     override fun onGranted() {
-                        val signatureBitmap:Bitmap = signature_pad!!.signatureBitmap
-                        if (addJpgSignatureToGallery(signatureBitmap)) {
-                            val byteArrayOutputStream = ByteArrayOutputStream()
-                            signatureBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+                        val photo = File(
+                            getAlbumStorageDir("SignaturePad"),
+                            String.format("Signature_%d.jpg", System.currentTimeMillis())
+                        )
+                        val signatureBitmap: Bitmap = signature_pad!!.signatureBitmap
+                        if (addJpgSignatureToGallery(signatureBitmap,photo)) {
+//                            CropImage.activity()
+//                                .setGuidelines(CropImageView.Guidelines.ON)
+//                                .start(this@SignatureActivity);
+
+
+
+                          /*  val byteArrayOutputStream = ByteArrayOutputStream()
+                            signatureBitmap.compress(
+                                Bitmap.CompressFormat.PNG,
+                                100,
+                                byteArrayOutputStream
+                            )
                             val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+                                                        }
                             val encoded: String = Base64.encodeToString(byteArray, Base64.DEFAULT)
-                            var ss=signatureObject()
-                            ss.signatureStr=encoded
-                            ss.docObj=docData
+                            var ss = signatureObject()
+                            ss.signatureStr = encoded
+                            ss.docObj = docData
+
+                            addJpgSignatureToGallery(signatureBitmap)
                             EventBus.getDefault().post(ss)
-                            finish()
+                            finish()*/
+                        if(!signature_pad.isEmpty && photo.isFile) {
+                            val destination = Uri.fromFile(File(cacheDir, "cropped"))
+                            Crop.of(Uri.fromFile(photo), destination).asSquare().start(this@SignatureActivity)
+                        }
+
+
                         }
                     }
 
@@ -113,7 +134,7 @@ class SignatureActivity : BaseActivity() {
         }
         return file
     }
-
+//
     @Throws(IOException::class)
     fun saveBitmapToJPG(bitmap: Bitmap, photo: File?) {
         val newBitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
@@ -124,14 +145,11 @@ class SignatureActivity : BaseActivity() {
         newBitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream)
         stream.close()
     }
-
-    fun addJpgSignatureToGallery(signature: Bitmap): Boolean {
+//
+    fun addJpgSignatureToGallery(signature: Bitmap, photo:File): Boolean {
         var result = false
         try {
-            val photo = File(
-                getAlbumStorageDir("SignaturePad"),
-                String.format("Signature_%d.jpg", System.currentTimeMillis())
-            )
+
             saveBitmapToJPG(signature, photo)
             scanMediaFile(photo)
             result = true
@@ -140,52 +158,36 @@ class SignatureActivity : BaseActivity() {
         }
         return result
     }
-
-    private fun scanMediaFile(photo: File) {
+//
+     fun scanMediaFile(photo: File) {
         val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
         val contentUri = Uri.fromFile(photo)
         mediaScanIntent.data = contentUri
         this@SignatureActivity.sendBroadcast(mediaScanIntent)
     }
 
-    fun addSvgSignatureToGallery(signatureSvg: String?): Boolean {
-        var result = false
-        try {
-            val svgFile = File(
-                getAlbumStorageDir("SignaturePad"),
-                String.format("Signature_%d.svg", System.currentTimeMillis())
-            )
-            val stream: OutputStream = FileOutputStream(svgFile)
-            val writer = OutputStreamWriter(stream)
-            writer.write(signatureSvg)
-            writer.close()
-            stream.flush()
-            stream.close()
-            scanMediaFile(svgFile)
-            result = true
-        } catch (e: IOException) {
-            e.printStackTrace()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, result: Intent?) {
+        super.onActivityResult(requestCode, resultCode, result)
+        if (requestCode == Crop.REQUEST_CROP && resultCode == RESULT_OK) {
+            val imageUri: Uri? = Crop.getOutput(result)
+//            if (photo2.isFile) {
+                val imageStream = imageUri?.let { contentResolver.openInputStream(it) }
+                val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
+                val encodedImage: String = encodeImage(selectedImage).toString()
+                var ss = signatureObject()
+                ss.signatureStr = encodedImage
+                ss.docObj = docData
+            EventBus.getDefault().post(ss)
+            finish()
+//            }
         }
-        return result
     }
 
-    companion object {
-        private const val REQUEST_EXTERNAL_STORAGE = 1
-        private val PERMISSIONS_STORAGE = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        fun verifyStoragePermissions(activity: Activity?) {
-            val permission = ActivityCompat.checkSelfPermission(
-                activity!!,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            if (permission != PackageManager.PERMISSION_GRANTED) {
-                // We don't have permission so prompt the user
-                ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-                )
-            }
-        }
+    private fun encodeImage(bm: Bitmap): String? {
+        val baos = ByteArrayOutputStream()
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val b = baos.toByteArray()
+        return Base64.encodeToString(b, Base64.DEFAULT)
     }
 }
 

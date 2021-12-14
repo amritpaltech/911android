@@ -25,6 +25,10 @@ class DashboardResponse :Serializable{
 
         @SerializedName("document_alert")
         var document_alert: DocumentAlert? = null
+
+        @SerializedName("credit_report_data")
+        var creditReportData: CreditReportData? = null
+
     }
 
     inner  class DocumentAlert:Serializable{
