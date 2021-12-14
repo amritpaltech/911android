@@ -48,7 +48,6 @@
 
             </androidx.cardview.widget.CardView>
 <!--    </ScrollView>-->
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,6 +58,18 @@
         android:textColor="#005389"
         android:textSize="@dimen/_12sdp"
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:text="For best results use a stylus to sign your name...if you don't have a stylus, turn the phone sideways (landscape mode) and sign with your finger."
+        android:textColor="#000"
+        android:textSize="@dimen/_10sdp"
+        />
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
