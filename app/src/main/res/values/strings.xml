@@ -120,4 +120,9 @@
     <string name="agreement">I agree the terms and conditions.</string>
     <string name="clear_pad">Clear Pad</string>
     <string name="save_signature">Save</string>
+    <string-array name="colorArray">
+        <item>#005389</item>
+        <item>#005389</item>
+        <item>#005389</item>
+    </string-array>
 </resources>

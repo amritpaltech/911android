@@ -41,7 +41,13 @@
     <color name="green">#309f7e</color>
     <color name="light_black">#333333</color>
 
-
+    <array name="rainbow">
+        <item>@color/blue</item>
+        <item>@color/blue</item>
+        <item>@color/blue</item>
+        <item>@color/blue</item>
+        <item>@color/blue</item>
+    </array>
 
 
 

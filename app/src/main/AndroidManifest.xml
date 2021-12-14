@@ -21,9 +21,7 @@
         android:theme="@style/Theme.911Credit"
         android:usesCleartextTraffic="true"
        >
-        <activity
-            android:name=".ui.signature.ActivityCropper"
-         />
+
         <activity
             android:name=".ui.SecurityQuestions.CongratulationsActivity"
             android:screenOrientation="portrait" />
@@ -50,7 +48,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.signature.SignatureActivity" />
         <activity
-            android:name=".ui.dashboard.ActivityCreditReport"
+            android:name="com.soft.credit911.ActivityCredReport"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.Splash.SplashActivity"

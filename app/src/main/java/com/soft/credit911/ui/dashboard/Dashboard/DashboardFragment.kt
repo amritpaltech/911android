@@ -5,13 +5,14 @@ import android.graphics.Color
 import android.view.View
 import androidx.lifecycle.Observer
 import com.ing.quiz.ui.base_classes.BaseFragment
+import com.soft.credit911.ActivityCredReport
 import com.soft.credit911.ChartUtils
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
 import com.soft.credit911.datamodel.DashboardResponse
+import com.soft.credit911.model.CreditReportData
 import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
 import com.soft.credit911.ui.dashboard.ActivityCreditHistory
-import com.soft.credit911.ui.dashboard.ActivityCreditReport
 import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.DocumentActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
@@ -23,7 +24,7 @@ class DashboardFragment : BaseFragment() {
 
     var viewModel: DashBoardViewModel? = null
     var historyData:ArrayList<DashboardResponse.CreditReportHistoryItem>?=null
-    var creditData:DashboardResponse.CreditReport?=null
+    var creditData: CreditReportData?=null
 
 
     override fun getLayoutID(): Int {
@@ -59,7 +60,7 @@ class DashboardFragment : BaseFragment() {
 
         tv_credit_report.setOnClickListener {
             if(creditData!=null) {
-                val intent = Intent(activity, ActivityCreditReport::class.java)
+                val intent = Intent(activity, ActivityCredReport::class.java)
                 intent.putExtra("creditData", creditData)
                 startActivity(intent)
             }
@@ -102,7 +103,7 @@ class DashboardFragment : BaseFragment() {
             val reportDate = dashboardResponse.data!!.creditReport!!.reportDate
             val nextDate = dashboardResponse.data!!.creditReport!!.nextDate
             historyData=dashboardResponse.data?.creditReportHistory
-            creditData=dashboardResponse?.data?.creditReport
+            creditData=dashboardResponse?.data?.creditReportData
             tv_report_date.text = reportDate
             tv_next_date.text = nextDate
             scroolableContent.visibility=View.VISIBLE

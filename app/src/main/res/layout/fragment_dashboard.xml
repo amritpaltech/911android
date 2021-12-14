@@ -64,7 +64,6 @@
                     android:src="@drawable/curvedcircle" />
 
                 <RelativeLayout android:id="@+id/layout"
-                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_6sdp"
@@ -78,14 +77,14 @@
                        android:layout_height="@dimen/_110sdp"></ImageView>
 
                     <com.tenclouds.gaugeseekbar.GaugeSeekBar
+                        android:id="@+id/progress"
                         android:layout_width="@dimen/_400sdp"
                         android:layout_height="@dimen/_400sdp"
-                        app:interactive="false"
-                        app:showProgress="false"
                         android:src="@drawable/imgpsh_fullsize_anim"
-                        android:id="@+id/progress"
-                        app:startAngleDegrees="90"
+                        app:interactive="false"
                         app:progress=".3"
+                        app:showProgress="false"
+                        app:startAngleDegrees="90"
                         app:thumbColor="@color/blue"
                         app:thumbDrawable="@drawable/thumb"
                         app:trackGradient="@array/progressRainbow"
@@ -93,24 +92,26 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:gravity="center"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <TextView
+                            android:id="@+id/score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="@color/black"
-                            android:id="@+id/score"
                             android:textSize="@dimen/_28sdp"
                             android:textStyle="bold" />
+
                         <TextView
+                            android:id="@+id/scoreAbout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Need  Imp"
-                            android:id="@+id/scoreAbout"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_16sdp"
                             android:textStyle="bold" />

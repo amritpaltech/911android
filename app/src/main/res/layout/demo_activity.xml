@@ -63,20 +63,40 @@
             android:orientation="horizontal"
             android:layout_marginTop="16dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:layout_margin="8dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_weight="1">
+
+                <com.tenclouds.gaugeseekbar.GaugeSeekBar
+                    android:id="@+id/transPr"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:interactive="false"
+                    app:progress="0.75"
+                    app:startAngleDegrees="60"
+                    app:progressGradient="@array/rainbow"
+                    app:thumbDrawable="@drawable/thumb"
+                    app:thumbRadius="10dp"
+                    app:trackWidth="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                   >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
                     android:textColor="#000000"
-                    android:text="765"
+                    android:text=""
+                    android:id="@+id/transUnionCount"
                     android:textSize="24sp"
                     android:layout_marginTop="8dp"
                     ></TextView>
@@ -84,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textColor="#333333"
+                    android:textColor="#000"
                     android:text="TransUnion"
                     android:textSize="16sp"
                     android:layout_marginTop="4dp"
@@ -112,88 +132,106 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:fontFamily="@font/regular"
-                         android:textColor="#333333"
-                         android:text="Excellent"
+                         android:fontFamily="@font/semibold"                         android:textColor="#000"
+                         android:id="@+id/performace1"
                          android:textSize="16sp"
                          ></TextView>
                  </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/regular"
-                    android:textColor="#333333"
-                    android:text="Today"
-                    android:textSize="16sp"
-                    ></TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:textColor="#000"
+                        android:id="@+id/transUnionCountDate"
+                        android:textSize="16sp"
+                        ></TextView>
+                </LinearLayout>
 
-            </LinearLayout>
 
-            <LinearLayout
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_margin="8dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_weight="1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:textColor="#000000"
-                    android:text="776"
-                    android:textSize="24sp"
-                    android:layout_marginTop="8dp"
-                    ></TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:textColor="#333333"
-                    android:text="Equifax"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp"
-                    ></TextView>
+                <com.tenclouds.gaugeseekbar.GaugeSeekBar
+                    android:id="@+id/equiPr"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:interactive="false"
+                    app:progress="0.75"
+                    app:startAngleDegrees="60"
+                    app:progressGradient="@array/rainbow"
+                    app:thumbDrawable="@drawable/thumb"
+                    app:thumbRadius="10dp"
+                    app:trackWidth="10dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_marginTop="8dp">
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/quifaxCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bold"
+                        android:textColor="#000000"
+                        android:textSize="24sp"></TextView>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/semibold"
-                        android:textColor="#309f7e"
-                        android:text="+2 pts"
-                        android:textSize="16sp"
-                        ></TextView>
-                    <ImageView
-                        android:layout_width="6dp"
-                        android:layout_height="6dp"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/ic_cicle"></ImageView>
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/bold"
+                        android:text="Equifax"
+                        android:textColor="#000"
+                        android:textSize="16sp"></TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:text="+2 pts"
+                            android:textColor="#309f7e"
+                            android:textSize="16sp"></TextView>
+
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/ic_cicle"></ImageView>
+
+                        <TextView
+                            android:id="@+id/performace2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:textColor="#000"
+                            android:textSize="16sp"></TextView>
+                    </LinearLayout>
+
                     <TextView
+                        android:id="@+id/euifaxCountDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/regular"
-                        android:textColor="#333333"
-                        android:text="Excellent"
-                        android:textSize="16sp"
-                        ></TextView>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/regular"
-                    android:textColor="#333333"
-                    android:text="Today"
-                    android:textSize="16sp"
-                    ></TextView>
+                        android:textColor="#000"
+                        android:textSize="16sp"></TextView>
 
-            </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -204,7 +242,7 @@
 
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_margin="8dp"
@@ -212,12 +250,31 @@
                 android:orientation="vertical"
                 android:layout_weight="1">
 
+                <com.tenclouds.gaugeseekbar.GaugeSeekBar
+                    android:id="@+id/exPr"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:interactive="false"
+                    app:progress="0.75"
+                    app:progressGradient="@array/rainbow"
+                    app:startAngleDegrees="60"
+                    app:thumbDrawable="@drawable/thumb"
+                    app:thumbRadius="10dp"
+                    app:trackWidth="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
                     android:textColor="#000000"
-                    android:text="776"
+                    android:text=""
+                    android:id="@+id/experianCount"
                     android:textSize="24sp"
                     android:layout_marginTop="8dp"
                     ></TextView>
@@ -225,8 +282,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textColor="#333333"
-                    android:text="Equifax"
+                    android:textColor="#000"
+                    android:text="Experian"
                     android:textSize="16sp"
                     android:layout_marginTop="4dp"
                     ></TextView>
@@ -253,9 +310,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
-                        android:textColor="#333333"
-                        android:text="Excellent"
+                        android:fontFamily="@font/semibold"
+                        android:textColor="#000"
+                        android:id="@+id/performace3"
                         android:textSize="16sp"
                         ></TextView>
                 </LinearLayout>
@@ -263,12 +320,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/regular"
-                    android:textColor="#333333"
+                    android:textColor="#000"
                     android:text="Today"
+                    android:id="@+id/exprinCountDate"
                     android:textSize="16sp"
                     ></TextView>
 
-            </LinearLayout>
+            </LinearLayout></RelativeLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -282,7 +340,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/medium"
-                    android:textColor="#333333"
+                    android:textColor="#000"
                     android:text="These are the 3 major
 credit bureus we are
 following that making
@@ -308,21 +366,53 @@ of the details."
             android:src="@drawable/over_view"></ImageView>
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="132dp"
+            android:layout_height="@dimen/_110sdp"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="24dp"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginRight="24dp"
             >
+            <ImageView
+                android:layout_width="@dimen/_200sdp"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/gaug_large"
+                android:layout_height="@dimen/_111sdp"></ImageView>
+
+            <com.tenclouds.gaugeseekbar.GaugeSeekBar
+                android:id="@+id/progressOverall"
+                android:layout_width="@dimen/_400sdp"
+                android:layout_height="@dimen/_400sdp"
+                android:src="@drawable/imgpsh_fullsize_anim"
+                app:interactive="false"
+                app:progress=".3"
+                app:showProgress="false"
+                app:startAngleDegrees="90"
+                app:thumbColor="@color/blue"
+                app:thumbDrawable="@drawable/thumb"
+                app:trackGradient="@array/progressRainbow"
+                app:trackWidth="0.01dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="24dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_marginRight="24dp"
+                >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/bold"
                 android:textColor="#0086c1"
                 android:text="765"
+                android:id="@+id/overAllScoretxt"
                 android:textSize="24sp"
                 android:layout_marginTop="8dp"
                 ></TextView>
@@ -330,13 +420,14 @@ of the details."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/bold"
-                android:textColor="#333333"
+                android:textColor="#000"
                 android:text="Good"
+                android:id="@+id/overAllPerformance"
                 android:textSize="16sp"
                 android:layout_marginTop="4dp"
                 ></TextView>
 
-        </LinearLayout>
+            </LinearLayout></RelativeLayout>
 
 
         <LinearLayout
@@ -394,10 +485,11 @@ of the details."
             android:textSize="20sp"
             ></TextView>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"></View>
+            <com.github.mikephil.charting.charts.LineChart
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/chartHistory"/>
 
 
         </LinearLayout>
@@ -438,7 +530,7 @@ standing. Keep it up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/semibold"
-                android:textColor="#333333"
+                android:textColor="#000"
                 android:text="Total Open balances"
                 android:textSize="14sp"
                 android:gravity="center"

@@ -1,6 +1,7 @@
 package com.soft.credit911.datamodel
 
 import com.google.gson.annotations.SerializedName
+import com.soft.credit911.model.CreditReportData
 import java.io.Serializable
 
 class DashboardResponse :Serializable{
@@ -14,8 +15,13 @@ class DashboardResponse :Serializable{
     var status: String? = null
 
     inner class Data :Serializable{
+
+
         @SerializedName("credit_report")
         var creditReport: CreditReport? = null
+
+        @SerializedName("credit_report_data")
+        var creditReportData: CreditReportData? = null
 
         @SerializedName("credit_report_history")
         var creditReportHistory: ArrayList<CreditReportHistoryItem>? = null
@@ -25,10 +31,6 @@ class DashboardResponse :Serializable{
 
         @SerializedName("document_alert")
         var document_alert: DocumentAlert? = null
-
-        @SerializedName("credit_report_data")
-        var creditReportData: CreditReportData? = null
-
     }
 
     inner  class DocumentAlert:Serializable{
