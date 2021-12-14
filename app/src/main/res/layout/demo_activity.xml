@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:background="@drawable/path_test">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:textColor="#ffffff"
+            android:text="Your Credit Report"
+            android:textSize="24sp"
+            android:layout_marginTop="8dp"
+            ></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/medium"
+            android:textColor="#ffffff"
+            android:text="September 2021"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"
+            ></TextView>
+    </LinearLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:textColor="#000000"
+            android:text="Credit Bureauss"
+            android:textSize="24sp"
+            android:layout_marginTop="8dp"
+            ></TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:textColor="#000000"
+                    android:text="765"
+                    android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:textColor="#333333"
+                    android:text="TransUnion"
+                    android:textSize="16sp"
+                    android:layout_marginTop="4dp"
+                    ></TextView>
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:gravity="center"
+                     android:layout_marginTop="8dp">
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:fontFamily="@font/semibold"
+                         android:textColor="#309f7e"
+                         android:text="+2 pts"
+                         android:textSize="16sp"
+                         ></TextView>
+                      <ImageView
+                          android:layout_width="6dp"
+                          android:layout_height="6dp"
+                          android:layout_margin="4dp"
+                          android:background="@drawable/ic_cicle"></ImageView>
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:fontFamily="@font/regular"
+                         android:textColor="#333333"
+                         android:text="Excellent"
+                         android:textSize="16sp"
+                         ></TextView>
+                 </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:textColor="#333333"
+                    android:text="Today"
+                    android:textSize="16sp"
+                    ></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:textColor="#000000"
+                    android:text="776"
+                    android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:textColor="#333333"
+                    android:text="Equifax"
+                    android:textSize="16sp"
+                    android:layout_marginTop="4dp"
+                    ></TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/semibold"
+                        android:textColor="#309f7e"
+                        android:text="+2 pts"
+                        android:textSize="16sp"
+                        ></TextView>
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/ic_cicle"></ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:textColor="#333333"
+                        android:text="Excellent"
+                        android:textSize="16sp"
+                        ></TextView>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:textColor="#333333"
+                    android:text="Today"
+                    android:textSize="16sp"
+                    ></TextView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:textColor="#000000"
+                    android:text="776"
+                    android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:textColor="#333333"
+                    android:text="Equifax"
+                    android:textSize="16sp"
+                    android:layout_marginTop="4dp"
+                    ></TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/semibold"
+                        android:textColor="#309f7e"
+                        android:text="+2 pts"
+                        android:textSize="16sp"
+                        ></TextView>
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/ic_cicle"></ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:textColor="#333333"
+                        android:text="Excellent"
+                        android:textSize="16sp"
+                        ></TextView>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:textColor="#333333"
+                    android:text="Today"
+                    android:textSize="16sp"
+                    ></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/medium"
+                    android:textColor="#333333"
+                    android:text="These are the 3 major
+credit bureus we are
+following that making
+up your credit score.
+Below is a breakdown
+of the details."
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp"
+                    ></TextView>
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/over_view"></ImageView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="132dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="24dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginRight="24dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:textColor="#0086c1"
+                android:text="765"
+                android:textSize="24sp"
+                android:layout_marginTop="8dp"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:textColor="#333333"
+                android:text="Good"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp"
+                ></TextView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:textColor="#a6a6a6"
+                android:layout_weight="1"
+                android:text="Report Date:\nJun 11, 2020"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                ></TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:textColor="#a6a6a6"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="Next Update:\nJul 11, 2020"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                ></TextView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:layout_marginTop="16dp"
+         android:background="#efeff4"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:textColor="#000000"
+            android:text="Score History"
+            android:textSize="20sp"
+            ></TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"></View>
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="16dp"
+            android:background="#c2c2c2"></View>
+
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/listPayment"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:padding="8dp"
+             android:background="#f4f6f5"
+             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            ></androidx.recyclerview.widget.RecyclerView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:textColor="#000000"
+                android:text="All of your Accounts are in good
+standing. Keep it up"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                ></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/semibold"
+                android:textColor="#333333"
+                android:text="Total Open balances"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                ></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:textColor="#000000"
+                android:text="$442,787"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                ></TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/semibold"
+                    android:textColor="#a6a6a6"
+                    android:text="How did we get this info"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    ></TextView>
+
+                 <ImageView
+                     android:layout_width="16dp"
+                     android:layout_height="16dp"
+                     android:layout_marginLeft="8dp"
+                     android:src="@drawable/info"></ImageView>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="32dp"
+                android:background="#a6a6a6"></View>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/amountList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="16dp"
+            android:background="#c2c2c2"></View>
+
+        <include layout="@layout/layout_credit_card"></include>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="32dp"
+            android:background="#a6a6a6"></View>
+
+        <include layout="@layout/layout_auto_loans"></include>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="32dp"
+            android:background="#a6a6a6"></View>
+
+        <include layout="@layout/layout_collections"></include>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="32dp"
+            android:background="#a6a6a6"></View>
+
+        <include layout="@layout/layout_student_loan"></include>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="32dp"
+            android:background="#a6a6a6"></View>
+
+        <include layout="@layout/layout_public_record"></include>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="32dp"
+            android:background="#a6a6a6"></View>
+
+        <include layout="@layout/layout_hard_inquires"></include>
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
