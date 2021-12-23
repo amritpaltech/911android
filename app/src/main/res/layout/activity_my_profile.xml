@@ -28,12 +28,54 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="Suffix"
+                    android:textColor="@color/MyProfileTextColor"
+                    android:textSize="@dimen/_16sdp" />
+
+                <EditText
+                    android:id="@+id/et_Suffix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/rectangle_shape"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColorHint="@color/black"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:textColor="@color/MyProfileTextColor" />
+                <TextView
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/First_name"
                     android:textColor="@color/MyProfileTextColor"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
                     android:id="@+id/et_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/rectangle_shape"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColorHint="@color/black"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:textColor="@color/MyProfileTextColor" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Middle name"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/MyProfileTextColor"
+                    android:textSize="@dimen/_16sdp" />
+
+                <EditText
+                    android:id="@+id/et_middle_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -178,6 +220,38 @@
                     android:paddingLeft="@dimen/_8sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:textColor="@color/MyProfileTextColor" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Country"
+                    android:textColor="@color/MyProfileTextColor"
+                    android:textSize="@dimen/_16sdp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rectangle_shape"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="@dimen/_38sdp">
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:id="@+id/spinCountry"
+                        android:layout_height="1dp"></Spinner>
+                    <TextView
+                        android:id="@+id/txtCountry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:textColorHint="@color/black"
+                        android:paddingLeft="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
 
                 <TextView
                     android:layout_width="match_parent"

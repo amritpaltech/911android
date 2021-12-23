@@ -762,9 +762,21 @@ import java.io.Serializable
 
     @field:SerializedName("Equifax")
     val equifax: Equifax? =null
-} 
+}
+class Countries:Serializable{
+   @field:SerializedName("name")
+   val name: String? =null
 
- class CreditReportData:Serializable{
+   @field:SerializedName("code")
+   val code: String? =null
+
+   @field:SerializedName("dial_code")
+   val dial_code: String? =null
+}
+class CreditReportData:Serializable{
+
+    @field:SerializedName("countries")
+    val countries: ArrayList<Countries>? =null
 
     @field:SerializedName("summary")
     val summary: Summary? =null

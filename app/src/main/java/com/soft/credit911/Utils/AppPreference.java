@@ -5,6 +5,11 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.soft.credit911.datamodel.LoginResponse;
+import com.soft.credit911.datamodel.dataCountries;
+import com.soft.credit911.model.Countries;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppPreference {
     private SharedPreferences appSharedPrefs;
@@ -13,6 +18,16 @@ public class AppPreference {
     public AppPreference(Context context) {
         this.appSharedPrefs = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
         this.prefsEditor = appSharedPrefs.edit();
+    }
+
+    public void setCountryArray(dataCountries value) {
+        prefsEditor.putString("countries", new Gson().toJson(value));
+        prefsEditor.commit();
+    }
+
+    public dataCountries getCountries() {
+        Gson gson = new Gson();
+        return gson.fromJson(appSharedPrefs.getString("countries", "") ,dataCountries.class) ;
     }
 
     public LoginResponse getUserObject() {

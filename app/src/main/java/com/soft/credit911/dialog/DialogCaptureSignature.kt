@@ -27,7 +27,7 @@ import java.io.IOException
 import java.io.OutputStream
 
 
-class DialogCaptureSignature(val  onClick: (op:Int) -> Unit) : BaseFragmentDialog() {
+class DialogCaptureSignature(val  onClick: (op:Bitmap) -> Unit) : BaseFragmentDialog() {
 
 
     var data:String?=null
@@ -84,18 +84,9 @@ class DialogCaptureSignature(val  onClick: (op:Int) -> Unit) : BaseFragmentDialo
                 null /*options*/,
                 object : PermissionHandler() {
                     override fun onGranted() {
-                        val photo = File(
-                            getAlbumStorageDir("SignaturePad"),
-                            String.format("Signature_%d.jpg", System.currentTimeMillis())
-                        )
                         val signatureBitmap: Bitmap = signature_pad!!.signatureBitmap
-                        if (addJpgSignatureToGallery(signatureBitmap,photo)) {
-                            if(!signature_pad.isEmpty && photo.isFile) {
-                                val destination = Uri.fromFile(File(activity?.cacheDir, "cropped"))
-                                Crop.of(Uri.fromFile(photo), destination).asSquare().start(activity)
-                                dismiss()
-                            }
-                        }
+                        onClick(signatureBitmap)
+                        dismiss()
                     }
 
                     override fun onDenied(

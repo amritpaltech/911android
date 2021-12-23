@@ -23,20 +23,12 @@ class LoginResponse {
         @SerializedName("last_name")
         var lastName: String? = null
 
-        @SerializedName("created_at")
-        val createdAt: String? = null
 
-        @SerializedName("email_verified_at")
-        val emailVerifiedAt: String? = null
 
         @SerializedName("token_2fa_expiry")
         val token2faExpiry: String? = null
 
-        @SerializedName("updated_at")
-        val updatedAt: String? = null
 
-        @SerializedName("token_2fa")
-        val token2fa: String? = null
 
         @SerializedName("phone_number")
         var phoneNumber: String? = null
@@ -55,20 +47,36 @@ class LoginResponse {
 
 
         @SerializedName("postal_code")
-        val postal_code: String? = null
+        var postal_code: String? = null
 
 
         @SerializedName("state")
-        val state: String? = null
+        var state: String? = null
 
 
         @SerializedName("city")
-        val city: String? = null
+        var city: String? = null
 
 
         @SerializedName("address_line_2")
-        val address_line_2: String? = null
+        var address_line_2: String? = null
 
         @SerializedName("address_line_1")
-        val address_line_1: String? = null
+        var address_line_1: String? = null
+
+
+        @SerializedName("scancredit_username")
+        val scancredit_username: String? = null
+
+        @SerializedName("scancredit_password")
+        val scancredit_password: String? = null
+
+        @SerializedName("suffix")
+        var suffix: String? = null
+
+        @SerializedName("middle_name")
+        var middle_name: String? = null
+
+        @SerializedName("country")
+        var country: String? = null
     }

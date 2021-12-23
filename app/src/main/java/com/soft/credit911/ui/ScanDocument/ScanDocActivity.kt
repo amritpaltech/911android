@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
+import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.datamodel.ChangePasswordResponse
 import com.soft.credit911.fcm.notificationObject
@@ -35,6 +36,8 @@ class ScanDocActivity : SubBaseActivity() {
                     etConfirmPassword.text.toString().trim { it <= ' ' })
             }
         }
+        etNewPassword.setText(AppPreference(this).getUserObject().data?.scancredit_username)
+        etConfirmPassword.setText(AppPreference(this).getUserObject().data?.scancredit_password)
     }
 
 

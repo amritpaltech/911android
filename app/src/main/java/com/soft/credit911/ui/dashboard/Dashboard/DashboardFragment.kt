@@ -2,6 +2,7 @@ package com.soft.credit911.ui.dashboard.Dashboard
 
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import com.ing.quiz.ui.base_classes.BaseFragment
@@ -12,6 +13,7 @@ import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
 import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.datamodel.LoginResponse
+import com.soft.credit911.datamodel.dataCountries
 import com.soft.credit911.model.CreditReportData
 import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
 import com.soft.credit911.ui.dashboard.ActivityCreditHistory
@@ -103,8 +105,13 @@ class DashboardFragment : BaseFragment() {
             }
 
             var loginResp= LoginResponse()
+
+//            Log.e("aasa","asdad"+dashboardResponse.data?.userinfo?.country)
             loginResp.data=dashboardResponse.data?.userinfo;
             AppPreference(activity).userObject = loginResp
+            var countryData=dataCountries()
+            countryData.country=dashboardResponse.data!!.creditReportData!!.countries
+            AppPreference(activity).setCountryArray(countryData)
             val reportDate = dashboardResponse.data!!.creditReport!!.reportDate
             val nextDate = dashboardResponse.data!!.creditReport!!.nextDate
             historyData=dashboardResponse.data?.creditReportHistory
