@@ -19,6 +19,7 @@ import java.net.SocketTimeoutException
 
 class ProfileViewModel: BaseViewModel() {
     val updateResponse= MutableLiveData<UpdateProfileResponse>()
+    val updateResponse2= MutableLiveData<UpdateProfileResponse>()
     val updateProfileResponse= MutableLiveData<MyProfileResponse>()
 
     fun uploadProfileScreen(image:String){
@@ -91,4 +92,41 @@ class ProfileViewModel: BaseViewModel() {
                 }            }
         }
     }
+
+
+    fun uploadProfileSignature(image:String){
+        doAsync{
+            GlobalScope.launch(Dispatchers.IO) {
+                try{
+                    isLoading.postValue(true)
+                    val webService = RestClient.create()
+                    val response = webService.uploadSignature(image)
+                    response?.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            updateResponse2.postValue(it)
+                            isLoading.postValue(false)
+                        }, { error ->
+                            isLoading.postValue(false)
+                            if (error is SocketTimeoutException)
+                            {
+                                "No Internet Connection try again later"?.let { apiError.postValue(it) }
+                            } else if(error is com.jakewharton.retrofit2.adapter.rxjava2.HttpException){
+
+                                var body=(error as com.jakewharton.retrofit2.adapter.rxjava2.HttpException).response().errorBody()?.string()
+                                var obj=JSONObject(body)
+                                apiError.postValue(obj.getString("message"))
+                            }
+                            else {
+                                apiError.postValue("Something Went Wrong")
+                            }
+
+                        })
+                }catch (e:Exception){
+                    e.printStackTrace()
+
+                }            }
+        }
+    }
+
 }

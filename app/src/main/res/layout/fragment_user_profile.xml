@@ -112,6 +112,18 @@
                         android:textSize="@dimen/_16sdp" />
 
                     <TextView
+                        android:id="@+id/tv_ScanCred"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:drawableLeft="@drawable/ic_doc"
+                        android:drawablePadding="@dimen/_12sdp"
+                        android:text="Scan credit Credentials"
+                        android:textColor="@color/userProfileTextColor"
+                        android:textSize="@dimen/_16sdp" />
+
+
+                    <TextView
                         android:id="@+id/tv_Document"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

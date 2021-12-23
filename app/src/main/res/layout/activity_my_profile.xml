@@ -219,7 +219,19 @@
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
                     android:textColor="@color/MyProfileTextColor" />
-
+                <TextView
+                    android:id="@+id/tvAddSignature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:background="@drawable/rectangle_btn_shape"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="Add Signature"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvSave"

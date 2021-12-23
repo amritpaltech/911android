@@ -20,10 +20,10 @@ import com.soft.credit911.Utils.loadImg
 import com.soft.credit911.Utils.loadProfileImage
 import com.soft.credit911.datamodel.LoginResponse
 import com.soft.credit911.ui.Changepassword.ChangePasswordActivity
+import com.soft.credit911.ui.Changepassword.ScanDocActivity
 import com.soft.credit911.ui.Chat.Activity.ChatActivity
 import com.soft.credit911.ui.Login.LoginActivity
 import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
-import com.soft.credit911.ui.casemanagement.CaseManagementActivity
 import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.DocumentActivity
 import com.soft.credit911.ui.notifications.NotificationActivity
@@ -57,6 +57,10 @@ class UserProfileFragment : BaseFragment() {
     fun setOnClick(){
         tv_My_Profile.setOnClickListener { v: View? ->
             val intent = Intent(activity, MyProfileActivity::class.java)
+            activity?.startActivity(intent)
+        }
+        tv_ScanCred.setOnClickListener{
+            val intent = Intent(activity, ScanDocActivity::class.java)
             activity?.startActivity(intent)
         }
        tv_Change_password.setOnClickListener { v: View? ->

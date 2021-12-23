@@ -6,9 +6,8 @@ import androidx.fragment.app.Fragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.datamodel.DashboardResponse
-import com.soft.credit911.dialog.DialogPushInfo
 import com.soft.credit911.fcm.notificationObject
-import com.soft.credit911.ui.Changepassword.ChangePasswordActivity
+import com.soft.credit911.ui.Changepassword.ScanDocActivity
 import com.soft.credit911.ui.Chat.Activity.ChatActivity
 import com.soft.credit911.ui.Chat.Fragment.ChatFragment
 import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
@@ -118,7 +117,7 @@ class LandingActivity : SubBaseActivity() {
                     startActivity(intent)
                 }
                 "password" -> {
-                    val intent = Intent(this, ChangePasswordActivity::class.java)
+                    val intent = Intent(this, ScanDocActivity::class.java)
                     intent.putExtra("pushData", pushDataPre)
                     startActivity(intent)
                 }

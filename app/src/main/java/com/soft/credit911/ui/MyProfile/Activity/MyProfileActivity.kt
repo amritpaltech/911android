@@ -1,7 +1,13 @@
 package com.soft.credit911.ui.MyProfile.Activity
 
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.gson.JsonParser
@@ -10,12 +16,16 @@ import com.soft.credit911.R
 import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.datamodel.LoginResponse
+import com.soft.credit911.dialog.DialogCaptureSignature
 import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.dashboard.UserProfile.Fragment.ProfileViewModel
+import com.soft.credit911.ui.signature.signatureObject
+import com.soundcloud.android.crop.Crop
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.greenrobot.eventbus.EventBus
 import org.json.JSONObject
+import java.io.ByteArrayOutputStream
 
 class MyProfileActivity : SubBaseActivity() {
 
@@ -59,9 +69,21 @@ class MyProfileActivity : SubBaseActivity() {
                 mJsObjParam.put("first_name", et_first_name.text.toString().trim ())
                 mJsObjParam.put("last_name",  etLastName.text.toString().trim ())
                 mJsObjParam.put("phone_number",  etPhone.text.toString().trim ())
+                mJsObjParam.put("address_line_1",  et_address1.text.toString().trim ())
+                mJsObjParam.put("address_line_2",  et_address2.text.toString().trim ())
+                mJsObjParam.put("city",  et_city.text.toString().trim ())
+                mJsObjParam.put("state",  et_state.text.toString().trim ())
+                mJsObjParam.put("postal_code",  et_Zip.text.toString().trim ())
                 val myOb = JsonParser().parse(mJsObjParam.toString()).asJsonObject
                 mViewModel?.updateUserInfo(myOb)
             }
+        }
+
+        tvAddSignature.setOnClickListener {
+         var dialog= DialogCaptureSignature(){
+
+         };
+            dialog.show(supportFragmentManager,"");
         }
     }
 
@@ -95,6 +117,10 @@ class MyProfileActivity : SubBaseActivity() {
             AppPreference(this).setUserObject(dataObj)
             EventBus.getDefault().post(dataObj)
         })
+
+        mViewModel?.updateResponse2?.observe(this, Observer {
+            Toast.makeText(this, it.message,Toast.LENGTH_LONG).show()
+        })
         mViewModel?.isLoading?.observe(this, Observer {
             if(it){
                showProgress()
@@ -102,6 +128,27 @@ class MyProfileActivity : SubBaseActivity() {
                hideProgress()
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, result: Intent?) {
+        super.onActivityResult(requestCode, resultCode, result)
+        if (requestCode == Crop.REQUEST_CROP && resultCode == RESULT_OK) {
+            val imageUri: Uri? = Crop.getOutput(result)
+//            if (photo2.isFile) {
+            val imageStream = imageUri?.let { contentResolver.openInputStream(it) }
+            val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
+            val encodedImage: String = encodeImage(selectedImage).toString()
+
+             mViewModel?.uploadProfileSignature(encodedImage);
+//            }
+        }
+    }
+
+    private fun encodeImage(bm: Bitmap): String? {
+        val baos = ByteArrayOutputStream()
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val b = baos.toByteArray()
+        return Base64.encodeToString(b, Base64.DEFAULT)
     }
 
 }

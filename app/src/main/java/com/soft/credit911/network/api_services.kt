@@ -38,6 +38,14 @@ interface api_services {
         @Field("new_confirm_password") new_confirm_password: String
     ): Observable<ChangePasswordResponse>
 
+
+    @FormUrlEncoded
+    @POST("api/update-profile/scancredit")
+    fun upDateCredit(
+        @Field("scancredit_username") new_password: String,
+        @Field("scancredit_password") new_confirm_password: String
+    ): Observable<ChangePasswordResponse>
+
     @GET("api/get-user-info")
     fun getUserReportData(): Observable<JsonObject>
 
@@ -47,6 +55,11 @@ interface api_services {
         @Field("imageblob") new_password: String
     ): Observable<UpdateProfileResponse>
 
+    @FormUrlEncoded
+    @POST("api/upload-user-signature")
+    fun uploadSignature(
+        @Field("signature") new_password: String
+    ): Observable<UpdateProfileResponse>
 
     @GET("api/get-doc-list")
     fun getDocumentList(): Observable<data_docs>

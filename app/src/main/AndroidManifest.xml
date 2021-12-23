@@ -51,6 +51,9 @@
             android:name="com.soft.credit911.ActivityCredReport"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.Changepassword.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.Splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -63,7 +66,7 @@
             android:name=".ui.Chat.Activity.ChatActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.Changepassword.ChangePasswordActivity"
+            android:name=".ui.Changepassword.ScanDocActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.MyProfile.Activity.MyProfileActivity"
