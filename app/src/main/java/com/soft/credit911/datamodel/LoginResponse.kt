@@ -4,15 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 class LoginResponse {
     @SerializedName("data")
-    val data: Data? = null
+    var data: DataLoginObj? = null
 
     @SerializedName("message")
     val message: String? = null
 
     @SerializedName("status")
     val status: String? = null
+}
 
-    inner class Data {
+     class DataLoginObj {
         @SerializedName("user_avatar")
         var userAvatar: String? = null
 
@@ -51,5 +52,23 @@ class LoginResponse {
 
         @SerializedName("status")
         val status: String? = null
+
+
+        @SerializedName("postal_code")
+        val postal_code: String? = null
+
+
+        @SerializedName("state")
+        val state: String? = null
+
+
+        @SerializedName("city")
+        val city: String? = null
+
+
+        @SerializedName("address_line_2")
+        val address_line_2: String? = null
+
+        @SerializedName("address_line_1")
+        val address_line_1: String? = null
     }
-}

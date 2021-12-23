@@ -72,6 +72,9 @@ class DocumentActivity : SubBaseActivity() {
             pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
             showPushDialog()
         }
+        navigationIcon.setOnClickListener {
+            finish();
+        }
 
     }
 

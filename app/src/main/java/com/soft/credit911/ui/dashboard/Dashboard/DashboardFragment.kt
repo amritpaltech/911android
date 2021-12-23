@@ -8,8 +8,10 @@ import com.ing.quiz.ui.base_classes.BaseFragment
 import com.soft.credit911.ActivityCredReport
 import com.soft.credit911.ChartUtils
 import com.soft.credit911.R
+import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils.Companion.showdialog
 import com.soft.credit911.datamodel.DashboardResponse
+import com.soft.credit911.datamodel.LoginResponse
 import com.soft.credit911.model.CreditReportData
 import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
 import com.soft.credit911.ui.dashboard.ActivityCreditHistory
@@ -100,6 +102,9 @@ class DashboardFragment : BaseFragment() {
                 context?.let { showdialog(dashboardResponse.message, it, false) }
             }
 
+            var loginResp= LoginResponse()
+            loginResp.data=dashboardResponse.data?.userinfo;
+            AppPreference(activity).userObject = loginResp
             val reportDate = dashboardResponse.data!!.creditReport!!.reportDate
             val nextDate = dashboardResponse.data!!.creditReport!!.nextDate
             historyData=dashboardResponse.data?.creditReportHistory

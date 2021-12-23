@@ -40,6 +40,12 @@ class MyProfileActivity : SubBaseActivity() {
         etLastName.setText(AppPreference(this).getUserObject().data?.lastName)
         etPhone.setText(AppPreference(this).getUserObject().data?.phoneNumber)
         et_email.setText(AppPreference(this).getUserObject().data?.email)
+        et_city.setText(AppPreference(this).getUserObject().data?.city)
+        et_state.setText(AppPreference(this).getUserObject().data?.state)
+        et_Zip.setText(AppPreference(this).getUserObject().data?.postal_code)
+        et_address1.setText(AppPreference(this).getUserObject().data?.address_line_1)
+        et_address2.setText(AppPreference(this).getUserObject().data?.address_line_2)
+
         if(intent.extras?.containsKey("pushData")==true){
             pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
             showPushDialog()

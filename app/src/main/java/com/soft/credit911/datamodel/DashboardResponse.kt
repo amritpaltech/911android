@@ -27,7 +27,7 @@ class DashboardResponse :Serializable{
         var creditReportHistory: ArrayList<CreditReportHistoryItem>? = null
 
         @SerializedName("userinfo")
-        var userinfo: Userinfo? = null
+        var userinfo: DataLoginObj? = null
 
         @SerializedName("document_alert")
         var document_alert: DocumentAlert? = null

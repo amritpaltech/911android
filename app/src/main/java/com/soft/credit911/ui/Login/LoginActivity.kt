@@ -126,7 +126,7 @@ class LoginActivity : SubBaseActivity() {
             AppPreference(this).userObject = loginResponse
             if (expireDate!!.after(today.time) && appPreference!!.userLoggedIn.contains(
                     String.valueOf(
-                        loginResponse.data.id
+                        loginResponse.data?.id
                     )
                 )
             ) {
