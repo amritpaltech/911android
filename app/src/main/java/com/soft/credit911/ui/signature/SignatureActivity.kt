@@ -71,17 +71,24 @@ class SignatureActivity : SubBaseActivity() {
                 null /*options*/,
                 object : PermissionHandler() {
                     override fun onGranted() {
-                        val photo = File(
-                            getAlbumStorageDir("SignaturePad"),
-                            String.format("Signature_%d.jpg", System.currentTimeMillis())
-                        )
+//                        val photo = File(
+//                            getAlbumStorageDir("SignaturePad"),
+//                            String.format("Signature_%d.jpg", System.currentTimeMillis())
+//                        )
                         val signatureBitmap: Bitmap = signature_pad!!.signatureBitmap
-                        if (addJpgSignatureToGallery(signatureBitmap,photo)) {
-                        if(!signature_pad.isEmpty && photo.isFile) {
-                            val destination = Uri.fromFile(File(cacheDir, "cropped"))
-                            Crop.of(Uri.fromFile(photo), destination).asSquare().start(this@SignatureActivity)
-                        }
-                        }
+                        val encodedImage: String = encodeImage(signatureBitmap).toString()
+                        var ss = signatureObject()
+                        ss.signatureStr = encodedImage
+                        ss.docObj = docData
+                        EventBus.getDefault().post(ss)
+                        finish()
+
+//                        if (addJpgSignatureToGallery(signatureBitmap,photo)) {
+//                        if(!signature_pad.isEmpty && photo.isFile) {
+//                            val destination = Uri.fromFile(File(cacheDir, "cropped"))
+//                            Crop.of(Uri.fromFile(photo), destination).asSquare().start(this@SignatureActivity)
+//                        }
+//                        }
                     }
 
                     override fun onDenied(
