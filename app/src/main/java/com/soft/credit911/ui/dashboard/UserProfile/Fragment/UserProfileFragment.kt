@@ -19,13 +19,11 @@ import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.Utils.loadImg
 import com.soft.credit911.Utils.loadProfileImage
 import com.soft.credit911.datamodel.LoginResponse
-import com.soft.credit911.ui.Changepassword.ChangePasswordActivity
-import com.soft.credit911.ui.Changepassword.ScanDocActivity
-import com.soft.credit911.ui.Chat.Activity.ChatActivity
+import com.soft.credit911.ui.Changepassword.FragmentChangePassword
 import com.soft.credit911.ui.Login.LoginActivity
 import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
 import com.soft.credit911.ui.dashboard.LandingActivity
-import com.soft.credit911.ui.documnet.DocumentActivity
+import com.soft.credit911.ui.documnet.FragmentDocument
 import com.soft.credit911.ui.notifications.NotificationActivity
 import kotlinx.android.synthetic.main.fragment_user_profile.*
 import org.greenrobot.eventbus.EventBus
@@ -64,16 +62,18 @@ class UserProfileFragment : BaseFragment() {
 //            activity?.startActivity(intent)
 //        }
        tv_Change_password.setOnClickListener { v: View? ->
-            val intent = Intent(activity, ChangePasswordActivity::class.java)
-            activity?.startActivity(intent)
+           addSubContentFragment(FragmentChangePassword())
+//            val intent = Intent(activity, FragmentChangePassword::class.java)
+//            activity?.startActivity(intent)
         }
 //       tv_Chat.setOnClickListener { v: View? ->
 //            val intent = Intent(activity, ChatActivity::class.java)
 //            activity?.startActivity(intent)
 //        }
         tv_Document.setOnClickListener { v: View? ->
-            val intent = Intent(activity, DocumentActivity::class.java)
-            activity?.startActivity(intent)
+//            val intent = Intent(activity, FragmentDocument::class.java)
+//            activity?.startActivity(intent)
+            addSubContentFragment(FragmentDocument())
         }
        tv_notification.setOnClickListener { v: View? ->
             val intent = Intent(activity, NotificationActivity::class.java)

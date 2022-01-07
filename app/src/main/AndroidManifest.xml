@@ -22,38 +22,21 @@
         android:usesCleartextTraffic="true"
        >
 
-        <activity
-            android:name=".ui.SecurityQuestions.CongratulationsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.SecurityQuestions.ErrorActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.SecurityQuestions.SecurityQuestionsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.documnet.DocumentActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.casemanagement.CaseManagementActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.notifications.NotificationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.ForgotPassword.ForgetPasswordActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.dashboard.ActivityCreditHistory"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.signature.SignatureActivity" />
-        <activity android:name=".ui.signature.SignatureProfileActivity" />
-        <activity
-            android:name="com.soft.credit911.ActivityCredReport"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.Changepassword.ChangePasswordActivity"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".ui.SecurityQuestions.CongratulationsActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".ui.SecurityQuestions.ErrorActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".ui.SecurityQuestions.SecurityQuestionsActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".ui.Changepassword.ScanDocActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+
+
+        <!--       Converted to frag are-->
         <activity
             android:name=".ui.Splash.SplashActivity"
             android:theme="@style/SplashTheme"
@@ -65,16 +48,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.Chat.Activity.ChatActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.Changepassword.ScanDocActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.MyProfile.Activity.MyProfileActivity"
-            android:theme="@style/SplashTheme2"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.dashboard.LandingActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -83,7 +56,54 @@
         <activity
             android:name=".ui.Login.LoginActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ForgotPassword.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+
+<!--        ccccccccccccccccc    -->
+
+
+<!--        <activity-->
+<!--            android:name=".ui.documnet.DocumentActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+
+
+
+        <activity
+            android:name=".ui.casemanagement.CaseManagementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.notifications.NotificationActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.dashboard.ActivityCreditHistory"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.signature.SignatureActivity" />
+        <activity android:name=".ui.signature.SignatureProfileActivity" />
+        <activity
+            android:name="com.soft.credit911.ActivityCredReport"
+            android:screenOrientation="portrait" />
+
+<!--        <activity-->
+<!--            android:name=".ui.Changepassword.ChangePasswordActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+
+
+
+        <activity
+            android:name=".ui.Chat.Activity.ChatActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.MyProfile.Activity.MyProfileActivity"
+            android:theme="@style/SplashTheme2"
+            android:screenOrientation="portrait" />
+
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+
+
         <service android:name=".fcm.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

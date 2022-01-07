@@ -14,7 +14,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.soft.credit911.ui.SecurityQuestions.ErrorActivity;
 import com.soft.credit911.datamodel.SecurityResponse;
 import com.soft.credit911.Utils.AppPreference;
 
@@ -70,10 +69,10 @@ public class NetworkAPICall {
                         try {
                             String json = new String(response.data);
                             JSONObject object = new JSONObject(json);
-                            Intent intent = new Intent(mContext, ErrorActivity.class);
-                            intent.putExtra("message",object.getString("message"));
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            mContext.startActivity(intent);
+//                            Intent intent = new Intent(mContext, ErrorActivity.class);
+//                            intent.putExtra("message",object.getString("message"));
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            mContext.startActivity(intent);
 //                            CommonUtils.showdialog(object.getString("message"), mContext, false);
                         } catch (Exception e1) {
                             // Couldn't properly decode data to string

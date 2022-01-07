@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.utils.Utils
 import com.soft.credit911.R
 import com.soft.credit911.base_classes.BaseViewModel
+import com.soft.credit911.fcm.notificationObject
 
 
 abstract class BaseFragment : androidx.fragment.app.Fragment() {
@@ -28,7 +29,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
     var myView: View? = null
     var baseActivity: BaseActivity? = null
     var suBaseActivity: SubBaseActivity? = null
-
+    var pushDataMain: notificationObject?=null
 
     val permissions = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
@@ -244,5 +245,8 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         }
     }
 
+    fun addSubContentFragment(fragment: Fragment) {
+        suBaseActivity?.addSubContentFragment(fragment)
+    }
 
 }

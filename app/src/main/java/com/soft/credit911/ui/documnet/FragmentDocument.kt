@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.chuzi.utils.URIPathHelper
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.ing.quiz.network.RestClient
+import com.ing.quiz.ui.base_classes.BaseFragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.scanlibrary.ScanActivity
 import com.soft.credit911.R
@@ -20,6 +21,7 @@ import com.soft.credit911.adaptor.OtherDocAdap
 import com.soft.credit911.datamodel.data_docs
 import com.soft.credit911.dialog.DialogCamera
 import com.soft.credit911.fcm.notificationObject
+import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.signature.SignatureActivity
 import com.soft.credit911.ui.signature.signatureObject
 import droidninja.filepicker.FilePickerBuilder
@@ -38,9 +40,8 @@ import java.io.IOException
 import java.util.*
 
 
-class DocumentActivity : SubBaseActivity() {
+class FragmentDocument : BaseFragment() {
 
-    private var documentDetailsAdapter: DocumentDetailsAdapter? = null
     private var otherDocAdaptor: OtherDocAdap? = null
     private var documentRequred = ArrayList<data_docs.DocData>()
     private var documentOther = ArrayList<data_docs.DocData>()
@@ -61,29 +62,29 @@ class DocumentActivity : SubBaseActivity() {
     override fun onViewCreated() {
         EventBus.getDefault().register(this)
         toolbarTitle.text = "Document"
-        navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
+        navigationIcon.setOnClickListener { v: View? -> super.onBackPress() }
         init()
     }
 
     fun init(){
         viewModel.getDocuments()
         attachObserver()
-        if(intent.extras?.containsKey("pushData")==true){
-            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
-            showPushDialog()
+        if(arguments?.containsKey("pushData")==true){
+            (activity as LandingActivity).pushDataMain = arguments?.getSerializable("pushData") as notificationObject
+            (activity as LandingActivity).showPushDialog()
         }
         navigationIcon.setOnClickListener {
-            finish();
+            super.onBackPress()
         }
 
     }
 
     fun attachObserver() {
-        viewModel?.apiError.observe(this, androidx.lifecycle.Observer {
-            CommonUtils.showdialog(it.toString(), this, false)
+        viewModel?.apiError.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            activity?.let { it1 -> CommonUtils.showdialog(it.toString(), it1, false) }
         })
 
-        viewModel?.isLoading?.observe(this, androidx.lifecycle.Observer {
+        viewModel?.isLoading?.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
             if (it) {
                 showProgress()
@@ -93,7 +94,7 @@ class DocumentActivity : SubBaseActivity() {
         })
 
 
-        viewModel?.dataDocs.observe(this, androidx.lifecycle.Observer {
+        viewModel?.dataDocs.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
            if(it.status.equals("success")){
                documentOther.clear()
                documentRequred.clear()
@@ -109,7 +110,7 @@ class DocumentActivity : SubBaseActivity() {
            }
         })
 
-        viewModel?.dataDocsUpload.observe(this, androidx.lifecycle.Observer {
+        viewModel?.dataDocsUpload.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it.status.equals("success")){
                 it.message?.let { it1 -> createAlert(it1) }
                 documentOther.clear()
@@ -162,7 +163,7 @@ class DocumentActivity : SubBaseActivity() {
 
             if(selectedDoc.document_type?.equals("agreement")?:false){
 
-                val intent= Intent(this, SignatureActivity::class.java)
+                val intent= Intent(activity, SignatureActivity::class.java)
                 intent.putExtra("docData",selectedDoc)
                 startActivity(intent)
             }
@@ -202,12 +203,14 @@ class DocumentActivity : SubBaseActivity() {
                 }
 
 
-                dialog.show(supportFragmentManager, "options")
+                dialog.show(childFragmentManager, "options")
             }
             }
         else if(selectedDoc.action.equals("uploaded")){
-            CommonUtils.showdialog(if(selectedDoc.message!=null) selectedDoc.message else "Your document under review. Please wait!",
-                this, false)
+            activity?.let {
+                CommonUtils.showdialog(if(selectedDoc.message!=null) selectedDoc.message else "Your document under review. Please wait!",
+                    it, false)
+            }
         }
     }
 
@@ -219,9 +222,12 @@ class DocumentActivity : SubBaseActivity() {
             if(requestCode== ImagePicker.REQUEST_CODE) {
                 try {
                     val uriPathHelper = URIPathHelper()
-                    val selectedVideoPath = data?.data?.let { uriPathHelper.getPath(this, it) }
+                    val selectedVideoPath = data?.data?.let { activity?.let { it1 ->
+                        uriPathHelper.getPath(
+                            it1, it)
+                    } }
                     val thizIntent = Intent(
-                        applicationContext,
+                        activity,
                         ScanActivity::class.java
                     )
                     thizIntent.putExtra("Image", selectedVideoPath)
@@ -235,7 +241,7 @@ class DocumentActivity : SubBaseActivity() {
             else if (requestCode== 1234 && resultCode== Activity.RESULT_OK )
             {
                 val byteArray = data?.getByteArrayExtra("path")
-                val file = File(getVideoFilePath(this));
+                val file = File(activity?.let { getVideoFilePath(it) });
                 val bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
                 try {
                     FileOutputStream(file.path).use { out ->
@@ -248,7 +254,7 @@ class DocumentActivity : SubBaseActivity() {
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
-                val requestFile = RequestBody.create((getContentResolver().
+                val requestFile = RequestBody.create((activity?.getContentResolver()?.
                 getType(Uri.parse(file.path))?.toMediaTypeOrNull()), file!!)
                 bodyImgeThumb?.add(
                     MultipartBody.Part.createFormData(
@@ -266,10 +272,10 @@ class DocumentActivity : SubBaseActivity() {
                         data?.getParcelableArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS)!!
                     if (dataList != null) {
                         val uriPathHelper = URIPathHelper()
-                        val selectedVideoPath = uriPathHelper.getPath(this, dataList.get(0))
+                        val selectedVideoPath = activity?.let { uriPathHelper.getPath(it, dataList.get(0)) }
                         var file= File(selectedVideoPath)
                         if(file.isFile){
-                            val requestFile = RequestBody.create((getContentResolver().
+                            val requestFile = RequestBody.create((activity?.getContentResolver()?.
                             getType(dataList.get(0)))?.toMediaTypeOrNull(), file!!)
                             bodyImgeThumb?.add(
                                 MultipartBody.Part.createFormData(
@@ -288,7 +294,7 @@ class DocumentActivity : SubBaseActivity() {
             }
 
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
         } else {
 
         }
@@ -305,10 +311,7 @@ class DocumentActivity : SubBaseActivity() {
         bodyImgeThumb?.let { viewModel.uploadDocument(ob, it) }
     }
 
-    companion object {
-        private const val SELECT_PICTURES = 0
-        private const val PICK_FROM_CAMERA = 1
-    }
+
 
     fun getVideoFilePath(context: Context): String {
         val dir = context.getExternalFilesDir(null)
@@ -317,7 +320,7 @@ class DocumentActivity : SubBaseActivity() {
     }
 
     fun createAlert(message:String){
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

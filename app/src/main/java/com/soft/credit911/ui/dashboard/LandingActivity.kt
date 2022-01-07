@@ -7,16 +7,14 @@ import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.fcm.notificationObject
-import com.soft.credit911.ui.Changepassword.ScanDocActivity
+import com.soft.credit911.ui.Changepassword.FragmentChangePassword
 import com.soft.credit911.ui.Chat.Activity.ChatActivity
-import com.soft.credit911.ui.Chat.Fragment.ChatFragment
 import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
-import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
 import com.soft.credit911.ui.casemanagement.CaseManagementActivity
 import com.soft.credit911.ui.casemanagement.Fragement.CaseManagementFragment
 import com.soft.credit911.ui.dashboard.Dashboard.DashboardFragment
 import com.soft.credit911.ui.dashboard.UserProfile.Fragment.UserProfileFragment
-import com.soft.credit911.ui.documnet.DocumentActivity
+import com.soft.credit911.ui.documnet.FragmentDocument
 import com.soft.credit911.ui.notifications.NotificationActivity
 import kotlinx.android.synthetic.main.activity_landing.*
 
@@ -85,10 +83,14 @@ class LandingActivity : SubBaseActivity() {
         if (pushDataPre != null && !isPushHandled) {
             when (pushDataPre?.notificationType) {
                 "document" -> {
-
-                    val intent = Intent(this, DocumentActivity::class.java)
-                    intent.putExtra("pushData", pushDataPre)
-                    startActivity(intent)
+                    val frg=FragmentDocument()
+                    val bundle=Bundle()
+                    bundle.putSerializable("pushData", pushDataPre)
+                    frg.arguments=bundle
+                    addSubContentFragment(frg)
+//                    val intent = Intent(this, FragmentDocument::class.java)
+//                    intent.putExtra("pushData", pushDataPre)
+//                    startActivity(intent)
                 }
                 "dashboard" -> {
                     pushDataMain=pushDataPre
@@ -117,9 +119,14 @@ class LandingActivity : SubBaseActivity() {
                     startActivity(intent)
                 }
                 "password" -> {
-                    val intent = Intent(this, ScanDocActivity::class.java)
-                    intent.putExtra("pushData", pushDataPre)
-                    startActivity(intent)
+                    val frg=FragmentChangePassword()
+                    val bundle=Bundle()
+                    bundle.putSerializable("pushData", pushDataPre)
+                    frg.arguments=bundle
+                    addSubContentFragment(frg)
+//                    val intent = Intent(this, FragmentChangePassword::class.java)
+//                    intent.putExtra("pushData", pushDataPre)
+//                    startActivity(intent)
                 }
 
                 "chat" -> {
@@ -135,9 +142,9 @@ class LandingActivity : SubBaseActivity() {
 
                 }
                 "security_questions" -> {
-                    val intent = Intent(this, SecurityQuestionsActivity::class.java)
-                    intent.putExtra("pushData", pushDataPre)
-                    startActivity(intent)
+//                    val intent = Intent(this, SecurityQuestionsActivity::class.java)
+//                    intent.putExtra("pushData", pushDataPre)
+//                    startActivity(intent)
                 }
             }
             pushDataPre = null

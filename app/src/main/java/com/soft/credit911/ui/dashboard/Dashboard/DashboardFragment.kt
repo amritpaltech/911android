@@ -15,10 +15,9 @@ import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.datamodel.LoginResponse
 import com.soft.credit911.datamodel.dataCountries
 import com.soft.credit911.model.CreditReportData
-import com.soft.credit911.ui.SecurityQuestions.SecurityQuestionsActivity
 import com.soft.credit911.ui.dashboard.ActivityCreditHistory
 import com.soft.credit911.ui.dashboard.LandingActivity
-import com.soft.credit911.ui.documnet.DocumentActivity
+import com.soft.credit911.ui.documnet.FragmentDocument
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlin.collections.ArrayList
@@ -84,8 +83,9 @@ class DashboardFragment : BaseFragment() {
         }
 
         CardToDoc.setOnClickListener {
-            val intent = Intent(activity, DocumentActivity::class.java)
-            activity?.startActivity(intent)
+            addSubContentFragment(FragmentDocument())
+//            val intent = Intent(activity, FragmentDocument::class.java)
+//            activity?.startActivity(intent)
         }
     }
 
@@ -160,13 +160,13 @@ class DashboardFragment : BaseFragment() {
 
         viewModel?.responseSecurity?.observe(viewLifecycleOwner, Observer {securityResponse->
             if (securityResponse.code == "100") {
-                val token = securityResponse.data!!.authToken
-                val jsResponse = securityResponse.data!!.questions
-                val intent = Intent(context, SecurityQuestionsActivity::class.java)
-                intent.putExtra("responseObj", jsResponse)
-                intent.putExtra("token", token)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(intent)
+//                val token = securityResponse.data!!.authToken
+//                val jsResponse = securityResponse.data!!.questions
+//                val intent = Intent(context, SecurityQuestionsActivity::class.java)
+//                intent.putExtra("responseObj", jsResponse)
+//                intent.putExtra("token", token)
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                startActivity(intent)
             }
         })
     }

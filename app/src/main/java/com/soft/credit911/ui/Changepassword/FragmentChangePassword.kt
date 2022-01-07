@@ -3,15 +3,17 @@ package com.soft.credit911.ui.Changepassword
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.ing.quiz.ui.base_classes.BaseFragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.datamodel.ChangePasswordResponse
 import com.soft.credit911.fcm.notificationObject
+import com.soft.credit911.ui.dashboard.LandingActivity
 import kotlinx.android.synthetic.main.activity_change_pass_word.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class ChangePasswordActivity : SubBaseActivity() {
+class FragmentChangePassword : BaseFragment() {
 
     var mViewModel: ChangePasswordViewModel? = ChangePasswordViewModel()
 
@@ -22,7 +24,7 @@ class ChangePasswordActivity : SubBaseActivity() {
 
     override fun onViewCreated() {
         toolbarTitle.text = "Change Password"
-        navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
+        navigationIcon.setOnClickListener { v: View? -> super.onBackPress() }
         initView()
         attachObserver()
     }
@@ -36,9 +38,9 @@ class ChangePasswordActivity : SubBaseActivity() {
                     etConfirmPassword.text.toString().trim { it <= ' ' })
             }
         }
-        if(intent.extras?.containsKey("pushData")==true){
-            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
-            showPushDialog()
+        if(arguments?.containsKey("pushData")==true){
+            (activity as LandingActivity).pushDataMain = arguments?.getSerializable("pushData") as notificationObject
+            (activity as LandingActivity).showPushDialog()
         }
     }
 
@@ -68,12 +70,12 @@ class ChangePasswordActivity : SubBaseActivity() {
 
 
     fun attachObserver() {
-        mViewModel?.apiError?.observe(this, androidx.lifecycle.Observer {
-            CommonUtils.showdialog(it, this, false)
+        mViewModel?.apiError?.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            activity?.let { it1 -> CommonUtils.showdialog(it, it1, false) }
         })
 
 
-        mViewModel?.isLoading?.observe(this, androidx.lifecycle.Observer {
+        mViewModel?.isLoading?.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
             if (it) {
                 showProgress()
@@ -82,9 +84,9 @@ class ChangePasswordActivity : SubBaseActivity() {
             }
         })
 
-        mViewModel?.responsePasswordChange?.observe(this, Observer {
-            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-            finish()
+        mViewModel?.responsePasswordChange?.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+            super.onBackPress()
         })
     }
 }
