@@ -144,7 +144,7 @@ abstract class SubBaseActivity : BaseActivity() {
                 R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left,
                 R.anim.slide_out_right
             ).addToBackStack("profile")
-            .add(R.id.container, fragment).commit()
+            .add(R.id.parent, fragment).commit()
     }
 
     

@@ -103,7 +103,6 @@ class RestClient {
 
             clientBuilder.addInterceptor(interceptor).build()
             val retrofit2 = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(
                     GsonConverterFactory

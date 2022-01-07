@@ -1,5 +1,7 @@
 package com.soft.credit911.ui.MyProfile.Activity
 
+import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,6 +10,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -21,16 +24,23 @@ import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.datamodel.LoginResponse
 import com.soft.credit911.datamodel.dataCountries
 import com.soft.credit911.dialog.DialogCaptureSignature
+import com.soft.credit911.dialog.DialogCredInfo
 import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.model.Countries
 import com.soft.credit911.ui.dashboard.UserProfile.Fragment.ProfileViewModel
+import com.soft.credit911.ui.signature.SignatureProfileActivity
 import com.soft.credit911.ui.signature.signatureObject
 import com.soundcloud.android.crop.Crop
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MyProfileActivity : SubBaseActivity() , AdapterView.OnItemSelectedListener {
 
@@ -38,6 +48,7 @@ class MyProfileActivity : SubBaseActivity() , AdapterView.OnItemSelectedListener
     var countryData: ArrayList<Countries>? =null
     var isDoneOnce=false
     var slectedCountryCode=""
+    var dob=""
     override fun getLayoutID(): Int {
         return R.layout.activity_my_profile
     }
@@ -50,6 +61,12 @@ class MyProfileActivity : SubBaseActivity() , AdapterView.OnItemSelectedListener
         setProfileData()
         mViewModel= ProfileViewModel()
         attachObserver()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
     fun setCountryInfo( cId:String): String? {
@@ -78,6 +95,18 @@ class MyProfileActivity : SubBaseActivity() , AdapterView.OnItemSelectedListener
         et_Suffix.setText(AppPreference(this).getUserObject().data?.suffix)
         et_middle_name.setText(AppPreference(this).getUserObject().data?.middle_name)
         txtCountry.text= AppPreference(this).getUserObject().data?.country?.let { setCountryInfo(it) }
+        etScanCreditName.setText(AppPreference(this).getUserObject().data?.scancredit_username)
+        etConfirmPassword.setText(AppPreference(this).getUserObject().data?.scancredit_password)
+        txtLast4SSn.setText(AppPreference(this).getUserObject().data?.last_4_ssn)
+        AppPreference(this).getUserObject().data?.birthday?.let { setDobText(it) }
+        if(AppPreference(this).getUserObject().data?.signature!=null &&
+            AppPreference(this).getUserObject().data?.signature?.length?:0>0){
+            tvAddSignature.visibility=View.GONE
+            tvViewSignature.visibility=View.VISIBLE
+        }else{
+            tvAddSignature.visibility=View.VISIBLE
+            tvViewSignature.visibility=View.GONE
+        }
 
         var list_of_items = ArrayList<String>()
         for(i in countryData!!){
@@ -94,9 +123,33 @@ class MyProfileActivity : SubBaseActivity() , AdapterView.OnItemSelectedListener
         }
     }
 
+    fun setDobText(input: String){
+        var format = SimpleDateFormat("yyyy-MM-dd")
+        val newDate: Date = format.parse(input)
+        dob=SimpleDateFormat("dd/MM/yyyy").format(newDate)
+        format = SimpleDateFormat("dd, MMM yyyy")
+        val date: String = format.format(newDate)
+        txtBirthDate.setText(date)
+    }
+
     private fun initView() {
         txtCountry.setOnClickListener {
             spinCountry.performClick()
+        }
+
+        tvAddSignature.setOnClickListener {
+            startActivity( Intent(this,SignatureProfileActivity::class.java))
+        }
+        tvViewSignature.setOnClickListener {
+           val frg=FragmentSignatureView()
+            val bundle=Bundle()
+            bundle.putString("image",AppPreference(this).getUserObject().data?.signature)
+            frg.arguments=bundle
+            addSubContentFragment(frg)
+        }
+        steps.setOnClickListener {
+            val dilog= DialogCredInfo()
+            dilog.show(supportFragmentManager,"")
         }
         spinCountry!!.setOnItemSelectedListener(this)
 
@@ -114,21 +167,47 @@ class MyProfileActivity : SubBaseActivity() , AdapterView.OnItemSelectedListener
                 mJsObjParam.put("city",  et_city.text.toString().trim ())
                 mJsObjParam.put("state",  et_state.text.toString().trim ())
                 mJsObjParam.put("postal_code",  et_Zip.text.toString().trim ())
+                mJsObjParam.put("scancredit_username",  etScanCreditName.text.toString().trim ())
+                mJsObjParam.put("scancredit_password",  etConfirmPassword.text.toString().trim ())
                 mJsObjParam.put("country",  slectedCountryCode)
+                mJsObjParam.put("birthday", dob)
+                mJsObjParam.put("last_4_ssn",   txtLast4SSn.text.toString().trim ())
                 val myOb = JsonParser().parse(mJsObjParam.toString()).asJsonObject
                 mViewModel?.updateUserInfo(myOb)
             }
         }
 
-        tvAddSignature.setOnClickListener {
-         var dialog= DialogCaptureSignature{
-             val encodedImage: String = encodeImage(it).toString()
-             mViewModel?.uploadProfileSignature(encodedImage);
-         }
-            dialog.show(supportFragmentManager,"");
+//        tvAddSignature.setOnClickListener {
+//         var dialog= DialogCaptureSignature{
+//             val encodedImage: String = encodeImage(it).toString()
+//             mViewModel?.uploadProfileSignature(encodedImage);
+//         }
+//            dialog.show(supportFragmentManager,"");
+//        }
+
+
+        txtBirthDate.setOnClickListener {
+            hideKeyBoard()
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                // Display Selected date in textbox
+
+                setDobText(""+year+"-"+(monthOfYear+1)+"-"+dayOfMonth)
+            }, year, month, day)
+
+            dpd.show()
         }
     }
-
+    fun hideKeyBoard(){
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow( txtBirthDate.windowToken, 0)
+    }
     private val isValid: Boolean
         private get() {
             if (et_first_name.text.toString().trim { it <= ' ' } == "") {
@@ -169,13 +248,25 @@ class MyProfileActivity : SubBaseActivity() , AdapterView.OnItemSelectedListener
             dataObj.data?.city=et_city.text.toString()
             dataObj.data?.state=et_state.text.toString()
             dataObj.data?.postal_code=et_Zip.text.toString()
+            dataObj.data?.postal_code=et_Zip.text.toString()
+            dataObj.data?.scancredit_username=etScanCreditName.text.toString()
+            dataObj.data?.scancredit_password=etConfirmPassword.text.toString()
+            var format = SimpleDateFormat("dd/MM/yyyy")
+            val newDate: Date = format.parse(dob)
+            dob=SimpleDateFormat("yyyy-MM-dd").format(newDate)
 
+            dataObj.data?.birthday=dob
+            dataObj.data?.last_4_ssn=txtLast4SSn.text.toString()
             AppPreference(this).setUserObject(dataObj)
             EventBus.getDefault().post(dataObj)
         })
 
         mViewModel?.updateResponse2?.observe(this, Observer {
             Toast.makeText(this, it.message,Toast.LENGTH_LONG).show()
+            var dataObj:LoginResponse=AppPreference(this).getUserObject()
+            dataObj.data?.signature=it.data?.signature
+            AppPreference(this).setUserObject(dataObj)
+            EventBus.getDefault().post(dataObj)
         })
         mViewModel?.isLoading?.observe(this, Observer {
             if(it){
@@ -215,7 +306,10 @@ class MyProfileActivity : SubBaseActivity() , AdapterView.OnItemSelectedListener
             isDoneOnce=true
         }
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: signatureObject?) {
+        event?.signatureStr?.let { mViewModel?.uploadProfileSignature(it) }
+    }
     override fun onNothingSelected(arg0: AdapterView<*>) {
 
     }

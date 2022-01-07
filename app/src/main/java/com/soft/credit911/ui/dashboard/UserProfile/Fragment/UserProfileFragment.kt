@@ -59,18 +59,18 @@ class UserProfileFragment : BaseFragment() {
             val intent = Intent(activity, MyProfileActivity::class.java)
             activity?.startActivity(intent)
         }
-        tv_ScanCred.setOnClickListener{
-            val intent = Intent(activity, ScanDocActivity::class.java)
-            activity?.startActivity(intent)
-        }
+//        tv_ScanCred.setOnClickListener{
+//            val intent = Intent(activity, ScanDocActivity::class.java)
+//            activity?.startActivity(intent)
+//        }
        tv_Change_password.setOnClickListener { v: View? ->
             val intent = Intent(activity, ChangePasswordActivity::class.java)
             activity?.startActivity(intent)
         }
-       tv_Chat.setOnClickListener { v: View? ->
-            val intent = Intent(activity, ChatActivity::class.java)
-            activity?.startActivity(intent)
-        }
+//       tv_Chat.setOnClickListener { v: View? ->
+//            val intent = Intent(activity, ChatActivity::class.java)
+//            activity?.startActivity(intent)
+//        }
         tv_Document.setOnClickListener { v: View? ->
             val intent = Intent(activity, DocumentActivity::class.java)
             activity?.startActivity(intent)

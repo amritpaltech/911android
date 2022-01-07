@@ -6,23 +6,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_911_app"
+    android:background="@drawable/splash_new"
     android:orientation="vertical"
     tools:context=".ui.Splash.SplashActivity"
    >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/tv_Get_start_Now"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_360sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:gravity="center"
-            android:text="@string/splash"
-            android:textColor="#005389"
-            android:textSize="@dimen/_22sdp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_above="@+id/tv_Get_start_Now"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="@dimen/_360sdp"-->
+<!--            android:layout_marginBottom="@dimen/_20sdp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/splash"-->
+<!--            android:textColor="#005389"-->
+<!--            android:textSize="@dimen/_22sdp"-->
+<!--            android:textStyle="bold" />-->
 
         <TextView
             android:id="@+id/tv_Get_start_Now"

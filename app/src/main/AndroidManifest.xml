@@ -47,6 +47,7 @@
             android:name=".ui.dashboard.ActivityCreditHistory"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.signature.SignatureActivity" />
+        <activity android:name=".ui.signature.SignatureProfileActivity" />
         <activity
             android:name="com.soft.credit911.ActivityCredReport"
             android:screenOrientation="portrait" />
@@ -55,6 +56,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.Splash.SplashActivity"
+            android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -70,6 +72,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.MyProfile.Activity.MyProfileActivity"
+            android:theme="@style/SplashTheme2"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.dashboard.LandingActivity"

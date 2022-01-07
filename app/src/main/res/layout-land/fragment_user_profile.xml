@@ -133,16 +133,16 @@
                         android:textColor="@color/userProfileTextColor"
                         android:textSize="@dimen/_16sdp" />
 
-                    <TextView
-                        android:id="@+id/tv_Chat"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_18sdp"
-                        android:drawableLeft="@drawable/ic_chat_icon"
-                        android:drawablePadding="@dimen/_12sdp"
-                        android:text="@string/chat"
-                        android:textColor="@color/userProfileTextColor"
-                        android:textSize="@dimen/_16sdp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_Chat"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/_18sdp"-->
+<!--                        android:drawableLeft="@drawable/ic_chat_icon"-->
+<!--                        android:drawablePadding="@dimen/_12sdp"-->
+<!--                        android:text="@string/chat"-->
+<!--                        android:textColor="@color/userProfileTextColor"-->
+<!--                        android:textSize="@dimen/_16sdp" />-->
 
                     <TextView
                         android:id="@+id/tv_notification"

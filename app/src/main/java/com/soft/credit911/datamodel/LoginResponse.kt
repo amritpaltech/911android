@@ -66,10 +66,10 @@ class LoginResponse {
 
 
         @SerializedName("scancredit_username")
-        val scancredit_username: String? = null
+        var scancredit_username: String? = null
 
         @SerializedName("scancredit_password")
-        val scancredit_password: String? = null
+        var scancredit_password: String? = null
 
         @SerializedName("suffix")
         var suffix: String? = null
@@ -79,4 +79,16 @@ class LoginResponse {
 
         @SerializedName("country")
         var country: String? = null
+
+
+        @SerializedName("last_4_ssn")
+        var last_4_ssn: String? = null
+
+
+        @SerializedName("birthday")
+        var birthday: String? = null
+
+        @SerializedName("signature")
+        var signature: String? = null
+
     }

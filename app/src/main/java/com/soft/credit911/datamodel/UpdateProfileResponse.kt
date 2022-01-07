@@ -43,6 +43,9 @@ class UpdateProfileResponse {
         @SerializedName("phone_number")
         var phoneNumber: String? = null
 
+        @SerializedName("signature")
+        var signature: String? = null
+
         @SerializedName("id")
         var id: Int? = null
 

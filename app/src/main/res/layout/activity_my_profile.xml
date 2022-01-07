@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-    >
+        android:orientation="vertical">
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <include
             android:id="@+id/toolbarLayout"
             layout="@layout/toolbar" />
@@ -154,6 +156,115 @@
                     android:paddingBottom="@dimen/_12sdp"
                     android:textColor="@color/MyProfileTextColor" />
 
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="Birthday"
+                            android:textColor="@color/MyProfileTextColor"
+                            android:textSize="@dimen/_16sdp" />
+
+                        <TextView
+                            android:id="@+id/txtBirthDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/rectangle_shape"
+                            android:paddingTop="@dimen/_12sdp"
+                            android:textColorHint="@color/black"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:paddingLeft="@dimen/_8sdp"
+                            android:paddingBottom="@dimen/_12sdp"
+                            android:textColor="@color/MyProfileTextColor" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="Last 4 SSN Digits"
+                            android:textColor="@color/MyProfileTextColor"
+                            android:textSize="@dimen/_16sdp" />
+
+                        <EditText
+                            android:id="@+id/txtLast4SSn"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/rectangle_shape"
+                            android:paddingTop="@dimen/_12sdp"
+                            android:textColorHint="@color/black"
+                            android:maxLines="1"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:singleLine="true"
+                            android:paddingLeft="@dimen/_8sdp"
+                            android:paddingBottom="@dimen/_12sdp"
+                            android:textColor="@color/MyProfileTextColor" />
+
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/Address1"
+                    android:textColor="@color/MyProfileTextColor"
+                    android:textSize="@dimen/_16sdp" />
+
+                <EditText
+                    android:id="@+id/et_address1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/rectangle_shape"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:textColorHint="@color/black"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:textColor="@color/MyProfileTextColor" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/Address2"
+                    android:textColor="@color/MyProfileTextColor"
+                    android:textSize="@dimen/_16sdp" />
+
+                <EditText
+                    android:id="@+id/et_address2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/rectangle_shape"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:textColorHint="@color/black"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:textColor="@color/MyProfileTextColor" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -238,74 +349,89 @@
                         android:layout_width="wrap_content"
                         android:id="@+id/spinCountry"
                         android:layout_height="1dp"></Spinner>
+
                     <TextView
                         android:id="@+id/txtCountry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:singleLine="true"
                         android:inputType="number"
-                        android:paddingTop="@dimen/_12sdp"
-                        android:textColorHint="@color/black"
+                        android:maxLines="1"
                         android:paddingLeft="@dimen/_8sdp"
+                        android:paddingTop="@dimen/_12sdp"
                         android:paddingBottom="@dimen/_12sdp"
-                        android:textColor="@color/black" />
+                        android:singleLine="true"
+                        android:textColor="@color/MyProfileTextColor"
+                        android:textColorHint="@color/MyProfileTextColor" />
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/black"
+                    android:layout_height="2dp"></View>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Scan credit username"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/MyProfileTextColor"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/steps"
+                        android:id="@+id/steps"
+                        android:fontFamily="@font/medium"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/etScanCreditName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:maxLines="1"
+                    android:inputType="textWebEditText"
+                    android:singleLine="true"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:background="@drawable/rectangle_shape"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:textColor="@color/MyProfileTextColor"  />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/Address1"
+                    android:text="Scan credit password"
                     android:textColor="@color/MyProfileTextColor"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
-                    android:id="@+id/et_address1"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_120sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/rectangle_shape"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:textColorHint="@color/black"
-                    android:paddingLeft="@dimen/_8sdp"
-                    android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
-
-
-                <TextView
+                    android:id="@+id/etConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/Address2"
-                    android:textColor="@color/MyProfileTextColor"
-                    android:textSize="@dimen/_16sdp" />
-
-                <EditText
-                    android:id="@+id/et_address2"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_120sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_8sdp"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:background="@drawable/rectangle_shape"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingLeft="@dimen/_8sdp"
-                    android:textColorHint="@color/black"
-                    android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
-                <TextView
-                    android:id="@+id/tvAddSignature"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:background="@drawable/rectangle_btn_shape"
-                    android:gravity="center"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
-                    android:text="Add Signature"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_16sdp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/MyProfileTextColor"  />
+
 
                 <TextView
                     android:id="@+id/tvSave"
@@ -317,6 +443,36 @@
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:text="Save"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAddSignature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:background="@drawable/rectangle_btn_shape"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="Add Signature"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvViewSignature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:background="@drawable/rectangle_btn_shape"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="View/Edit Signature"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
@@ -334,3 +490,9 @@
         </ScrollView>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+</RelativeLayout>

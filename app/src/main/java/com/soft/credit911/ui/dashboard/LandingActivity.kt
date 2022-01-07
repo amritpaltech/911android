@@ -50,10 +50,10 @@ class LandingActivity : SubBaseActivity() {
                     fragment.setArguments(bundle)
                     loadFragment(fragment)
                 }
-                R.id.Contact_message -> {
-                    fragment = ChatFragment()
-                    loadFragment(fragment)
-                }
+//                R.id.Contact_message -> {
+//                    fragment = ChatFragment()
+//                    loadFragment(fragment)
+//                }
                 R.id.Case_management -> {
                     fragment = CaseManagementFragment()
                     loadFragment(fragment)

@@ -6,10 +6,10 @@
         android:title="DASHBOARD"
 
         android:icon="@drawable/ic_home"/>
-    <item
-        android:id="@+id/Contact_message"
-        android:title="CHAT"
-        android:icon="@drawable/ic_contact_message"/>
+<!--    <item-->
+<!--        android:id="@+id/Contact_message"-->
+<!--        android:title="CHAT"-->
+<!--        android:icon="@drawable/ic_contact_message"/>-->
     <item
         android:id="@+id/Case_management"
         android:title="CASE MANAGEMENT"
