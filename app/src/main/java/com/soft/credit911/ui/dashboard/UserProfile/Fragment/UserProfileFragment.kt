@@ -24,7 +24,7 @@ import com.soft.credit911.ui.Login.LoginActivity
 import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
 import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.FragmentDocument
-import com.soft.credit911.ui.notifications.NotificationActivity
+import com.soft.credit911.ui.notifications.FragmentNotification
 import kotlinx.android.synthetic.main.fragment_user_profile.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -76,8 +76,9 @@ class UserProfileFragment : BaseFragment() {
             addSubContentFragment(FragmentDocument())
         }
        tv_notification.setOnClickListener { v: View? ->
-            val intent = Intent(activity, NotificationActivity::class.java)
-            activity?.startActivity(intent)
+           addSubContentFragment(FragmentNotification())
+//            val intent = Intent(activity, NotificationActivity::class.java)
+//            activity?.startActivity(intent)
         }
 
         tv_Case_Management.setOnClickListener { v: View? ->

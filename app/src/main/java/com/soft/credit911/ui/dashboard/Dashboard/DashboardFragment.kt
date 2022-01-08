@@ -2,7 +2,7 @@ package com.soft.credit911.ui.dashboard.Dashboard
 
 import android.content.Intent
 import android.graphics.Color
-import android.util.Log
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.ing.quiz.ui.base_classes.BaseFragment
@@ -15,7 +15,7 @@ import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.datamodel.LoginResponse
 import com.soft.credit911.datamodel.dataCountries
 import com.soft.credit911.model.CreditReportData
-import com.soft.credit911.ui.dashboard.ActivityCreditHistory
+import com.soft.credit911.ui.dashboard.FragmentCreditHistory
 import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.FragmentDocument
 import kotlinx.android.synthetic.main.fragment_dashboard.*
@@ -55,9 +55,14 @@ class DashboardFragment : BaseFragment() {
 
         tv_credit_history.setOnClickListener {
             if(historyData!=null) {
-                val intent = Intent(activity, ActivityCreditHistory::class.java)
-                intent.putExtra("history", historyData)
-                startActivity(intent)
+                val frg= FragmentCreditHistory()
+                val bundle=Bundle()
+                bundle.putSerializable("history", historyData)
+                frg.arguments=bundle
+                addSubContentFragment(frg)
+//                val intent = Intent(activity, FragmentCreditHistory::class.java)
+//                intent.putExtra("history", historyData)
+//                startActivity(intent)
             }
         }
 

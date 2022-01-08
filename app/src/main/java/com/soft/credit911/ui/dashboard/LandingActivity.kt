@@ -10,12 +10,12 @@ import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.Changepassword.FragmentChangePassword
 import com.soft.credit911.ui.Chat.Activity.ChatActivity
 import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
-import com.soft.credit911.ui.casemanagement.CaseManagementActivity
+import com.soft.credit911.ui.casemanagement.FragMentCaseManagementDetail
 import com.soft.credit911.ui.casemanagement.Fragement.CaseManagementFragment
 import com.soft.credit911.ui.dashboard.Dashboard.DashboardFragment
 import com.soft.credit911.ui.dashboard.UserProfile.Fragment.UserProfileFragment
 import com.soft.credit911.ui.documnet.FragmentDocument
-import com.soft.credit911.ui.notifications.NotificationActivity
+import com.soft.credit911.ui.notifications.FragmentNotification
 import kotlinx.android.synthetic.main.activity_landing.*
 
 class LandingActivity : SubBaseActivity() {
@@ -97,15 +97,27 @@ class LandingActivity : SubBaseActivity() {
                     showPushDialog()
                 }
                 "notifications" -> {
-                    val intent = Intent(this, NotificationActivity::class.java)
-                    intent.putExtra("pushData", pushDataPre)
-                    startActivity(intent)
+                    val frg=FragmentNotification()
+                    val bundle=Bundle()
+                    bundle.putSerializable("pushData", pushDataPre)
+                    frg.arguments=bundle
+                    addSubContentFragment(frg)
+//                    val intent = Intent(this, FragmentNotification::class.java)
+//                    intent.putExtra("pushData", pushDataPre)
+//                    startActivity(intent)
                 }
                 "credit_history" -> {
-                    val intent = Intent(this, ActivityCreditHistory::class.java)
-                    intent.putExtra("pushData", pushDataPre)
-                    intent.putExtra("history", data.creditReportHistory)
-                    startActivity(intent)
+//                    val intent = Intent(this, FragmentCreditHistory::class.java)
+//                    intent.putExtra("pushData", pushDataPre)
+//                    intent.putExtra("history", data.creditReportHistory)
+//                    startActivity(intent)
+                    val frg=FragmentCreditHistory()
+                    val bundle=Bundle()
+                    bundle.putSerializable("pushData", pushDataPre)
+                    bundle.putSerializable("history",  data.creditReportHistory)
+                    frg.arguments=bundle
+                    addSubContentFragment(frg)
+
                 }
                 "credit_report" -> {
                     val intent = Intent(this, ActivityCreditReport::class.java)
@@ -136,9 +148,14 @@ class LandingActivity : SubBaseActivity() {
                 }
 
                 "case_management" -> {
-                    val intent = Intent(this, CaseManagementActivity::class.java)
-                    intent.putExtra("pushData", pushDataPre)
-                    startActivity(intent)
+                    val frg=FragMentCaseManagementDetail()
+                    val bundle=Bundle()
+                    bundle.putSerializable("pushData", pushDataPre)
+                    frg.arguments=bundle
+                    addSubContentFragment(frg)
+//                    val intent = Intent(this, FragMentCaseManagementDetail::class.java)
+//                    intent.putExtra("pushData", pushDataPre)
+//                    startActivity(intent)
 
                 }
                 "security_questions" -> {

@@ -2,19 +2,15 @@ package com.soft.credit911.ui.casemanagement.Fragement
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.ing.quiz.ui.base_classes.BaseActivity
 import com.ing.quiz.ui.base_classes.BaseFragment
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.adaptor.CaseAdaptor
-import com.soft.credit911.ui.casemanagement.CaseManagementActivity
+import com.soft.credit911.ui.casemanagement.FragMentCaseManagementDetail
 import kotlinx.android.synthetic.main.fragment_case_management.*
 import kotlinx.android.synthetic.main.toolbar.*
-import java.util.*
 
 class CaseManagementFragment : BaseFragment() {
     val viewModel=CaseViewModel()
@@ -48,9 +44,13 @@ class CaseManagementFragment : BaseFragment() {
                 cases.visibility=View.GONE
                 val adap= case.cases?.let {
                     CaseAdaptor(it){caseData->
-                        val intent= Intent(activity, CaseManagementActivity::class.java)
-                        intent.putExtra("caseData",caseData)
-                        startActivity(intent)
+                        val bundle= Bundle()
+                        val frg=FragMentCaseManagementDetail()
+                        bundle.putSerializable("caseData",caseData)
+                        frg.arguments=bundle
+//                        val intent= Intent(activity, FragMentCaseManagementDetail::class.java)
+//                        intent.putExtra("caseData",caseData)
+                        addSubContentFragment(frg)
                     }
                 }
                 rv_case_management.adapter = adap

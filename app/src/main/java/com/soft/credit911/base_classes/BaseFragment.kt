@@ -29,7 +29,6 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
     var myView: View? = null
     var baseActivity: BaseActivity? = null
     var suBaseActivity: SubBaseActivity? = null
-    var pushDataMain: notificationObject?=null
 
     val permissions = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,

@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.notifications.NotificationActivity">
+        tools:context=".ui.notifications.FragmentNotification">
 
         <include
             android:id="@+id/toolbarLayout"

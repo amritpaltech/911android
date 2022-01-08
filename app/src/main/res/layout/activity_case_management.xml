@@ -6,7 +6,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.casemanagement.CaseManagementActivity">
+    android:background="@color/white"
+    android:clickable="true"
+        tools:context=".ui.casemanagement.FragMentCaseManagementDetail">
 
         <include
             android:id="@+id/toolbarLayout"

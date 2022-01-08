@@ -1,6 +1,7 @@
 package com.soft.credit911.ui.dashboard
 
 import android.view.View
+import com.ing.quiz.ui.base_classes.BaseFragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.ChartUtils
 import com.soft.credit911.R
@@ -10,7 +11,7 @@ import com.soft.credit911.fcm.notificationObject
 import kotlinx.android.synthetic.main.activity_credit_history.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class ActivityCreditHistory:SubBaseActivity() {
+class FragmentCreditHistory:BaseFragment() {
 
     var historyData:ArrayList<DashboardResponse.CreditReportHistoryItem>?=null
     override fun getLayoutID(): Int {
@@ -19,7 +20,7 @@ class ActivityCreditHistory:SubBaseActivity() {
 
     override fun onViewCreated() {
         toolbarTitle.text="Credit History"
-        historyData=intent.getSerializableExtra("history") as ArrayList<DashboardResponse.CreditReportHistoryItem>
+        historyData=arguments?.getSerializable("history") as ArrayList<DashboardResponse.CreditReportHistoryItem>
         ChartUtils().setChartData(chart,historyData)
         val myList2=historyData
         myList2?.sortByDescending{it.scoreDate}
@@ -30,11 +31,10 @@ class ActivityCreditHistory:SubBaseActivity() {
         }
         rv_documentCompulsary.adapter=adap
 
-        navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
-
-        if(intent.extras?.containsKey("pushData")==true){
-            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
-            showPushDialog()
+        navigationIcon.setOnClickListener { v: View? -> super.onBackPress() }
+        if(arguments?.containsKey("pushData")==true){
+            (activity as LandingActivity).pushDataMain = arguments?.getSerializable("pushData") as notificationObject
+            (activity as LandingActivity).showPushDialog()
         }
     }
 }

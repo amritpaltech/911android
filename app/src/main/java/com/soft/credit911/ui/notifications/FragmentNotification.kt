@@ -5,16 +5,18 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ing.quiz.ui.base_classes.BaseFragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.adaptor.NotificationAdaptor
 import com.soft.credit911.datamodel.data_notification
 import com.soft.credit911.fcm.notificationObject
+import com.soft.credit911.ui.dashboard.LandingActivity
 import kotlinx.android.synthetic.main.activity_notification.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
-class NotificationActivity : SubBaseActivity() {
+class FragmentNotification : BaseFragment() {
 
     var viewModel=NotiificationViewModel()
     var adap:NotificationAdaptor?=null
@@ -27,14 +29,14 @@ class NotificationActivity : SubBaseActivity() {
 
     override fun onViewCreated() {
         toolbarTitle.text = "Notification"
-        navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
+        navigationIcon.setOnClickListener { v: View? -> super.onBackPress() }
         intiView()
         attachObserser()
 
     }
 
     fun attachObserser(){
-        viewModel?.isLoading?.observe(this, androidx.lifecycle.Observer {
+        viewModel?.isLoading?.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it){
                 showProgress()
             }else{
@@ -42,7 +44,7 @@ class NotificationActivity : SubBaseActivity() {
             }
         })
 
-        viewModel?.dataNotification.observe(this, androidx.lifecycle.Observer {
+        viewModel?.dataNotification.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             if(  it.data?.size?:0>0) {
                 isLoading = false
                 it.data?.let { it1 -> dataList?.addAll(it1) }
@@ -60,9 +62,9 @@ class NotificationActivity : SubBaseActivity() {
         setLazyLoaderForRecyclerView();
         setList()
         getData()
-        if(intent.extras?.containsKey("pushData")==true){
-            pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
-            showPushDialog()
+        if(arguments?.containsKey("pushData")==true){
+            (activity as LandingActivity).pushDataMain = arguments?.getSerializable("pushData") as notificationObject
+            (activity as LandingActivity).showPushDialog()
         }
     }
 

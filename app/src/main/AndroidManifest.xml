@@ -67,17 +67,20 @@
 <!--            android:name=".ui.documnet.DocumentActivity"-->
 <!--            android:screenOrientation="portrait" />-->
 
+        <!--        <activity-->
+        <!--            android:name=".ui.Changepassword.ChangePasswordActivity"-->
+        <!--            android:screenOrientation="portrait" />-->
 
+<!--        <activity-->
+<!--            android:name=".ui.casemanagement.CaseManagementActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+
+<!--        <activity-->
+<!--            android:name=".ui.notifications.FragmentNotification"-->
+<!--            android:screenOrientation="portrait" />-->
 
         <activity
-            android:name=".ui.casemanagement.CaseManagementActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.notifications.NotificationActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".ui.dashboard.ActivityCreditHistory"
+            android:name=".ui.dashboard.FragmentCreditHistory"
             android:screenOrientation="portrait" />
 
         <activity android:name=".ui.signature.SignatureActivity" />
@@ -86,9 +89,7 @@
             android:name="com.soft.credit911.ActivityCredReport"
             android:screenOrientation="portrait" />
 
-<!--        <activity-->
-<!--            android:name=".ui.Changepassword.ChangePasswordActivity"-->
-<!--            android:screenOrientation="portrait" />-->
+
 
 
 

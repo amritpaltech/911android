@@ -2,15 +2,17 @@ package com.soft.credit911.ui.casemanagement
 
 import android.graphics.Color
 import android.view.View
+import com.ing.quiz.ui.base_classes.BaseFragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.Utils.loadImg
 import com.soft.credit911.datamodel.data_cases
 import com.soft.credit911.fcm.notificationObject
+import com.soft.credit911.ui.dashboard.LandingActivity
 import kotlinx.android.synthetic.main.activity_case_management.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class CaseManagementActivity : SubBaseActivity() {
+class FragMentCaseManagementDetail : BaseFragment() {
 
     var cases: data_cases.Cases?=null
         override fun getLayoutID(): Int {
@@ -19,8 +21,8 @@ class CaseManagementActivity : SubBaseActivity() {
 
         override fun onViewCreated() {
             toolbarTitle.text = "Case Management"
-            cases=intent.getSerializableExtra("caseData") as data_cases.Cases
-            navigationIcon.setOnClickListener { v: View? -> onBackPressed() }
+            cases=arguments?.getSerializable("caseData") as data_cases.Cases
+            navigationIcon.setOnClickListener { v: View? -> super.onBackPress() }
             init()
         }
     
@@ -42,10 +44,15 @@ class CaseManagementActivity : SubBaseActivity() {
                 tv_agent_name.text ="Agent: "+ cases?.matters?.get(0)?.agent_details?.first_name+ " "+cases?.matters?.get(0)?.agent_details?.last_name
                 iv_user.loadImg( cases?.matters?.get(0)?.agent_details?.avatar)
             }
-            if(intent.extras?.containsKey("pushData")==true){
-                pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
-                showPushDialog()
+
+            if(arguments?.containsKey("pushData")==true){
+                (activity as LandingActivity).pushDataMain = arguments?.getSerializable("pushData") as notificationObject
+                (activity as LandingActivity).showPushDialog()
             }
+//            if(intent.extras?.containsKey("pushData")==true){
+//                pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
+//                showPushDialog()
+//            }
         }
 
     }
