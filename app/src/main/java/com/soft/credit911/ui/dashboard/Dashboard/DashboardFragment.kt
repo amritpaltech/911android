@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.ing.quiz.ui.base_classes.BaseFragment
-import com.soft.credit911.ActivityCredReport
+import com.soft.credit911.FragmentCredReport
 import com.soft.credit911.ChartUtils
 import com.soft.credit911.R
 import com.soft.credit911.Utils.AppPreference
@@ -68,9 +68,13 @@ class DashboardFragment : BaseFragment() {
 
         tv_credit_report.setOnClickListener {
             if(creditData!=null) {
-                val intent = Intent(activity, ActivityCredReport::class.java)
-                intent.putExtra("creditData", creditData)
-                startActivity(intent)
+
+                val frg= FragmentCredReport()
+                val bundle=Bundle()
+                bundle.putSerializable("creditData", creditData)
+                frg.arguments=bundle
+                addSubContentFragment(frg)
+
             }
         }
 

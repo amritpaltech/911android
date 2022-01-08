@@ -1,6 +1,7 @@
 package com.soft.credit911
 
 import com.ing.quiz.ui.base_classes.BaseActivity
+import com.ing.quiz.ui.base_classes.BaseFragment
 import com.soft.credit911.adaptor.*
 import com.soft.credit911.model.CreditReportData
 import kotlinx.android.synthetic.main.demo_activity.*
@@ -9,7 +10,7 @@ import kotlinx.android.synthetic.main.layout_auto_loans.listCarLoans
 import kotlinx.android.synthetic.main.layout_credit_card.listCards
 import kotlinx.android.synthetic.main.layout_hard_inquires.*
 
-class ActivityCredReport : BaseActivity() {
+class FragmentCredReport : BaseFragment() {
 
     var creditReport: CreditReportData?=null
     override fun getLayoutID(): Int {
@@ -17,13 +18,16 @@ class ActivityCredReport : BaseActivity() {
     }
 
     override fun onViewCreated() {
-        creditReport=intent.getSerializableExtra("creditData") as CreditReportData
+        creditReport=arguments?.getSerializable("creditData") as CreditReportData
         setPaymentAdapter()
         setAmountAdapter()
         setCardList()
         setAutoList()
         setHardList()
         setData()
+        backBtn.setOnClickListener {
+            super.onBackPress()
+        }
     }
 
     fun performaceStr(sscore:Int):String{

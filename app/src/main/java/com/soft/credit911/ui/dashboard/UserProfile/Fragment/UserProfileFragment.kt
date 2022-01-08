@@ -21,7 +21,7 @@ import com.soft.credit911.Utils.loadProfileImage
 import com.soft.credit911.datamodel.LoginResponse
 import com.soft.credit911.ui.Changepassword.FragmentChangePassword
 import com.soft.credit911.ui.Login.LoginActivity
-import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
+import com.soft.credit911.ui.MyProfile.Activity.FragmentMyProfile
 import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.FragmentDocument
 import com.soft.credit911.ui.notifications.FragmentNotification
@@ -54,8 +54,9 @@ class UserProfileFragment : BaseFragment() {
 
     fun setOnClick(){
         tv_My_Profile.setOnClickListener { v: View? ->
-            val intent = Intent(activity, MyProfileActivity::class.java)
-            activity?.startActivity(intent)
+            addSubContentFragment(FragmentMyProfile())
+//            val intent = Intent(activity, MyProfileActivity::class.java)
+//            activity?.startActivity(intent)
         }
 //        tv_ScanCred.setOnClickListener{
 //            val intent = Intent(activity, ScanDocActivity::class.java)

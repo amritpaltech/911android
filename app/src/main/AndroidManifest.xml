@@ -60,6 +60,10 @@
             android:name=".ui.ForgotPassword.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.Chat.Activity.ChatActivity"
+            android:screenOrientation="portrait" />
+
 <!--        ccccccccccccccccc    -->
 
 
@@ -79,30 +83,28 @@
 <!--            android:name=".ui.notifications.FragmentNotification"-->
 <!--            android:screenOrientation="portrait" />-->
 
-        <activity
-            android:name=".ui.dashboard.FragmentCreditHistory"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".ui.dashboard.FragmentCreditHistory"-->
+<!--            android:screenOrientation="portrait" />-->
 
         <activity android:name=".ui.signature.SignatureActivity" />
         <activity android:name=".ui.signature.SignatureProfileActivity" />
-        <activity
-            android:name="com.soft.credit911.ActivityCredReport"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name="com.soft.credit911.FragmentCredReport"-->
+<!--            android:screenOrientation="portrait" />-->
 
 
 
 
 
-        <activity
-            android:name=".ui.Chat.Activity.ChatActivity"
-            android:screenOrientation="portrait" />
 
-        <activity
-            android:name=".ui.MyProfile.Activity.MyProfileActivity"
-            android:theme="@style/SplashTheme2"
-            android:screenOrientation="portrait" />
 
-        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+<!--        <activity-->
+<!--            android:name=".ui.MyProfile.Activity.MyProfileActivity"-->
+<!--            android:theme="@style/SplashTheme2"-->
+<!--            android:screenOrientation="portrait" />-->
+
+<!--        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />-->
 
 
         <service android:name=".fcm.MyFirebaseMessagingService">

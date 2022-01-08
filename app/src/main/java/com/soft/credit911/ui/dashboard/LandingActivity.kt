@@ -9,7 +9,7 @@ import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.Changepassword.FragmentChangePassword
 import com.soft.credit911.ui.Chat.Activity.ChatActivity
-import com.soft.credit911.ui.MyProfile.Activity.MyProfileActivity
+import com.soft.credit911.ui.MyProfile.Activity.FragmentMyProfile
 import com.soft.credit911.ui.casemanagement.FragMentCaseManagementDetail
 import com.soft.credit911.ui.casemanagement.Fragement.CaseManagementFragment
 import com.soft.credit911.ui.dashboard.Dashboard.DashboardFragment
@@ -126,9 +126,11 @@ class LandingActivity : SubBaseActivity() {
                     startActivity(intent)
                 }
                 "profile" -> {
-                    val intent = Intent(this, MyProfileActivity::class.java)
-                    intent.putExtra("pushData", pushDataPre)
-                    startActivity(intent)
+                    val frg=FragmentMyProfile()
+                    val bundle=Bundle()
+                    bundle.putSerializable("pushData", pushDataPre)
+                    frg.arguments=bundle
+                    addSubContentFragment(frg)
                 }
                 "password" -> {
                     val frg=FragmentChangePassword()

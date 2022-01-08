@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -31,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Suffix"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -46,13 +48,13 @@
                     android:singleLine="true"
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
                 <TextView
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/First_name"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -73,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:text="Middle name"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -95,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/Last_name"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -117,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/Email"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <TextView
@@ -138,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/Phone"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -173,7 +175,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:text="Birthday"
-                            android:textColor="@color/MyProfileTextColor"
+                            android:textColor="@color/light_black"
                             android:textSize="@dimen/_16sdp" />
 
                         <TextView
@@ -203,7 +205,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:text="Last 4 SSN Digits"
-                            android:textColor="@color/MyProfileTextColor"
+                            android:textColor="@color/light_black"
                             android:textSize="@dimen/_16sdp" />
 
                         <EditText
@@ -229,7 +231,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/Address1"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -250,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/Address2"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -270,7 +272,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/City"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -292,7 +294,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/State"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -314,7 +316,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/Zip"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -337,7 +339,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="Country"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <RelativeLayout
@@ -380,7 +382,7 @@
                         android:layout_height="wrap_content"
                         android:text="Scan credit username"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:textColor="@color/MyProfileTextColor"
+                        android:textColor="@color/light_black"
                         android:textSize="@dimen/_16sdp" />
 
                     <TextView
@@ -415,7 +417,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="Scan credit password"
-                    android:textColor="@color/MyProfileTextColor"
+                    android:textColor="@color/light_black"
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
@@ -484,7 +486,7 @@
                     android:paddingLeft="@dimen/_8sdp"
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/light_black" />
 
             </LinearLayout>
         </ScrollView>
