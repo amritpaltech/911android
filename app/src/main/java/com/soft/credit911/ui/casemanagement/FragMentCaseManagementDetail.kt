@@ -6,6 +6,7 @@ import com.ing.quiz.ui.base_classes.BaseFragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
 import com.soft.credit911.R
 import com.soft.credit911.Utils.loadImg
+import com.soft.credit911.adaptor.CaseMatterAdaptor
 import com.soft.credit911.datamodel.data_cases
 import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.dashboard.LandingActivity
@@ -49,6 +50,10 @@ class FragMentCaseManagementDetail : BaseFragment() {
                 (activity as LandingActivity).pushDataMain = arguments?.getSerializable("pushData") as notificationObject
                 (activity as LandingActivity).showPushDialog()
             }
+            val adap = cases?.matters?.let { CaseMatterAdaptor(it,{
+
+            }) }
+            listMatters.adapter=adap
 //            if(intent.extras?.containsKey("pushData")==true){
 //                pushDataMain = intent?.getSerializableExtra("pushData") as notificationObject
 //                showPushDialog()

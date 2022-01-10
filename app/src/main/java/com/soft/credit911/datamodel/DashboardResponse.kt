@@ -2,6 +2,8 @@ package com.soft.credit911.datamodel
 
 import com.google.gson.annotations.SerializedName
 import com.soft.credit911.model.CreditReportData
+import org.json.JSONArray
+import org.json.JSONObject
 import java.io.Serializable
 
 class DashboardResponse :Serializable{
@@ -22,6 +24,9 @@ class DashboardResponse :Serializable{
 
         @SerializedName("credit_report_data")
         var creditReportData: CreditReportData? = null
+
+        @SerializedName("reporthistoryData")
+        var reporthistoryData: ArrayList<JSONObject>? = null
 
         @SerializedName("credit_report_history")
         var creditReportHistory: ArrayList<CreditReportHistoryItem>? = null

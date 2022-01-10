@@ -3,6 +3,7 @@ package com.soft.credit911.ui.dashboard.Dashboard
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import com.ing.quiz.ui.base_classes.BaseFragment
@@ -20,6 +21,7 @@ import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.FragmentDocument
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.json.JSONObject
 import kotlin.collections.ArrayList
 
 
@@ -165,6 +167,35 @@ class DashboardFragment : BaseFragment() {
             }
             (activity as LandingActivity).handlePush(dashboardResponse.data!!)
 
+            val responseArray=dashboardResponse?.data?.reporthistoryData
+
+            for (i in 0 until responseArray?.size!!) {
+                val obj: JSONObject = responseArray.get(i)
+                val keys: Iterator<*> = obj.keys()
+                while (keys.hasNext()) {
+                    // Loop to get the dynamic key
+                    val currentDynamicKey = keys.next() as String
+
+                    Log.e("asasa","aaaa"+currentDynamicKey)
+                    // Get the value of the dynamic key
+//                    val currentDynamicValue: JSONArray = obj.getJSONArray(currentDynamicKey)
+//                    val jsonArraySize: Int = currentDynamicValue.length()
+//                    if (jsonArraySize > 0) {
+//                        for (ii in 0 until jsonArraySize) {
+//                            // NameList ArrayList<String> declared globally
+//                            nameList = ArrayList<String>()
+//                            if (ii == 0) {
+//                                val nameObj: JSONObject = currentDynamicValue.getJSONObject(ii)
+//                                val name = nameObj.getString("name")
+//                                print("Name = $name")
+//                                // Store name in an array list
+//                                nameList.add(name)
+//                            }
+//                        }
+//                    }
+//                    nodes.add(nameList)
+                }
+            }
         })
 
         viewModel?.responseSecurity?.observe(viewLifecycleOwner, Observer {securityResponse->

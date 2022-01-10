@@ -1,5 +1,7 @@
 package com.soft.credit911.ui.documnet
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -22,7 +24,6 @@ import java.net.SocketTimeoutException
 class DocumentViewModel: BaseViewModel() {
     val dataDocs= MutableLiveData<data_docs>()
     val dataDocsUpload= MutableLiveData<data_docs>()
-
     fun getDocuments(){
         doAsync{
             GlobalScope.launch(Dispatchers.IO) {
