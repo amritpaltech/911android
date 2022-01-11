@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.soft.credit911.R
 import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.datamodel.data_notification
+import com.soft.credit911.model.ReporthistoryData
 import kotlinx.android.synthetic.main.item_credit_history.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CreditHistoryListAdaptor(val dataList: ArrayList<DashboardResponse.CreditReportHistoryItem>,
+class CreditHistoryListAdaptor(val dataList: ArrayList<ReporthistoryData>,
                                private val onItemClick: (data_list: data_notification.AppNotification) -> Unit) :
     RecyclerView.Adapter<CreditHistoryListAdaptor.ViewHolder>() {
 
@@ -39,11 +40,13 @@ class CreditHistoryListAdaptor(val dataList: ArrayList<DashboardResponse.CreditR
 
         fun bind() {
             val data= dataList.get(adapterPosition)
-            val simpleDateFormat =
-                SimpleDateFormat("yyyy-MM-dd")
-            val myDate: Date = simpleDateFormat.parse(data.scoreDate)
-            itemView.dateText.text = getDateString(myDate)
-            itemView.scoreText.text = data.score
+//            val simpleDateFormat =
+//                SimpleDateFormat("yyyy-MM-dd")
+//            val myDate: Date = simpleDateFormat.parse(data.date)
+            itemView.dateText.text = data.date
+            itemView.scoreText1.text = data.Experian
+            itemView.scoreText2.text = data.TransUnion
+            itemView.scoreText3.text = data.Equifax
 
         }
 

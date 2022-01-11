@@ -13,6 +13,7 @@ import com.chuzi.utils.URIPathHelper
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.ing.quiz.ui.base_classes.BaseActivity
 import com.ing.quiz.ui.base_classes.BaseFragment
+import com.soft.credit911.BuildConfig
 import com.soft.credit911.R
 import com.soft.credit911.Utils.AppPreference
 import com.soft.credit911.Utils.CommonUtils
@@ -102,6 +103,7 @@ class UserProfileFragment : BaseFragment() {
 
         viewmodel= ProfileViewModel()
         attachObserver()
+        appVersion.text=BuildConfig.VERSION_NAME
     }
 
 

@@ -12,8 +12,10 @@
     <string name="email_error">Enter Your Email Id</string>
     <string name="invalid_email_error">Invalid Email Id</string>
     <string name="your_password">Enter Your Password</string>
-
-
+    <string name="labelUpdateTitle">New Version Available</string>
+    <string name="labelUpdateMessage">You must have to update app from Play-store, to continue.</string>
+    <string name="labelUpdateMessage_re">Please update app to new version.</string>
+    <string name="url_playstore_basic">https://play.google.com/store/apps/details?id=</string>
     <!--LoginVerificationActivity-->
     <string name="verification_code">Verification Code</string>
     <string name="verification_number">Please enter the verification code sent to </string>

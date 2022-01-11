@@ -16,19 +16,20 @@ import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.datamodel.LoginResponse
 import com.soft.credit911.datamodel.dataCountries
 import com.soft.credit911.model.CreditReportData
+import com.soft.credit911.model.ReporthistoryData
 import com.soft.credit911.ui.dashboard.FragmentCreditHistory
 import com.soft.credit911.ui.dashboard.LandingActivity
 import com.soft.credit911.ui.documnet.FragmentDocument
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.json.JSONObject
-import kotlin.collections.ArrayList
 
 
 class DashboardFragment : BaseFragment() {
 
     var viewModel: DashBoardViewModel? = null
     var historyData:ArrayList<DashboardResponse.CreditReportHistoryItem>?=null
+    var historyData2:ArrayList<ReporthistoryData>?=null
     var creditData: CreditReportData?=null
 
 
@@ -60,6 +61,7 @@ class DashboardFragment : BaseFragment() {
                 val frg= FragmentCreditHistory()
                 val bundle=Bundle()
                 bundle.putSerializable("history", historyData)
+                bundle.putSerializable("history2", historyData2)
                 frg.arguments=bundle
                 addSubContentFragment(frg)
 //                val intent = Intent(activity, FragmentCreditHistory::class.java)
@@ -126,6 +128,12 @@ class DashboardFragment : BaseFragment() {
             val reportDate = dashboardResponse.data!!.creditReport!!.reportDate
             val nextDate = dashboardResponse.data!!.creditReport!!.nextDate
             historyData=dashboardResponse.data?.creditReportHistory
+            historyData2=dashboardResponse?.data?.creditReportData?.reporthistoryData
+            dashboardResponse?.data?.creditReportData?.android_app_version?.let {
+                (activity as LandingActivity).checkAppVersionStatus(
+                    it
+                )
+            }
             creditData=dashboardResponse?.data?.creditReportData
             tv_report_date.text = reportDate
             tv_next_date.text = nextDate
@@ -167,35 +175,7 @@ class DashboardFragment : BaseFragment() {
             }
             (activity as LandingActivity).handlePush(dashboardResponse.data!!)
 
-            val responseArray=dashboardResponse?.data?.reporthistoryData
 
-            for (i in 0 until responseArray?.size!!) {
-                val obj: JSONObject = responseArray.get(i)
-                val keys: Iterator<*> = obj.keys()
-                while (keys.hasNext()) {
-                    // Loop to get the dynamic key
-                    val currentDynamicKey = keys.next() as String
-
-                    Log.e("asasa","aaaa"+currentDynamicKey)
-                    // Get the value of the dynamic key
-//                    val currentDynamicValue: JSONArray = obj.getJSONArray(currentDynamicKey)
-//                    val jsonArraySize: Int = currentDynamicValue.length()
-//                    if (jsonArraySize > 0) {
-//                        for (ii in 0 until jsonArraySize) {
-//                            // NameList ArrayList<String> declared globally
-//                            nameList = ArrayList<String>()
-//                            if (ii == 0) {
-//                                val nameObj: JSONObject = currentDynamicValue.getJSONObject(ii)
-//                                val name = nameObj.getString("name")
-//                                print("Name = $name")
-//                                // Store name in an array list
-//                                nameList.add(name)
-//                            }
-//                        }
-//                    }
-//                    nodes.add(nameList)
-                }
-            }
         })
 
         viewModel?.responseSecurity?.observe(viewLifecycleOwner, Observer {securityResponse->

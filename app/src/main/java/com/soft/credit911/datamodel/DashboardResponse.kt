@@ -25,11 +25,12 @@ class DashboardResponse :Serializable{
         @SerializedName("credit_report_data")
         var creditReportData: CreditReportData? = null
 
-        @SerializedName("reporthistoryData")
-        var reporthistoryData: ArrayList<JSONObject>? = null
+
 
         @SerializedName("credit_report_history")
         var creditReportHistory: ArrayList<CreditReportHistoryItem>? = null
+
+
 
         @SerializedName("userinfo")
         var userinfo: DataLoginObj? = null
@@ -102,4 +103,5 @@ class DashboardResponse :Serializable{
         @SerializedName("score_date")
         var scoreDate: String? = null
     }
+
 }

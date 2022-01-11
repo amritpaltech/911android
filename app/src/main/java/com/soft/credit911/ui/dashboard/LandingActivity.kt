@@ -1,9 +1,12 @@
 package com.soft.credit911.ui.dashboard
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.ing.quiz.ui.base_classes.SubBaseActivity
+import com.soft.credit911.BuildConfig
 import com.soft.credit911.R
 import com.soft.credit911.datamodel.DashboardResponse
 import com.soft.credit911.fcm.notificationObject
@@ -170,6 +173,21 @@ class LandingActivity : SubBaseActivity() {
             isPushHandled=true
         }
 
+    }
+
+
+    fun checkAppVersionStatus(version:String){
+        var appVersion= version.replace(".","").toInt()
+        var cAppVersion=BuildConfig.VERSION_CODE
+        if(cAppVersion<appVersion){
+            AlertDialog.Builder(this).setTitle(getString(R.string.labelUpdateTitle)).setMessage(getString(R.string.labelUpdateMessage)).setCancelable(false)
+                .setPositiveButton(android.R.string.ok) { dialog, id ->
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.data = Uri.parse(getString(R.string.url_playstore_basic) + BuildConfig.APPLICATION_ID)
+                    startActivity(intent)
+                }.show()
+        }
     }
 
 }

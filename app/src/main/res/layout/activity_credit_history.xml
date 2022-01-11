@@ -34,36 +34,47 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:background="@color/blue"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp">
-
+                 >
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_70sdp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Date"
                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/black"
                         android:layout_marginRight="@dimen/_4sdp"
                         />
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Score"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:textStyle="bold"
-                        android:gravity="right"
-                        android:textColor="@color/white"
-                        android:id="@+id/completedText"
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/_4sdp"
+                        android:gravity="center"
+
+                        android:id="@+id/scoreImg1"
                         android:layout_marginLeft="@dimen/_4sdp"
                         android:textSize="@dimen/_16sdp" />
-
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/_4sdp"
+                        android:gravity="center"
+                        android:id="@+id/scoreImg2"
+                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:textSize="@dimen/_16sdp" />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:id="@+id/scoreImg3"
+                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:textSize="@dimen/_16sdp" />
 
                 </LinearLayout>
 

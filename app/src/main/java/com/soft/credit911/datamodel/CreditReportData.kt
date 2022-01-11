@@ -1,6 +1,7 @@
 package com.soft.credit911.model
 
 import com.google.gson.annotations.SerializedName
+import com.soft.credit911.datamodel.DashboardResponse
 import java.io.Serializable
 
 
@@ -781,6 +782,9 @@ class CreditReportData:Serializable{
     @field:SerializedName("summary")
     val summary: Summary? =null
 
+   @field:SerializedName("android_app_version")
+   val android_app_version: String? =null
+
     @field:SerializedName("report_factors")
     val reportFactors: List<ReportFactorsItem?>? =null
 
@@ -804,8 +808,24 @@ class CreditReportData:Serializable{
 
     @field:SerializedName("scoresdata")
     val scoresData: ArrayList<ScoresItem>? =null
-} 
 
+   @SerializedName("reporthistoryData")
+   var reporthistoryData: ArrayList<ReporthistoryData>? = null
+}
+class ReporthistoryData:Serializable{
+   @SerializedName("date")
+   val date: String? = null
+
+   @SerializedName("TransUnion")
+   val TransUnion: String? = null
+
+   @SerializedName("Experian")
+   val Experian: String? = null
+
+   @SerializedName("Equifax")
+   val Equifax: String? = null
+
+}
  class OpenAccounts:Serializable{
 
     @field:SerializedName("color")
