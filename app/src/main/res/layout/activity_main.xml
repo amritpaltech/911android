@@ -15,18 +15,18 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_190sdp"
+                android:layout_height="@dimen/_220sdp"
                 android:layout_marginLeft="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_50sdp"
                 android:layout_marginRight="@dimen/_40sdp"
-                android:layout_marginBottom="@dimen/_40sdp">
+               >
 
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/view_pager"
                     android:layout_width="match_parent"
-                    android:layout_above="@+id/tutorialSliderTab"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/tutorialSliderTab" />
 
 
 
