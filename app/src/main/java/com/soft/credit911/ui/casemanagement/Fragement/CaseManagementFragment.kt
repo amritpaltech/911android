@@ -8,7 +8,6 @@ import com.ing.quiz.ui.base_classes.BaseFragment
 import com.soft.credit911.R
 import com.soft.credit911.Utils.CommonUtils
 import com.soft.credit911.adaptor.CaseAdaptor
-import com.soft.credit911.ui.casemanagement.FragMentCaseManagementDetail
 import kotlinx.android.synthetic.main.fragment_case_management.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -44,13 +43,13 @@ class CaseManagementFragment : BaseFragment() {
                 cases.visibility=View.GONE
                 val adap= case.cases?.let {
                     CaseAdaptor(it){caseData->
-                        val bundle= Bundle()
-                        val frg=FragMentCaseManagementDetail()
-                        bundle.putSerializable("caseData",caseData)
-                        frg.arguments=bundle
-//                        val intent= Intent(activity, FragMentCaseManagementDetail::class.java)
-//                        intent.putExtra("caseData",caseData)
-                        addSubContentFragment(frg)
+//                        val bundle= Bundle()
+//                        val frg=FragMentCaseManagementDetail()
+//                        bundle.putSerializable("caseData",caseData)
+//                        frg.arguments=bundle
+////                        val intent= Intent(activity, FragMentCaseManagementDetail::class.java)
+////                        intent.putExtra("caseData",caseData)
+//                        addSubContentFragment(frg)
                     }
                 }
                 rv_case_management.adapter = adap

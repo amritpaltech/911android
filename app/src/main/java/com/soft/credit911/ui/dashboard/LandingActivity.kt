@@ -13,7 +13,6 @@ import com.soft.credit911.fcm.notificationObject
 import com.soft.credit911.ui.Changepassword.FragmentChangePassword
 import com.soft.credit911.ui.Chat.Activity.ChatActivity
 import com.soft.credit911.ui.MyProfile.Activity.FragmentMyProfile
-import com.soft.credit911.ui.casemanagement.FragMentCaseManagementDetail
 import com.soft.credit911.ui.casemanagement.Fragement.CaseManagementFragment
 import com.soft.credit911.ui.dashboard.Dashboard.DashboardFragment
 import com.soft.credit911.ui.dashboard.UserProfile.Fragment.UserProfileFragment
@@ -153,11 +152,14 @@ class LandingActivity : SubBaseActivity() {
                 }
 
                 "case_management" -> {
-                    val frg=FragMentCaseManagementDetail()
-                    val bundle=Bundle()
-                    bundle.putSerializable("pushData", pushDataPre)
-                    frg.arguments=bundle
-                    addSubContentFragment(frg)
+                    pushDataMain =pushDataPre
+                    showPushDialog()
+                    selectCaseScreen()
+//                    val frg=FragMentCaseManagementDetail()
+//                    val bundle=Bundle()
+//                    bundle.putSerializable("pushData", pushDataPre)
+//                    frg.arguments=bundle
+//                    addSubContentFragment(frg)
 //                    val intent = Intent(this, FragMentCaseManagementDetail::class.java)
 //                    intent.putExtra("pushData", pushDataPre)
 //                    startActivity(intent)

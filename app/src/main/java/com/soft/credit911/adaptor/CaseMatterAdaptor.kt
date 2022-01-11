@@ -12,7 +12,7 @@ import com.soft.credit911.datamodel.data_cases
 import kotlinx.android.synthetic.main.item_case_matters.view.*
 
 
-class CaseMatterAdaptor(val dataList: ArrayList<data_cases.Matters>,
+class CaseMatterAdaptor(val caseName:String,val dataList: ArrayList<data_cases.Matters>,
                         private val onItemClick: (data_list: data_cases.Cases) -> Unit) : RecyclerView.Adapter<CaseMatterAdaptor.ViewHolder>() {
 
     var mContext: Context? = null
@@ -37,6 +37,7 @@ class CaseMatterAdaptor(val dataList: ArrayList<data_cases.Matters>,
 
         fun bind() {
             val data= dataList.get(adapterPosition)
+            itemView.caseName.text=caseName
             itemView.tv_bank_name.text=data.name
             itemView.iv_user.loadImg(data.agent_details?.avatar)
             itemView.tv_user_message.text=data.agent_details?.first_name+" "+data.agent_details?.last_name
