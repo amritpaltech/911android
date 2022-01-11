@@ -75,6 +75,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -109,12 +110,12 @@
                     <TextView
                         android:id="@+id/tv_user_status"
                         android:layout_width="@dimen/_8sdp"
-                        android:layout_toLeftOf="@+id/tv_agent_name"
                         android:layout_height="@dimen/_8sdp"
+                        android:layout_gravity="center_vertical|center"
                         android:layout_marginTop="@dimen/_6sdp"
                         android:layout_marginBottom="@dimen/_15sdp"
+                        android:layout_toLeftOf="@+id/tv_agent_name"
                         android:background="@drawable/rounded_textview"
-                        android:layout_gravity="center_vertical|center"
                         android:gravity="center"
                         android:textColor="@android:color/white"
                         android:textSize="30sp" />

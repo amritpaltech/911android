@@ -69,7 +69,7 @@
                     android:singleLine="true"
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                     android:singleLine="true"
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                     android:singleLine="true"
                     android:paddingLeft="@dimen/_8sdp"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                     android:paddingLeft="@dimen/_8sdp"
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                     android:textColorHint="@color/black"
                     android:paddingLeft="@dimen/_8sdp"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
 
 
 
@@ -190,7 +190,7 @@
                             android:singleLine="true"
                             android:paddingLeft="@dimen/_8sdp"
                             android:paddingBottom="@dimen/_12sdp"
-                            android:textColor="@color/MyProfileTextColor" />
+                            android:textColor="@color/black" />
                     </LinearLayout>
 
 
@@ -222,7 +222,7 @@
                             android:singleLine="true"
                             android:paddingLeft="@dimen/_8sdp"
                             android:paddingBottom="@dimen/_12sdp"
-                            android:textColor="@color/MyProfileTextColor" />
+                            android:textColor="@color/black" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -244,7 +244,7 @@
                     android:textColorHint="@color/black"
                     android:paddingLeft="@dimen/_8sdp"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
 
 
                 <TextView
@@ -265,7 +265,7 @@
                     android:paddingLeft="@dimen/_8sdp"
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -287,7 +287,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -309,7 +309,7 @@
                     android:singleLine="true"
                     android:textColorHint="@color/black"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -332,7 +332,7 @@
                     android:textColorHint="@color/black"
                     android:paddingLeft="@dimen/_8sdp"
                     android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/MyProfileTextColor" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -362,8 +362,8 @@
                         android:paddingTop="@dimen/_12sdp"
                         android:paddingBottom="@dimen/_12sdp"
                         android:singleLine="true"
-                        android:textColor="@color/MyProfileTextColor"
-                        android:textColorHint="@color/MyProfileTextColor" />
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
                 </RelativeLayout>
 
                 <View
@@ -410,7 +410,7 @@
                     android:background="@drawable/rectangle_shape"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_8sdp"
-                    android:textColor="@color/MyProfileTextColor"  />
+                    android:textColor="@color/black"  />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -432,7 +432,7 @@
                     android:background="@drawable/rectangle_shape"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
-                    android:textColor="@color/MyProfileTextColor"  />
+                    android:textColor="@color/black"  />
 
 
                 <TextView
