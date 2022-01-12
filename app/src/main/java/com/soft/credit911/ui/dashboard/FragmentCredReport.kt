@@ -58,14 +58,29 @@ class FragmentCredReport : BaseFragment() {
         val score1=creditReport?.reportdetails?.transUnion?.score?:0
         val score2=creditReport?.reportdetails?.equifax?.score?:0
         val score3=creditReport?.reportdetails?.experian?.score?:0
-        val overallScore=(score1+score2+score3)/3
-
+        var overallScore=0
+        var divInt=0
+        var list:ArrayList<Int>?= ArrayList()
+        list?.add(score1)
+        list?.add(score2)
+        list?.add(score3)
+        if (list != null) {
+            for(item in list){
+                if(item>0){
+                    divInt=divInt+1
+                    overallScore=overallScore+item
+                }
+            }
+        }
+        overallScore=overallScore/divInt
         overAllScoretxt.text=""+overallScore
         overAllPerformance.text=""+performaceStr(overallScore)
 
         transPr.setProgress(((score1*100)/900)/100.0f)
         equiPr.setProgress(((score2*100)/900)/100.0f)
         exPr.setProgress(((score3*100)/900)/100.0f)
+        reportDat1.text="Report Date:\n"+arguments?.getString("date1")
+        reportDat2.text="Next Update:\n"+arguments?.getString("date2")
 
         if(overallScore<=300){
             progressOverall.setProgress(0.01f)
@@ -102,18 +117,18 @@ class FragmentCredReport : BaseFragment() {
 
     fun setCardList()
     {
-        val adap= AdapCardsList()
-        adap.addListItems()
-        listCards.adapter=adap
+//        val adap= AdapCardsList()
+//        adap.addListItems()
+//        listCards.adapter=adap
     }
     fun setAutoList()
     {
-        listCarLoans.adapter= AdapAutoLoans()
+//        listCarLoans.adapter= AdapAutoLoans()
     }
 
     fun setHardList()
     {
-        listHardInquires.adapter= AdapHardInquires()
+//        listHardInquires.adapter= AdapHardInquires()
     }
 
 

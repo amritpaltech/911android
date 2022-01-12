@@ -31,8 +31,8 @@ class DashboardFragment : BaseFragment() {
     var historyData:ArrayList<DashboardResponse.CreditReportHistoryItem>?=null
     var historyData2:ArrayList<ReporthistoryData>?=null
     var creditData: CreditReportData?=null
-
-
+    var reportDate=""
+    var nextDate=""
     override fun getLayoutID(): Int {
         return R.layout.fragment_dashboard
     }
@@ -76,6 +76,8 @@ class DashboardFragment : BaseFragment() {
                 val frg= FragmentCredReport()
                 val bundle=Bundle()
                 bundle.putSerializable("creditData", creditData)
+                bundle.putString("date1", reportDate)
+                bundle.putString("date2", nextDate)
                 frg.arguments=bundle
                 addSubContentFragment(frg)
 
@@ -125,8 +127,8 @@ class DashboardFragment : BaseFragment() {
             var countryData=dataCountries()
             countryData.country=dashboardResponse.data!!.creditReportData!!.countries
             AppPreference(activity).setCountryArray(countryData)
-            val reportDate = dashboardResponse.data!!.creditReport!!.reportDate
-            val nextDate = dashboardResponse.data!!.creditReport!!.nextDate
+             reportDate= dashboardResponse.data!!.creditReport!!.reportDate?:""
+            nextDate = dashboardResponse.data!!.creditReport!!.nextDate?:""
             historyData=dashboardResponse.data?.creditReportHistory
             historyData2=dashboardResponse?.data?.creditReportData?.reporthistoryData
             dashboardResponse?.data?.creditReportData?.android_app_version?.let {

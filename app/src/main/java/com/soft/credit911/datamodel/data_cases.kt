@@ -9,7 +9,8 @@ class data_cases:Serializable {
      val cases: ArrayList<Cases>?=null
 
      val message: String? = null
-
+     val total_matters:Int?=0
+     val nodata:String?=""
      val status: String? = null
 
     class Cases:Serializable{

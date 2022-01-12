@@ -129,19 +129,20 @@
                          android:fontFamily="@font/semibold"
                          android:textColor="#309f7e"
                          android:text="+2 pts"
+                         android:visibility="gone"
                          android:textSize="16sp"
                          ></TextView>
-                      <ImageView
-                          android:layout_width="6dp"
-                          android:layout_height="6dp"
-                          android:layout_margin="4dp"
-                          android:background="@drawable/ic_cicle"></ImageView>
+<!--                      <ImageView-->
+<!--                          android:layout_width="6dp"-->
+<!--                          android:layout_height="6dp"-->
+<!--                          android:layout_margin="4dp"-->
+<!--                          android:background="@drawable/ic_cicle"></ImageView>-->
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:fontFamily="@font/semibold"                         android:textColor="#000"
                          android:id="@+id/performace1"
-                         android:textSize="16sp"
+                         android:textSize="14sp"
                          ></TextView>
                  </LinearLayout>
                     <TextView
@@ -211,14 +212,15 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/semibold"
                             android:text="+2 pts"
+                            android:visibility="gone"
                             android:textColor="#309f7e"
                             android:textSize="16sp"></TextView>
 
-                        <ImageView
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/ic_cicle"></ImageView>
+<!--                        <ImageView-->
+<!--                            android:layout_width="6dp"-->
+<!--                            android:layout_height="6dp"-->
+<!--                            android:layout_margin="4dp"-->
+<!--                            android:background="@drawable/ic_cicle"></ImageView>-->
 
                         <TextView
                             android:id="@+id/performace2"
@@ -226,7 +228,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/semibold"
                             android:textColor="#000"
-                            android:textSize="16sp"></TextView>
+                            android:textSize="14sp"></TextView>
                     </LinearLayout>
 
                     <TextView
@@ -269,71 +271,70 @@
                     app:thumbRadius="10dp"
                     app:trackWidth="10dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:textColor="#000000"
-                    android:text=""
-                    android:id="@+id/experianCount"
-                    android:textSize="24sp"
-                    android:layout_marginTop="8dp"
-                    ></TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:textColor="#000"
-                    android:text="Experian"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp"
-                    ></TextView>
-
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:layout_marginTop="8dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/semibold"
-                        android:textColor="#309f7e"
-                        android:text="+2 pts"
-                        android:textSize="16sp"
-                        ></TextView>
-                    <ImageView
-                        android:layout_width="6dp"
-                        android:layout_height="6dp"
-                        android:layout_margin="4dp"
-                        android:background="@drawable/ic_cicle"></ImageView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/semibold"
-                        android:textColor="#000"
-                        android:id="@+id/performace3"
-                        android:textSize="16sp"
-                        ></TextView>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/regular"
-                    android:textColor="#000"
-                    android:text="Today"
-                    android:id="@+id/exprinCountDate"
-                    android:textSize="16sp"
-                    ></TextView>
+                    android:orientation="vertical">
 
-            </LinearLayout></RelativeLayout>
+                    <TextView
+                        android:id="@+id/experianCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="24sp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/bold"
+                        android:text="Experian"
+                        android:textColor="#000"
+                        android:textSize="16sp"></TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:text="+2 pts"
+                            android:textColor="#309f7e"
+                            android:textSize="16sp"
+                            android:visibility="gone"></TextView>
+                        <!--                    <ImageView-->
+                        <!--                        android:layout_width="6dp"-->
+                        <!--                        android:layout_height="6dp"-->
+                        <!--                        android:layout_margin="4dp"-->
+                        <!--                        android:background="@drawable/ic_cicle"></ImageView>-->
+                        <TextView
+                            android:id="@+id/performace3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:textColor="#000"
+                            android:textSize="14sp"></TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/exprinCountDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:text="Today"
+                        android:textColor="#000"
+                        android:textSize="16sp"></TextView>
+
+                </LinearLayout></RelativeLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -407,32 +408,31 @@ of the details."
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
                 android:layout_marginLeft="24dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_marginRight="24dp"
-                >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bold"
-                android:textColor="#0086c1"
-                android:text="765"
-                android:id="@+id/overAllScoretxt"
-                android:textSize="24sp"
                 android:layout_marginTop="8dp"
-                ></TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bold"
-                android:textColor="#000"
-                android:text="Good"
-                android:id="@+id/overAllPerformance"
-                android:textSize="16sp"
-                android:layout_marginTop="4dp"
-                ></TextView>
+                android:layout_marginRight="24dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/overAllScoretxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/bold"
+                    android:text="765"
+                    android:textColor="#0086c1"
+                    android:textSize="24sp"></TextView>
+
+                <TextView
+                    android:id="@+id/overAllPerformance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/bold"
+                    android:text="Good"
+                    android:textColor="#000"
+                    android:textSize="16sp"></TextView>
 
             </LinearLayout></RelativeLayout>
 
@@ -442,6 +442,7 @@ of the details."
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginLeft="24dp"
+            android:visibility="gone"
             android:layout_marginRight="24dp"
             android:layout_marginTop="8dp">
             <TextView
@@ -450,6 +451,7 @@ of the details."
                 android:fontFamily="@font/regular"
                 android:textColor="#a6a6a6"
                 android:layout_weight="1"
+                android:id="@+id/reportDat1"
                 android:text="Report Date:\nJun 11, 2020"
                 android:textSize="16sp"
                 android:layout_marginTop="8dp"
@@ -461,6 +463,7 @@ of the details."
                 android:textColor="#a6a6a6"
                 android:layout_weight="1"
                 android:gravity="right"
+                android:id="@+id/reportDat2"
                 android:text="Next Update:\nJul 11, 2020"
                 android:textSize="16sp"
                 android:layout_marginTop="8dp"
@@ -503,6 +506,7 @@ of the details."
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
+            android:visibility="gone"
             android:layout_marginTop="16dp"
             android:background="#c2c2c2"></View>
 
@@ -511,6 +515,7 @@ of the details."
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:padding="8dp"
+             android:visibility="gone"
              android:background="#f4f6f5"
              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             ></androidx.recyclerview.widget.RecyclerView>
@@ -519,6 +524,7 @@ of the details."
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -597,45 +603,51 @@ standing. Keep it up"
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
+            android:visibility="gone"
             android:layout_marginTop="16dp"
             android:background="#c2c2c2"></View>
 
-        <include layout="@layout/layout_credit_card"></include>
+<!--        <include layout="@layout/layout_credit_card"></include>-->
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
+            android:visibility="gone"
             android:layout_marginTop="32dp"
             android:background="#a6a6a6"></View>
 
-        <include layout="@layout/layout_auto_loans"></include>
+<!--        <include layout="@layout/layout_auto_loans"></include>-->
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
+            android:visibility="gone"
             android:layout_marginTop="32dp"
             android:background="#a6a6a6"></View>
 
-        <include layout="@layout/layout_collections"></include>
+<!--        <include layout="@layout/layout_collections"></include>-->
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
+            android:visibility="gone"
             android:layout_marginTop="32dp"
             android:background="#a6a6a6"></View>
 
-        <include layout="@layout/layout_student_loan"></include>
+<!--        <include layout="@layout/layout_student_loan"></include>-->
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
+            android:visibility="gone"
             android:layout_marginTop="32dp"
             android:background="#a6a6a6"></View>
 
-        <include layout="@layout/layout_public_record"></include>
+<!--        <include layout="@layout/layout_public_record"></include>-->
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
+            android:visibility="gone"
             android:layout_marginTop="32dp"
             android:background="#a6a6a6"></View>
 
-        <include layout="@layout/layout_hard_inquires"></include>
+<!--        <include layout="@layout/layout_hard_inquires"></include>-->
     </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

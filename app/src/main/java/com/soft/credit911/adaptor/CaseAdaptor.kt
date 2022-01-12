@@ -38,11 +38,17 @@ class CaseAdaptor(val dataList: ArrayList<data_cases.Cases>,
 
         fun bind() {
             val data= dataList.get(adapterPosition)
+            itemView.tv_bank_name.visibility=View.GONE
+//            if( data?.matters?.size?:0>0){
+                val adap = data?.matters?.let { CaseMatterAdaptor(data?.name?:"",it,{
 
-            val adap = data?.matters?.let { CaseMatterAdaptor(data?.name?:"",it,{
+                }) }
+                itemView.listCase.adapter=adap
+//            }
+//            else{
+//                itemView.tv_bank_name.visibility=View.VISIBLE
+//            }
 
-            }) }
-            itemView.listCase.adapter=adap
 //            itemView.tv_bank_name.text=data.name
 //            itemView.tv_user_message.text=data.description
 //            itemView.tv_status.text=data.status

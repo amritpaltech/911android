@@ -53,7 +53,12 @@ class CaseManagementFragment : BaseFragment() {
                     }
                 }
                 rv_case_management.adapter = adap
+                if(case.total_matters?:0 <= 0){
+                    cases.text=case.nodata
+                    cases.visibility=View.VISIBLE
+                }
             }else{
+                cases.text=case.nodata
                 cases.visibility=View.VISIBLE
             }
 

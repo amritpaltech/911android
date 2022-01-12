@@ -245,9 +245,11 @@
                 <EditText
                     android:id="@+id/et_address1"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_120sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="left|top"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:background="@drawable/rectangle_shape"
                     android:paddingTop="@dimen/_12sdp"
                     android:textSize="@dimen/_14sdp"
@@ -268,7 +270,9 @@
                 <EditText
                     android:id="@+id/et_address2"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_120sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textSize="@dimen/_14sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/rectangle_shape"
