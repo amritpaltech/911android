@@ -86,7 +86,7 @@
                         android:layout_height="@dimen/_400sdp"
                         android:src="@drawable/imgpsh_fullsize_anim"
                         app:interactive="false"
-                        app:progress=".3"
+                        app:progress=".4"
                         app:showProgress="false"
                         app:startAngleDegrees="90"
                         app:thumbColor="@color/blue"

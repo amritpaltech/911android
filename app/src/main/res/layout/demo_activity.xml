@@ -89,70 +89,91 @@
                     app:thumbRadius="10dp"
                     app:trackWidth="10dp" />
 
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:text="0"-->
+<!--                    android:layout_marginLeft="@dimen/_26sdp"-->
+<!--                    android:fontFamily="@font/regular"-->
+<!--                    android:textSize="@dimen/_16sdp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginTop="108dp"-->
+<!--                    android:layout_height="wrap_content"></TextView>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:text="900"-->
+<!--                    android:layout_marginRight="@dimen/_26sdp"-->
+<!--                    android:fontFamily="@font/regular"-->
+<!--                    android:textSize="@dimen/_16sdp"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginTop="108dp"-->
+<!--                    android:layout_height="wrap_content"></TextView>-->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                   >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:textColor="#000000"
-                    android:text=""
-                    android:id="@+id/transUnionCount"
-                    android:textSize="24sp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    ></TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bold"
-                    android:textColor="#000"
-                    android:text="TransUnion"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp"
-                    ></TextView>
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                 <LinearLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:orientation="horizontal"
-                     android:gravity="center"
-                     android:layout_marginTop="8dp">
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:fontFamily="@font/semibold"
-                         android:textColor="#309f7e"
-                         android:text="+2 pts"
-                         android:visibility="gone"
-                         android:textSize="16sp"
-                         ></TextView>
-<!--                      <ImageView-->
-<!--                          android:layout_width="6dp"-->
-<!--                          android:layout_height="6dp"-->
-<!--                          android:layout_margin="4dp"-->
-<!--                          android:background="@drawable/ic_cicle"></ImageView>-->
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:fontFamily="@font/semibold"                         android:textColor="#000"
-                         android:id="@+id/performace1"
-                         android:textSize="14sp"
-                         ></TextView>
-                 </LinearLayout>
                     <TextView
+                        android:id="@+id/transUnionCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/bold"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="24sp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/bold"
+                        android:text="TransUnion"
+                        android:textColor="#000"
+                        android:textSize="16sp"></TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:text="+2 pts"
+                            android:textColor="#309f7e"
+                            android:textSize="16sp"
+                            android:visibility="gone"></TextView>
+                        <!--                      <ImageView-->
+                        <!--                          android:layout_width="6dp"-->
+                        <!--                          android:layout_height="6dp"-->
+                        <!--                          android:layout_margin="4dp"-->
+                        <!--                          android:background="@drawable/ic_cicle"></ImageView>-->
+                        <TextView
+                            android:id="@+id/performace1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:textColor="#000"
+                            android:textSize="14sp"></TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/transUnionCountDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/regular"
                         android:textColor="#000"
-                        android:id="@+id/transUnionCountDate"
-                        android:textSize="16sp"
-                        ></TextView>
+                        android:textSize="16sp"></TextView>
                 </LinearLayout>
 
 
@@ -270,6 +291,26 @@
                     app:thumbDrawable="@drawable/thumb"
                     app:thumbRadius="10dp"
                     app:trackWidth="10dp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:text="0"-->
+<!--                    android:layout_marginLeft="@dimen/_26sdp"-->
+<!--                    android:fontFamily="@font/regular"-->
+<!--                    android:textSize="@dimen/_16sdp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginTop="108dp"-->
+<!--                    android:layout_height="wrap_content"></TextView>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:text="900"-->
+<!--                    android:layout_marginRight="@dimen/_26sdp"-->
+<!--                    android:fontFamily="@font/regular"-->
+<!--                    android:textSize="@dimen/_16sdp"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginTop="108dp"-->
+<!--                    android:layout_height="wrap_content"></TextView>-->
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -376,7 +417,7 @@ of the details."
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_110sdp"
+            android:layout_height="@dimen/_200sdp"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="24dp"
             android:gravity="center"
@@ -385,26 +426,25 @@ of the details."
             >
             <ImageView
                 android:layout_width="@dimen/_200sdp"
-                android:scaleType="fitCenter"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:scaleType="fitXY"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/gaug_large"
-                android:layout_height="@dimen/_111sdp"></ImageView>
+                android:layout_height="@dimen/_110sdp"></ImageView>
 
             <com.tenclouds.gaugeseekbar.GaugeSeekBar
                 android:id="@+id/progressOverall"
                 android:layout_width="@dimen/_400sdp"
+                android:layout_marginTop="8dp"
                 android:layout_height="@dimen/_400sdp"
                 android:src="@drawable/imgpsh_fullsize_anim"
                 app:interactive="false"
-                app:progress=".3"
+                app:progress=".23"
                 app:showProgress="false"
                 app:startAngleDegrees="90"
                 app:thumbColor="@color/blue"
                 app:thumbDrawable="@drawable/thumb"
                 app:trackGradient="@array/progressRainbow"
                 app:trackWidth="0.01dp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

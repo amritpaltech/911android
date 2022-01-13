@@ -104,7 +104,7 @@ class ChartUtilDetailed {
         chart?.setPadding(200 , 2 , 2 , 2)
         chart?.setExtraLeftOffset(15f);
         chart?.setExtraRightOffset(15f);
-        chart?.setViewPortOffsets(60f, 0f, 50f, 60f)
+        chart?.setViewPortOffsets(60f, 10f, 50f, 60f)
         chart?.setExtraLeftOffset(36f);
         chart?.getAxisLeft()?.setDrawGridLines(false);
         chart?.getXAxis()?.setDrawGridLines(false);
