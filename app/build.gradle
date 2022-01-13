@@ -15,7 +15,7 @@ android {
         configurations.all {
             resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
         }
-        applicationId "com.soft.credit911"
+        applicationId "com.soft.creditmerlin"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 102
