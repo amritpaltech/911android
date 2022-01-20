@@ -8,7 +8,7 @@
     <string name="password">Password</string>
     <string name="user_Email">Email</string>
     <string name="Login_ViewPager">Check your Credit score and report without hurting your credit</string>
-    <string name="forget_your_password">Forget your password</string>
+    <string name="forget_your_password">Forgot Password?</string>
     <string name="email_error">Enter Your Email Id</string>
     <string name="invalid_email_error">Invalid Email Id</string>
     <string name="your_password">Enter Your Password</string>

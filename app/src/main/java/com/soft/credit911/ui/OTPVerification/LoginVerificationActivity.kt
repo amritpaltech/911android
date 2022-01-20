@@ -7,9 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.ing.quiz.ui.base_classes.BaseActivity
-import com.intsab.otpfetcher.OtpFetcher
-import com.intsab.otpfetcher.listeners.OtpListener
-import com.intsab.otpfetcher.models.MessageItem
 import com.soft.credit911.R
 import com.soft.credit911.Utils.AppConstants
 import com.soft.credit911.Utils.AppPreference
@@ -33,27 +30,6 @@ class LoginVerificationActivity : BaseActivity() {
         attchObserver()
         appPreference = AppPreference(this)
         initView()
-
-        OtpFetcher.getInstance().verifyOtpByMatchingString(this, "code", 25000*60, object :
-            OtpListener {
-            override fun onReceived(messageItem: MessageItem) {
-                Toast.makeText(applicationContext, "" + messageItem.message, Toast.LENGTH_SHORT).show()
-                etOtpNum1.setText("X")
-                etOtpNum2.setText("X")
-                etOtpNum3.setText("X")
-                etOtpNum4.setText("X")
-                etOtpNum5.setText("X")
-                etOtpNum6.setText("X")
-                try {
-                    viewModel?.verifyOtp(messageItem.message.split(":")[1].trim())
-                }catch (e:Exception){}
-            }
-
-            override fun onTimeOut() {
-
-
-            }
-        })
     }
 
     private fun initView() {

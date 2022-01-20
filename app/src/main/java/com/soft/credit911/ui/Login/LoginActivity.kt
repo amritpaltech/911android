@@ -2,7 +2,10 @@ package com.soft.credit911.ui.Login
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import com.ing.quiz.shared_prefrences.Prefs
 import com.ing.quiz.shared_prefrences.SharedPreferencesName
 import com.ing.quiz.ui.base_classes.SubBaseActivity
@@ -37,17 +40,28 @@ class LoginActivity : SubBaseActivity() {
         appPreference = AppPreference(this)
         initView()
         attachObserver()
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            val window: Window = this.window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.setStatusBarColor(this.resources.getColor(R.color.blue))
+        }
     }
 
     private fun initView() {
         tv_Login.setOnClickListener { v: View? ->
             if (validate()) {
-
-                Permissions.check(
-                    this /*context*/,
+                mViewModel.signIn(
+                    etUserEmail.text.toString().trim { it <= ' ' },
+                    etUserPassword.text.toString().trim { it <= ' ' },
+                    Prefs.with(this@LoginActivity).
+                    getString(SharedPreferencesName.DEVICETOKEN,""))
+                /*Permissions.check(
+                    this *//*context*//*,
                     permissionsMessage,
-                    null /*rationale*/,
-                    null /*options*/,
+                    null *//*rationale*//*,
+                    null *//*options*//*,
                     object : PermissionHandler() {
                         override fun onGranted() {
                             mViewModel.signIn(
@@ -68,7 +82,7 @@ class LoginActivity : SubBaseActivity() {
                                 Prefs.with(this@LoginActivity).
                                 getString(SharedPreferencesName.DEVICETOKEN,""))
                         }
-                    })
+                    })*/
 
             }
         }
@@ -76,14 +90,14 @@ class LoginActivity : SubBaseActivity() {
             val intent = Intent(this, ForgetPasswordActivity::class.java)
             startActivity(intent)
         }
-        val adapter = ViewPagerAdapter(this)
-        view_pager.adapter = adapter
-        view_pager.currentItem = 0
-        tutorialSliderTab.setupWithViewPager(view_pager)
+//        val adapter = ViewPagerAdapter(this)
+//        view_pager.adapter = adapter
+//        view_pager.currentItem = 0
+//        tutorialSliderTab.setupWithViewPager(view_pager)
     }
 
     private fun validate(): Boolean {
-        if (etUserEmail.text.toString().trim { it <= ' ' } == "") {
+        if (etUserEmail.text.toString().length<=0) {
             etUserEmail.error = resources.getString(R.string.email_error)
             etUserEmail.requestFocus()
             return false
@@ -95,7 +109,7 @@ class LoginActivity : SubBaseActivity() {
             etUserEmail.requestFocus()
             return false
         }
-        if (etUserPassword.text.toString().trim { it <= ' ' } == "") {
+        if (etUserPassword.text.toString().length<=0) {
             etUserPassword.error = resources.getString(R.string.your_password)
             etUserPassword.requestFocus()
             return false

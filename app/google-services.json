@@ -7,69 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:277244966954:android:f276637a969402d67d6b53",
+        "mobilesdk_app_id": "1:277244966954:android:ebe4ef9dd6a5d12e7d6b53",
         "android_client_info": {
-          "package_name": "com.soft.credit911"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "277244966954-2gbtpqg30closa5tif3g1bsqkbhdh2o6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.soft.credit911",
-            "certificate_hash": "67ce096db653596d27076781ab25bbf3ede95949"
-          }
-        },
-        {
-          "client_id": "277244966954-7p2dlgr54f54lkb0kis8e969rmc3puva.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.soft.credit911",
-            "certificate_hash": "11907d6027e0755251b770b386ba661d93e68b08"
-          }
-        },
-        {
-          "client_id": "277244966954-cqn0je438v47vmu8i82lgsgfnruj2mjj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.soft.credit911",
-            "certificate_hash": "2a58539caaf952a23821f260411b432ce38a1f15"
-          }
-        },
-        {
-          "client_id": "277244966954-tqrps3ldm0noppqul4pvs0vhe2ghqu8v.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBHuHug6b1GRXON4-yxyOVyMcfcsVFA_BM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "277244966954-tqrps3ldm0noppqul4pvs0vhe2ghqu8v.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "277244966954-a6ci7dk0grbkmif1rc2ntsvn11ahde5v.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.soft.credit911"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:277244966954:android:06ae3c826246c7de7d6b53",
-        "android_client_info": {
-          "package_name": "com.soft.creditmerlin"
+          "package_name": "com.app.creditmerlin"
         }
       },
       "oauth_client": [

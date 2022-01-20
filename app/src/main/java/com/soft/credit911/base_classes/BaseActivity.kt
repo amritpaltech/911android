@@ -54,9 +54,9 @@ abstract class BaseActivity : AppConfigActivity() {
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
         Manifest.permission.READ_EXTERNAL_STORAGE
     )
-    val permissionsMessage = arrayOf(
-        Manifest.permission.READ_SMS,
-    )
+//    val permissionsMessage = arrayOf(
+//        Manifest.permission.READ_SMS,
+//    )
     var mCurrentFragment: Fragment? = null
     var myView: View? = null
     var count = 0
